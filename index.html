@@ -3,9 +3,9 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@11,400..600&family=Jost:wght@400;500&display=swap">
 <style>
-/* Layout: ateliê à luz da tarde. Painel preto-nogueira com o texto, a sala à direita; o scroll entra na sala, pinta a taça e a devolve à mesa. Cada seção é um campo de cor inteiro da própria sala: linho, creme, nogueira, preto. */
+/* Preto e dourado, como o logo: chão preto, tinta clara, ouro na ação e nos números. Uma seção inteira em campo de ouro (empresas). Display em Bodoni Moda, a mesma família didone das letras do logo; texto em Jost. */
 :root{
   --noir:#15110D;      /* sombra da madeira */
   --noir-2:#241D16;    /* um tom acima, para controles no escuro */
@@ -18,7 +18,9 @@
   --tinta:#15110D;
   --tinta-2:#55493C;
   --creme-2:#CFC4B2;   /* texto secundário no escuro */
-  --display:"Cormorant Garamond","Cormorant",Garamond,"Times New Roman",serif;
+  --preto-2:#1D1813;   /* um degrau de tom acima do preto, separa superfícies sem linha */
+  --tinta-ouro:#2A1F12;/* texto sobre o campo de ouro */
+  --display:"Bodoni Moda",Didot,"Bodoni 72","Times New Roman",serif;
   --text:"Jost","Futura","Avenir Next",system-ui,sans-serif;
   --gut:max(24px,env(safe-area-inset-left,0px));
   --gut-r:max(24px,env(safe-area-inset-right,0px));
@@ -27,10 +29,10 @@
 }
 *{box-sizing:border-box}
 html{background:var(--noir)}
-body{background:var(--creme);color:var(--tinta);font:400 18px/1.6 var(--text);-webkit-font-smoothing:antialiased}
+body{background:var(--noir);color:var(--creme);font:400 18px/1.6 var(--text);-webkit-font-smoothing:antialiased}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--noir)}
 a{color:inherit}
-h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-0.025em;line-height:.94;margin:0;text-wrap:balance}
+h1,h2,h3{font-family:var(--display);font-weight:500;letter-spacing:-0.02em;line-height:1.02;margin:0;text-wrap:balance}
 p{margin:0}
 .wrap{padding-left:var(--gut);padding-right:var(--gut-r);max-width:1480px;margin:0 auto}
 .btn{display:inline-flex;align-items:center;gap:.7em;background:var(--ouro);color:var(--noir);font:500 17px/1 var(--text);padding:19px 30px;border-radius:999px;text-decoration:none;border:0;cursor:pointer;transition:transform .25s cubic-bezier(.2,.8,.2,1),background .25s}
@@ -54,263 +56,133 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 .bar .wrap{display:flex;align-items:center;gap:36px;height:var(--bar)}
 .brand{display:flex;align-items:center;gap:14px;text-decoration:none;margin-right:auto}
 .brand .selo{width:46px;height:46px;display:block}
-.brand b{font:500 26px/1 var(--display);letter-spacing:-0.01em}
+.brand b{font:500 24px/1 var(--display);letter-spacing:-0.01em}
 .bar nav{display:flex;gap:32px;font-size:16px}
 .bar nav a{text-decoration:none;color:var(--creme-2);transition:color .2s}
 .bar nav a:hover{color:var(--creme)}
 .bar .btn{padding:13px 22px;font-size:15px}
-@media (max-width:820px){.bar nav{display:none}.brand{gap:10px}.brand .selo{width:40px;height:40px}.brand b{font-size:22px;white-space:nowrap}.bar .btn{padding:12px 18px;white-space:nowrap}}
+@media (max-width:820px){.bar nav{display:none}.brand{gap:10px}.brand .selo{width:40px;height:40px}.brand b{font-size:20px;white-space:nowrap}.bar .btn{padding:11px 14px;font-size:14px;white-space:nowrap}.bar .wrap{gap:12px}}
 
 /* palco */
 .stage{background:var(--noir)}
-.pin{height:calc(100svh - var(--bar));min-height:600px;position:relative;overflow:hidden;color:var(--creme)}
-.room{position:absolute;top:0;bottom:0;right:0;left:40%;overflow:hidden;background:var(--nogueira)}
+.pin{position:relative;overflow:hidden;color:var(--creme);display:flex;align-items:stretch;min-height:0}
+/* a foto inteira, na proporção dela (1376x768), sem corte; o menu ocupa a sobra à esquerda */
+.room{position:relative;flex:none;margin-left:auto;width:min(calc(100vw - 430px),calc((100svh - var(--bar)) * 1.7917));aspect-ratio:1376/768;overflow:hidden;background:var(--nogueira)}
 .room img,.room canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:42% 52%;display:block}
 html:not(.js-ready) .room canvas{display:none}
 .fotos{position:absolute;inset:0;will-change:filter}
 .fotos .b{opacity:0}
 .room canvas.gif{inset:auto;left:0;top:0;width:1280px;height:720px;transform-origin:0 0;opacity:0;pointer-events:none;will-change:transform;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent),linear-gradient(transparent,#000 10%,#000 90%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent),linear-gradient(transparent,#000 10%,#000 90%,transparent);mask-composite:intersect}
 .room canvas.livro{inset:auto;left:0;top:0;width:540px;height:520px;transform-origin:0 0;visibility:hidden;will-change:transform}
-.fotos .d,.fotos .e{opacity:0}
+.fotos .d,.fotos .e,.fotos .ae,.fotos .ad{opacity:0}
+/* penumbra do hover: a sala escurece e só a peça escolhida fica na luz */
+.room .penumbra{position:absolute;inset:0;background:#0B0806;opacity:0;pointer-events:none}
 .fotos .xp,.fotos .xps,.fotos .xcs{opacity:0}
 .room img.xfrente{opacity:0;pointer-events:none}
 .room canvas.xic{inset:auto;left:0;top:0;width:320px;height:260px;transform-origin:0 0;visibility:hidden;will-change:transform}
 .room canvas.vidro{inset:auto;left:0;top:0;width:220px;height:500px;transform-origin:0 0;visibility:hidden;will-change:transform}
-.panel{position:absolute;top:0;bottom:0;left:0;width:40%;display:flex;flex-direction:column;justify-content:flex-end;padding:0 48px 64px var(--gut)}
+.panel{position:absolute;top:0;bottom:0;left:0;width:44%;display:flex;flex-direction:column;justify-content:flex-end;padding:0 48px 64px var(--gut)}
 .beat{display:grid;gap:26px;max-width:560px}
-.beat h1{font-size:clamp(56px,6.4vw,104px)}
-.beat h2{font-size:clamp(48px,5.4vw,88px)}
+.beat h1{font-size:clamp(44px,4.9vw,84px)}
+.beat h2{font-size:clamp(36px,3.7vw,64px)}
 .beat p{font-size:19px;max-width:32ch;color:var(--creme-2)}
 .beat .quando{display:flex;gap:14px;align-items:baseline;color:var(--creme);font-size:17px}
-.beat .quando b{font:500 40px/1 var(--display);color:var(--ouro-claro);font-variant-numeric:lining-nums tabular-nums}
-.later{position:absolute;left:var(--gut);bottom:64px;right:48px;opacity:0;visibility:hidden}
+.beat .quando b{font:400 40px/1 var(--display);color:var(--ouro-claro);font-variant-numeric:lining-nums tabular-nums}
+.later{display:none}
 .js-ready .later{visibility:visible}
 @media (max-width:820px){
-  .pin{min-height:620px}
-  .room{left:0;bottom:46%}
+  .pin{flex-direction:column}
+  .room{width:100%;margin:0}
   .panel{width:100%;top:auto;height:46%;justify-content:flex-start;padding:28px var(--gut-r) 28px var(--gut)}
   .beat{gap:16px}
-  .beat h1{font-size:clamp(42px,11.6vw,60px)}
-  .beat h2{font-size:clamp(38px,10.4vw,54px)}
+  .beat h1{font-size:clamp(34px,9vw,50px)}
+  .beat h2{font-size:clamp(28px,7.4vw,42px)}
   .beat p{font-size:17px}
   .beat .quando b{font-size:30px}
   .later{left:var(--gut);right:var(--gut-r);bottom:auto;top:calc(54% + 28px)}
 }
 
-/* a manhã */
-.manha{background:var(--creme);padding-block:180px}
-.manha .wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:80px;align-items:start}
-.manha .head{position:sticky;top:calc(var(--bar) + 48px)}
-.manha h2{font-size:clamp(52px,6.2vw,104px)}
-.manha .lead{margin-top:32px;font-size:21px;max-width:34ch;color:var(--tinta-2)}
-.ritual{list-style:none;margin:0;padding:0;display:grid;gap:12px}
-.ritual li{display:grid;grid-template-columns:150px minmax(0,1fr);gap:32px;align-items:baseline;background:var(--linho);padding:34px 36px;border-radius:2px}
-.ritual time{font:400 56px/1 var(--display);color:var(--ouro);font-variant-numeric:lining-nums tabular-nums;letter-spacing:-0.03em}
-.ritual h3{font-size:34px;line-height:1.05}
-.ritual p{margin-top:8px;color:var(--tinta-2)}
-.fatos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:12px}
-.fatos div{background:var(--noir);color:var(--creme);padding:28px 26px;border-radius:2px;display:grid;gap:6px}
-.fatos b{font:400 40px/1 var(--display);color:var(--ouro-claro)}
-.fatos span{font-size:15px;color:var(--creme-2);line-height:1.45}
-@media (max-width:980px){.manha{padding-block:104px}.manha .wrap{grid-template-columns:1fr;gap:48px}.manha .head{position:static}.ritual li{grid-template-columns:1fr;gap:10px;padding:26px 24px}.ritual time{font-size:44px}.ritual h3{font-size:28px}.fatos{grid-template-columns:1fr 1fr}}
-
-/* para empresas: a luva com o pincel que brilha, mascote da casa */
-.empresas{background:var(--creme);padding-block:170px;border-top:1px solid #E2D7C4}
-.empresas .wrap{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:64px;align-items:center}
-.empresas h2{font-size:clamp(48px,5.6vw,92px)}
-.empresas .lead{margin-top:28px;font-size:20px;max-width:40ch;color:var(--tinta-2)}
-.empresas .ocasioes{margin:28px 0 40px;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:10px 28px;font:italic 400 26px/1.2 var(--display);color:var(--tinta)}
-.empresas .mascote{position:relative;justify-self:center;width:min(100%,460px);background:var(--creme);isolation:isolate}
-.empresas .mascote img{display:block;width:100%;height:auto;mix-blend-mode:multiply}
-.empresas .mascote i{position:absolute;left:21%;top:69%;width:38%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;mix-blend-mode:screen;
-  background:radial-gradient(circle,rgba(255,236,190,.95) 0,rgba(240,196,110,.55) 18%,rgba(221,187,116,.18) 42%,transparent 66%);animation:varinha 2.6s ease-in-out infinite}
-@keyframes varinha{0%,100%{opacity:.55;transform:translate(-50%,-50%) scale(.82)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.12)}}
-@media (prefers-reduced-motion:reduce){.empresas .mascote i{animation:none;opacity:.7}}
-@media (max-width:980px){.empresas{padding-block:104px}.empresas .wrap{grid-template-columns:1fr;gap:36px}.empresas .mascote{order:-1;width:min(86%,380px)}.empresas .ocasioes{font-size:22px}}
-
-/* reserva */
-.reserva{background:var(--nogueira);color:var(--creme);padding-block:170px}
-.reserva .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:80px;align-items:center}
-.reserva h2{font-size:clamp(52px,6vw,100px)}
-.reserva .sub{margin-top:28px;font-size:20px;color:var(--creme-2);max-width:34ch}
-.calc{display:grid;gap:40px;background:var(--noir);padding:44px;border-radius:2px}
-.calc fieldset{border:0;margin:0;padding:0;display:grid;gap:14px}
-.calc legend{font-size:16px;color:var(--creme-2);margin-bottom:14px}
-.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.opt{position:relative}
-.opt input{position:absolute;opacity:0}
-.opt span{display:grid;gap:6px;padding:22px 24px;background:var(--noir-2);border-radius:2px;cursor:pointer;transition:background .25s,color .25s;color:var(--creme-2)}
-.opt b{font:500 36px/1 var(--display);color:var(--creme)}
-.opt input:checked + span{background:var(--ouro);color:var(--noir)}
-.opt input:checked + span b{color:var(--noir)}
-.opt input:focus-visible + span{outline:3px solid var(--ouro-claro);outline-offset:3px}
-.step{display:flex;align-items:center;gap:22px}
-.step button{width:56px;height:56px;border-radius:50%;border:0;background:var(--noir-2);color:var(--creme);font-size:26px;cursor:pointer;transition:background .2s,transform .15s}
-.step button:hover{background:#3A2F24}
-.step button:active{transform:scale(.92)}
-.step output{font:400 60px/1 var(--display);min-width:1.4em;text-align:center;font-variant-numeric:lining-nums tabular-nums}
-.total{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--creme-2)}
-.total strong{font:400 clamp(60px,6vw,92px)/1 var(--display);color:var(--ouro-claro);font-variant-numeric:lining-nums tabular-nums;letter-spacing:-0.03em}
-.phone{font-size:15px;color:var(--creme-2)}
-.phone b{color:var(--creme);font-weight:500;user-select:all}
-@media (max-width:980px){.reserva{padding-block:104px}.reserva .wrap{grid-template-columns:1fr;gap:48px}.calc{padding:28px 22px}.opt b{font-size:30px}}
-
-/* perguntas */
-.faq{background:var(--creme);padding-block:180px}
-.faq .wrap{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:80px}
-.faq h2{font-size:clamp(52px,6vw,100px)}
-.faq details{background:var(--linho);border-radius:2px;margin-bottom:8px;transition:background .25s}
-.faq details[open]{background:#DDD1BC}
-.faq summary{cursor:pointer;list-style:none;padding:28px 32px;font:500 30px/1.15 var(--display);display:flex;justify-content:space-between;gap:24px}
-.faq summary::after{content:"+";font-family:var(--text);font-weight:400;color:var(--ouro);transition:transform .3s}
-.faq details[open] summary::after{transform:rotate(45deg)}
-.faq summary::-webkit-details-marker{display:none}
-.faq details p{padding:0 32px 30px;max-width:58ch;color:var(--tinta-2)}
-@media (max-width:980px){.faq{padding-block:104px}.faq .wrap{grid-template-columns:1fr;gap:40px}.faq summary{font-size:25px;padding:22px}.faq details p{padding:0 22px 24px}}
+/* menu: uma plaquinha preta de galeria, pequena, ao lado da poltrona da esquerda */
+.placa{position:relative;order:-1;flex:1;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:40px clamp(20px,3vw,56px);background:var(--noir);color:var(--creme)}
+.placa > *{width:100%;max-width:330px}
+.placa .saiba{width:auto}
+.placa h1{font:400 16px/1.45 var(--text);color:var(--creme-2);max-width:26ch}
+.oficinas{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:4px}
+.oficinas a{display:block;padding:7px 0;text-decoration:none;transition:opacity .35s,transform .45s cubic-bezier(.2,.8,.2,1)}
+.oficinas b{font:500 27px/1.1 var(--display);letter-spacing:-0.01em;color:var(--creme);transition:color .3s}
+.oficinas a:hover b,.oficinas a.ativa b{color:var(--ouro-claro)}
+.placa.escolhendo .oficinas a{opacity:.38}
+.placa.escolhendo .oficinas a.ativa{opacity:1;transform:translateX(10px)}
+.oficinas a.vista b{color:var(--ouro-claro)}
+.placa .saiba{margin-top:22px;display:none}
+.placa .saiba.on{display:inline-flex}
+.pular-cena{position:absolute;right:24px;bottom:24px;z-index:3;font:500 15px/1 var(--text);color:var(--noir);background:var(--creme);border:0;border-radius:999px;padding:12px 18px;cursor:pointer;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s,background .2s}
+.pular-cena.on{opacity:1;visibility:visible}
+.pular-cena:hover{background:var(--ouro-claro)}
+@media (max-width:820px){.placa{order:1;flex:none;padding:22px 16px 28px}.placa > *{max-width:none}.placa h1{font-size:15px}.oficinas{margin-top:10px;gap:0}.oficinas a{padding:6px 0}.oficinas b{font-size:24px}.placa .saiba{margin-top:14px}.pular-cena{right:16px;bottom:16px}}
 
 /* fim */
-.end{background:var(--noir);color:var(--creme);padding-block:120px 48px;overflow:hidden}
+.end{background:var(--noir);color:var(--creme);padding-block:72px 40px;overflow:hidden}
 .end .row{display:flex;flex-wrap:wrap;gap:28px 64px;align-items:end;justify-content:space-between}
 .end .row p{font-size:17px;color:var(--creme-2)}
+.end .row a{text-underline-offset:4px}
 .end .row p b{color:var(--creme);font-weight:500}
-.end .big{font:400 clamp(64px,15.4vw,240px)/.8 var(--display);letter-spacing:-0.045em;margin-top:96px;white-space:nowrap;color:var(--ouro-claro)}
-.end .big i{font-style:italic}
+.end .big{font:400 calc((100vw - 48px) * .176)/.86 var(--display);letter-spacing:-0.035em;margin-top:120px;white-space:nowrap;color:var(--ouro-claro)}
+@media (min-width:1480px){.end .big{font-size:258px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 
 /* abertura em vídeo */
-.curtain .pula{position:absolute;bottom:max(24px,env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);font:13px/1 Jost,system-ui,sans-serif;letter-spacing:.08em;color:#3B2A1E;background:rgba(243,236,223,.85);border:1px solid rgba(59,42,30,.25);border-radius:999px;padding:10px 18px;cursor:pointer}
+.curtain .pula{position:absolute;bottom:max(24px,env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);font:15px/1 Jost,system-ui,sans-serif;color:#3B2A1E;background:rgba(243,236,223,.9);border:0;border-radius:999px;padding:10px 18px;cursor:pointer}
 .curtain .abre{background:#DBD7CD}
 /* o vídeo só aparece depois que o primeiro quadro já está na tela: nada do player do navegador (botão de play, caixa vazia) */
 .curtain video.abre{opacity:.01;pointer-events:none}.curtain video.abre.ok{opacity:1}
 .curtain video::-webkit-media-controls,.curtain video::-webkit-media-controls-start-playback-button,.curtain video::-webkit-media-controls-overlay-play-button{display:none!important;-webkit-appearance:none}
-/* área de empresas: abre por cima do site, dentro do mesmo artefato */
-.camada-emp{position:fixed;inset:0;z-index:60;background:#0E0B08;display:none}
-.camada-emp.aberta{display:block}
-.camada-emp iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#0E0B08}
-.camada-emp .volta{position:absolute;z-index:2;left:16px;bottom:max(16px,env(safe-area-inset-bottom,0px));font:500 14px/1 var(--text);color:#15110D;background:var(--ouro-claro);border:0;border-radius:999px;padding:12px 18px;cursor:pointer;box-shadow:0 6px 24px rgba(0,0,0,.35)}
 </style>
 
 <div class="curtain"><div class="abre-zoom"><img class="abre abre-0" src="abertura-0.webp" alt=""><video class="abre" src="abertura.mp4" poster="abertura-0.webp" muted playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback x-webkit-airplay="deny" controlslist="nodownload nofullscreen noremoteplayback" aria-hidden="true"></video></div><button type="button" class="pula">Pular abertura</button></div>
 
-<div class="camada-emp" role="dialog" aria-label="Eventos para empresas"><iframe title="Eventos para empresas"></iframe><button type="button" class="volta">← Voltar ao site</button></div>
-
 <header class="bar">
   <div class="wrap">
     <a class="brand" href="#topo"><img class="selo" src="selo.webp" width="46" height="46" alt=""><b>Arte de Ville</b></a>
-    <nav aria-label="Seções"><a href="#manha">A oficina</a><a href="#empresas" data-empresas>Para empresas</a><a href="#perguntas">Perguntas</a></nav>
-    <a class="btn" href="#reserva">Reservar vaga</a>
+    <nav aria-label="Seções"><a href="saiba-mais.html">Para empresas</a><a href="saiba-mais.html#instagram">Instagram</a><a href="saiba-mais.html#perguntas">Perguntas</a></nav>
+    <a class="btn" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Quero%20uma%20proposta%20de%20oficina%20da%20Arte%20de%20Ville%20para%20a%20minha%20empresa." target="_blank" rel="noopener">Peça o orçamento</a>
   </div>
 </header>
 
 <main id="topo">
-  <section class="stage" aria-label="Oficina de pintura em taças">
+  <section class="stage" aria-label="As três oficinas">
     <div class="pin">
-      <div class="room" aria-hidden="true"><div class="fotos"><img class="c" src="mesa-c.webp" alt=""><img class="a" src="mesa-a.webp" alt=""><img class="b" src="mesa-b.webp" alt=""><img class="e" src="mesa-e.webp" alt=""><img class="d" src="mesa-d.webp" alt=""><img class="xcs" src="xic-crua-sombra.webp" alt=""><img class="xc" src="xic-crua-mesa.webp" alt=""><img class="xps" src="xic-pintada-sombra.webp" alt=""><img class="xp" src="xic-pintada-mesa.webp" alt=""></div><canvas class="vidro" width="440" height="1000"></canvas><canvas class="gif" width="1280" height="720"></canvas><canvas class="livro" width="1080" height="1040"></canvas><img class="xfrente" src="xic-crua-so.webp" alt=""><canvas class="gif g2" width="1280" height="720"></canvas><canvas class="xic" width="640" height="520"></canvas><canvas class="gif g3" width="1280" height="720"></canvas></div>
-      <div class="panel">
-        <div class="beat first">
-          <h1>Você chega. A taça está vazia.</h1>
-          <p>Oficina de pintura em taças em Alphaville. Duas horas, café incluso, a partir de R$ 290 por pessoa.</p>
-          <p class="quando"><b>31.10</b>Sábado, das 11h às 13h. 10 vagas.</p>
-          <div><a class="btn" href="#reserva">Reservar minha vaga <span class="seta" aria-hidden="true">→</span></a></div>
-        </div>
-      </div>
-      <div class="beat later" data-beat="1"><h2>Ninguém precisa saber desenhar.</h2><p>A gente mostra o traço e você escolhe as cores. O pincel cuida do resto.</p></div>
+      <div class="room" aria-hidden="true"><div class="fotos"><img class="c" src="mesa-c.webp" alt=""><img class="a" src="mesa-a.webp" alt=""><img class="b" src="mesa-b.webp" alt=""><img class="e" src="mesa-e.webp" alt=""><img class="d" src="mesa-d.webp" alt=""><img class="ae" src="mesa-ae.webp" alt=""><img class="ad" src="mesa-ad.webp" alt=""><img class="xcs" src="xic-crua-sombra.webp" alt=""><img class="xc" src="xic-crua-mesa.webp" alt=""><img class="xps" src="xic-pintada-sombra.webp" alt=""><img class="xp" src="xic-pintada-mesa.webp" alt=""></div><div class="penumbra"></div><canvas class="vidro" width="440" height="1000"></canvas><canvas class="gif" width="1280" height="720"></canvas><canvas class="livro" width="1080" height="1040"></canvas><img class="xfrente" src="xic-crua-so.webp" alt=""><canvas class="gif g2" width="1280" height="720"></canvas><canvas class="xic" width="640" height="520"></canvas><canvas class="gif g3" width="1280" height="720"></canvas></div>
+      <nav class="placa" aria-label="Oficinas">
+        <h1>Oficinas de arte para empresas, em Alphaville e na Grande São Paulo.</h1>
+        <ul class="oficinas">
+          <li><a href="saiba-mais.html?oficina=taca" data-cena="0"><b>Pintura em taças</b></a></li>
+          <li><a href="saiba-mais.html?oficina=livro" data-cena="1"><b>Dobradura em livros</b></a></li>
+          <li><a href="saiba-mais.html?oficina=xicara" data-cena="2"><b>Pintura em xícaras</b></a></li>
+        </ul>
+        <a class="btn saiba" href="saiba-mais.html">Saiba mais <span class="seta" aria-hidden="true">→</span></a>
+      </nav>
+      <div class="beat later" data-beat="1"><h2>Ninguém precisa saber desenhar.</h2><p>A gente mostra o traço e cada pessoa escolhe as cores. O pincel cuida do resto.</p></div>
       <div class="beat later" data-beat="2"><h2>Depois, a cor ganha corpo.</h2><p>Tinta própria para vidro, que vai ao forno e aguenta o uso do dia a dia.</p></div>
-      <div class="beat later" data-beat="3"><h2>Duas horas depois, ela é sua.</h2><p>Pintada por você. Leve suas taças para casa e brinde com elas no mesmo fim de semana.</p><div><a class="btn" href="#reserva">Quero pintar a minha <span class="seta" aria-hidden="true">→</span></a></div></div>
-      <div class="beat later" data-beat="4"><h2>E o livro? Não fica parado.</h2><p>Na próxima oficina, as páginas de um livro antigo viram outra coisa.</p></div>
-      <div class="beat later" data-beat="5"><h2>Dobra por dobra, ele vira peça.</h2><p>Oficina de dobradura em livro: cada página dobrada à mão até virar uma peça para a sua casa. Turmas em breve.</p><div><a class="btn" href="#reserva">Quero saber primeiro <span class="seta" aria-hidden="true">→</span></a></div></div>
-      <div class="beat later" data-beat="6"><h2>E a xícara do café? Também ganha cor.</h2><p>Na oficina de pintura em xícaras, a porcelana branca vira a sua xícara preferida.</p></div>
-      <div class="beat later" data-beat="7"><h2>Pintada por você, pronta para o café de amanhã.</h2><p>Xícara e pires pintados à mão, com tinta própria para porcelana. Turmas em breve.</p><div><a class="btn" href="#reserva">Quero saber primeiro <span class="seta" aria-hidden="true">→</span></a></div></div>
+      <div class="beat later" data-beat="3"><h2>Duas horas depois, ela é de quem pintou.</h2><p>Embalada para presente. O brinde do fim de ano já tem taça.</p></div>
+      <div class="beat later" data-beat="4"><h2>Um livro esquecido na estante.</h2><p>Ninguém mais lê. Mas as páginas ainda guardam uma forma.</p></div>
+      <div class="beat later" data-beat="5"><h2>Dobra por dobra, ele vira peça.</h2><p>Sem cola e sem tesoura. Cada pessoa dobra o seu livro até ele virar decoração.</p></div>
+      <div class="beat later" data-beat="6"><h2>A xícara do café de todo dia.</h2><p>Porcelana branca, lisa, esperando uma cor.</p></div>
+      <div class="beat later" data-beat="7"><h2>Pronta para o café de amanhã.</h2><p>Xícara e pires pintados à mão, com tinta própria para porcelana.</p></div>
+      <button type="button" class="pular-cena">Pular animação</button>
     </div>
   </section>
 
-  <section class="manha" id="manha">
-    <div class="wrap">
-      <div class="head">
-        <h2>Uma manhã entre amigas, com pincel na mão.</h2>
-        <p class="lead">O primeiro ateliê day-use de Alphaville. Você não traz nada e não precisa ter pintado antes. Sai com as taças embrulhadas para presente.</p>
-      </div>
-      <div>
-        <ol class="ritual">
-          <li><time>11h00</time><div><h3>Café e boas-vindas</h3><p>Mesa posta, café passado e tempo para chegar sem pressa.</p></div></li>
-          <li><time>11h15</time><div><h3>Você escolhe o estilo</h3><p>Seis cardápios de cor e desenhos de referência para começar.</p></div></li>
-          <li><time>11h30</time><div><h3>Mãos na taça</h3><p>Duas facilitadoras passam de lugar em lugar, mostrando o traço e corrigindo junto.</p></div></li>
-          <li><time>12h40</time><div><h3>Acabamento e assinatura</h3><p>Detalhes em dourado e suas iniciais na base da taça.</p></div></li>
-          <li><time>13h00</time><div><h3>Brinde</h3><p>Foto da turma e as taças embaladas para levar.</p></div></li>
-        </ol>
-        <div class="fatos">
-          <div><b>10</b><span>vagas por turma</span></div>
-          <div><b>2</b><span>facilitadoras ao seu lado</span></div>
-          <div><b>2 ou 4</b><span>taças por pessoa</span></div>
-          <div><b>0</b><span>experiência necessária</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="empresas" id="empresas" aria-label="Eventos para empresas">
-    <div class="wrap">
-      <div>
-        <h2>Para a sua empresa, a oficina vai até vocês.</h2>
-        <p class="lead">A gente leva as taças, as tintas, o café e duas facilitadoras para a sua equipe pintar junto, no seu espaço. Vocês só escolhem o dia.</p>
-        <ul class="ocasioes"><li>Fim de ano</li><li>Integração de equipe</li><li>Encontro com clientes</li></ul>
-        <a class="btn" href="#empresas" data-empresas>Conhecer eventos para empresas <span class="seta" aria-hidden="true">→</span></a>
-      </div>
-      <div class="mascote" aria-hidden="true"><img src="mascote.webp" width="640" height="470" alt="" loading="lazy"><i></i></div>
-    </div>
-  </section>
-
-  <section class="reserva" id="reserva">
-    <div class="wrap">
-      <div>
-        <h2>Monte sua reserva.</h2>
-        <p class="sub">Escolha o pacote e quantas pessoas vêm com você. A mensagem já sai pronta no WhatsApp, é só enviar.</p>
-      </div>
-      <form class="calc" id="calc">
-        <fieldset>
-          <legend>Pacote por pessoa</legend>
-          <div class="opts">
-            <label class="opt"><input type="radio" name="pac" id="pac2" value="2" checked><span><b>2 taças</b>R$ 290</span></label>
-            <label class="opt"><input type="radio" name="pac" id="pac4" value="4"><span><b>4 taças</b>R$ 390</span></label>
-          </div>
-        </fieldset>
-        <fieldset>
-          <legend>Quantas pessoas</legend>
-          <div class="step">
-            <button type="button" id="menos" aria-label="Uma pessoa a menos">−</button>
-            <output id="qtd" aria-live="polite">2</output>
-            <button type="button" id="mais" aria-label="Uma pessoa a mais">+</button>
-          </div>
-        </fieldset>
-        <div class="total"><span>Total</span><strong id="total">R$ 580</strong></div>
-        <div><a class="btn" id="zap" href="https://wa.me/5511900000000" target="_blank" rel="noopener">Enviar no WhatsApp <span class="seta" aria-hidden="true">→</span></a></div>
-        <p class="phone">Ou chame direto: <b>(11) 90000-0000</b></p>
-      </form>
-    </div>
-  </section>
-
-  <section class="faq" id="perguntas">
-    <div class="wrap">
-      <h2>Perguntas antes de reservar.</h2>
-      <div>
-        <details open><summary>Preciso saber pintar?</summary><p>Não. A maioria das alunas nunca pintou. As facilitadoras mostram o traço e ajudam do começo ao fim.</p></details>
-        <details><summary>A pintura sai na lavagem?</summary><p>A tinta é própria para vidro. Depois da cura, a taça pode ser lavada à mão. Explicamos o cuidado na oficina.</p></details>
-        <details><summary>Posso levar uma amiga?</summary><p>Pode e deve. Reserve as vagas juntas na calculadora acima.</p></details>
-        <details><summary>Fazem para aniversário ou grupo fechado?</summary><p>Sim. Chame no WhatsApp com a data e o número de pessoas que a gente monta uma turma só para vocês.</p></details>
-        <details><summary>Como pago?</summary><p>Pix na reserva garante a vaga. Os detalhes vão pela conversa no WhatsApp.</p></details>
-      </div>
-    </div>
-  </section>
 </main>
 
 <footer class="end">
   <div class="wrap">
     <div class="row">
-      <p><b>Ateliê day-use em Alphaville</b><br>Na Ana Fernandes Essentials</p>
-      <p>Instagram <a href="https://www.instagram.com/artedeville" target="_blank" rel="noopener">@artedeville</a><br>WhatsApp <b>(11) 90000-0000</b><br><a href="#empresas" data-empresas>Eventos para empresas</a></p>
-      <a class="btn" href="#reserva">Reservar vaga <span class="seta" aria-hidden="true">→</span></a>
+      <p><b><a href="saiba-mais.html">Oficinas para empresas</a></b><br>Alphaville, São Paulo e Grande São Paulo</p>
+      <p>Instagram <a href="https://www.instagram.com/artedeville" target="_blank" rel="noopener">@artedeville</a><br>WhatsApp <a href="https://wa.me/5511900000000" target="_blank" rel="noopener">(11) 90000-0000</a></p>
+      <a class="btn" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Quero%20um%20or%C3%A7amento%20de%20oficina%20da%20Arte%20de%20Ville%20para%20a%20minha%20empresa." target="_blank" rel="noopener">Peça o orçamento <span class="seta" aria-hidden="true">→</span></a>
     </div>
-    <p class="big" aria-hidden="true">Arte <i>de</i> Ville</p>
+    <p class="big" aria-hidden="true">Arte de Ville</p>
   </div>
 </footer>
 
@@ -319,21 +191,6 @@ html:not(.js-ready) .room canvas{display:none}
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
 <script>
 (function(){
-  /* calculadora */
-  var n=2, fone="5511900000000";
-  var qtd=document.getElementById('qtd'), total=document.getElementById('total'), zap=document.getElementById('zap');
-  function brl(v){return 'R$ '+v.toLocaleString('pt-BR')}
-  function upd(){
-    var pac=document.querySelector('input[name=pac]:checked').value, preco=pac==='4'?390:290;
-    qtd.textContent=n; total.textContent=brl(n*preco);
-    var msg='Olá! Quero reservar a oficina de pintura em taças: '+n+(n>1?' pessoas':' pessoa')+', pacote de '+pac+' taças ('+brl(n*preco)+' no total).';
-    zap.href='https://wa.me/'+fone+'?text='+encodeURIComponent(msg);
-  }
-  document.getElementById('menos').onclick=function(){if(n>1){n--;upd()}};
-  document.getElementById('mais').onclick=function(){if(n<10){n++;upd()}};
-  document.getElementById('calc').addEventListener('change',upd);
-  document.getElementById('calc').addEventListener('submit',function(e){e.preventDefault()});
-  upd();
 
 
   /* a taça: recortada da própria foto da mesa (vazia); a pintada é a da Mesa B */
@@ -350,10 +207,10 @@ html:not(.js-ready) .room canvas{display:none}
     /* aro dourado na frente da troca, só sobre o vidro */
     if(r<1){ctx.globalCompositeOperation='source-atop';ctx.beginPath();ctx.arc(cx,cy,R,0,7);ctx.lineWidth=18;ctx.strokeStyle='rgba(246,222,160,'+(1-r)+')';ctx.stroke();ctx.globalCompositeOperation='source-over'}}
   /* a xícara fica na frente do pé da taça e do canto do livro: enquanto estão na mesa, a silhueta dela é apagada deles (oc=1); no alto, não (oc=0) */
-  var silh=new Image(), oc1={o:1}, oc2={o:1};silh.src='xic-crua-silhueta.webp';
+  var silhC=new Image(), silhP=new Image(), silh=silhC, oc1={o:1}, oc2={o:1};silhC.src='xic-crua-silhueta.webp';silhP.src='xic-pintada-silhueta.webp';
   function oclui(c,ox,oy,o){if(o<=0||!silh.complete||!silh.naturalWidth)return;c.save();c.globalAlpha=o;c.globalCompositeOperation='destination-out';c.drawImage(silh,-ox*2,-oy*2,2752,1536);c.restore()}
   var revelaBase=revela;revela=function(r){revelaBase(r);oclui(ctx,470,150,oc1.o)};
-  vazio.onload=function(){revela(0)};silh.onload=function(){revela(0)};
+  vazio.onload=function(){revela(0)};silhC.onload=function(){revela(0)};
 
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(reduce||!window.gsap||!window.ScrollTrigger)return;
@@ -436,11 +293,11 @@ html:not(.js-ready) .room canvas{display:none}
     return {x:a.x+TOQUE2.x*k-640*sc,y:a.y+TOQUE2.y*k-358*sc,scale:sc}}
   /* a xícara: recortes da mesa (Gemini) no quadro x 550, y 450, 320x260 da foto; a pintada nasce da luz, a branca se apaga */
   var xcv=document.querySelector('.xic'), xctx=xcv.getContext('2d');
-  var xcru=new Image();xcru.src='xic-crua.webp';var xpin=new Image();xpin.src='xic-pintada.webp';
+  var xcru=new Image();xcru.src='xic-crua.webp';var xneu=new Image();xneu.src='xic-crua-neutra.webp';var nx={w:0};var xpin=new Image();xpin.src='xic-pintada.webp';
   var TOQUE3={x:151,y:141}, rv3={r:0};
   function revela3(r){if(!xcru.complete||!xcru.naturalWidth)return;
     xctx.clearRect(0,0,640,520);var cx=TOQUE3.x*2,cy=TOQUE3.y*2,R=r*760;
-    if(r<1){xctx.globalAlpha=Math.max(0,1-r*4);xctx.drawImage(xcru,0,0,640,520);xctx.globalAlpha=1}
+    if(r<1){var g0=Math.max(0,1-r*4);xctx.globalAlpha=g0;xctx.drawImage(xcru,0,0,640,520);if(nx.w>0&&xneu.complete&&xneu.naturalWidth){xctx.globalAlpha=g0*nx.w;xctx.drawImage(xneu,0,0,640,520)}xctx.globalAlpha=1}
     if(r<=0||!xpin.complete||!xpin.naturalWidth)return;
     if(r<1){xctx.save();xctx.globalCompositeOperation='destination-out';xctx.beginPath();xctx.arc(cx,cy,R,0,7);xctx.fill();xctx.restore()}
     xctx.save();xctx.beginPath();xctx.arc(cx,cy,R,0,7);xctx.clip();xctx.drawImage(xpin,0,0,640,520);xctx.restore();
@@ -458,7 +315,7 @@ html:not(.js-ready) .room canvas{display:none}
     return {x:a.x+TOQUE3.x*k-495*sc,y:a.y+TOQUE3.y*k-178*sc,scale:sc}}
   /* a cena não anda junto com a rolagem: cada gatilho toca a sua parte inteira, sozinha */
   var tl=gsap.timeline({paused:true});
-  tl.to('.first',{opacity:0,y:-30,duration:.05},0)
+  tl.set({},{},0)
     .fromTo(canvas,pos(mesa),Object.assign({duration:.001,immediateRender:true},pos(mesa)),0)
     .set(canvas,{visibility:'visible'},.03)
     .set('.fotos .a',{opacity:0},.031)
@@ -488,11 +345,13 @@ html:not(.js-ready) .room canvas{display:none}
     .set(canvas,{visibility:'hidden'},.721)
     .fromTo('[data-beat="3"]',{opacity:0,y:24},{opacity:1,y:0,duration:.04},.68)
     .to('[data-beat="3"]',{opacity:0,y:-24,duration:.04},.84)
-    .fromTo('[data-beat="4"]',{opacity:0,y:24},{opacity:1,y:0,duration:.04},.88)
+    /* cada cena parte da mesa crua: a taça volta a ser a vazia (Mesa A) antes do livro */
+    .set('.fotos .a',{opacity:1},.965).set('.fotos .b',{opacity:0},.965)
+    .fromTo('[data-beat="4"]',{opacity:0,y:24},{opacity:1,y:0,duration:.04},.975)
     /* cena do livro: o mesmo caminho da taça */
     .fromTo(lcv,pos(mesa2),Object.assign({duration:.001,immediateRender:true},pos(mesa2)),.97)
     .set(lcv,{visibility:'visible'},1.0)
-    .set('.fotos .e',{opacity:1},1.001)
+    .set('.fotos .ae',{opacity:1},1.001)
     .to('.fotos,.xfrente',{filter:'blur(9px) brightness(.72)',duration:.1,ease:'power1.out'},1.0)
     .to(lcv,Object.assign({duration:.12,ease:'power2.inOut'},pos(alto2)),1.01)
     .fromTo(oc2,{o:1},{o:0,duration:.001,immediateRender:false,onUpdate:function(){revela2(rv2.r)}},1.0)
@@ -514,12 +373,14 @@ html:not(.js-ready) .room canvas{display:none}
     .fromTo(sh,{s:1},{s:0,duration:.12,ease:'power2.inOut',immediateRender:false,onUpdate:function(){revela2(1)}},1.58)
     .to(lcv,{filter:'drop-shadow(0px 0px 0px rgba(255,236,200,0)) drop-shadow(0px 0px 0px rgba(255,212,140,0)) drop-shadow(0px 0px 0px rgba(30,16,6,0))',duration:.1},1.58)
     /* a foto com a peça entra por baixo assim que ela pousa; só então a sala desfoca de volta (a mesa sem livro nunca aparece nítida) */
-    .set('.fotos .d',{opacity:1},1.7)
+    .set('.fotos .ad',{opacity:1},1.7)
     .to('.fotos,.xfrente',{filter:'blur(0px) brightness(1)',duration:.1,ease:'power1.in'},1.7)
     .set(lcv,{visibility:'hidden'},1.8)
     .to({},{duration:.06},1.8)
     /* cena da xícara: o mesmo caminho da taça, com a mesma luva */
-    .to('[data-beat="5"]',{opacity:0,y:-24,duration:.04},1.88)
+    .to('[data-beat="5"]',{opacity:0,y:-24,duration:.04},1.82)
+    /* e a mesa volta a ser a crua (taça vazia e livro) antes da xícara */
+    .set('.fotos .ae,.fotos .ad',{opacity:0},1.87)
     .fromTo(xcv,pos(mesa3),Object.assign({duration:.001,immediateRender:true},pos(mesa3)),1.9)
     .set(xcv,{visibility:'visible'},1.93)
     /* a foto da xícara sai e fica só a sombra dela, que se apaga enquanto a sala desfoca */
@@ -528,6 +389,7 @@ html:not(.js-ready) .room canvas{display:none}
     .to('.fotos .xcs',{opacity:0,duration:.06},1.932)
     .to('.fotos',{filter:'blur(9px) brightness(.72)',duration:.1,ease:'power1.out'},1.93)
     .to(xcv,Object.assign({duration:.12,ease:'power2.inOut'},pos(alto3)),1.94)
+    .fromTo(nx,{w:0},{w:1,duration:.12,immediateRender:false,onUpdate:function(){revela3(rv3.r)}},1.94)
     .fromTo(xcv,{filter:'drop-shadow(0px 0px 0px rgba(255,236,200,0)) drop-shadow(0px 0px 0px rgba(255,212,140,0)) drop-shadow(0px 0px 0px rgba(30,16,6,0))'},{filter:'drop-shadow(0px 0px 1.5px rgba(255,236,200,.85)) drop-shadow(3px -3px 7px rgba(255,212,140,.6)) drop-shadow(0px 40px 40px rgba(30,16,6,.55))',duration:.12},1.94)
     .fromTo('[data-beat="6"]',{opacity:0,y:24},{opacity:1,y:0,duration:.04},1.98)
     .fromTo(gif3,Object.assign({opacity:0},pos(gifPos3)),Object.assign({opacity:1,duration:.03,immediateRender:false},pos(gifPos3)),2.04)
@@ -545,38 +407,135 @@ html:not(.js-ready) .room canvas{display:none}
     .set('.fotos .xps',{opacity:0},2.62)
     .set(xcv,{visibility:'hidden'},2.621)
     .to({},{duration:.1},2.62);
-  /* gatilhos: ao entrar na cena, a taça toca inteira; rolando mais, o livro e depois a xícara tocam inteiros. A rolagem espera cada uma terminar */
-  var cenas=[{de:0,ate:.95,em:.03},{de:.97,ate:1.86,em:.36},{de:1.88,ate:2.72,em:.7}], feitas=0, rodando=false, travaY=0;
-  var palco=ScrollTrigger.create({trigger:'.pin',start:'top top+='+(document.querySelector('.bar').offsetHeight),end:'+=130%',pin:true,invalidateOnRefresh:true,onUpdate:function(st){proxima(st.progress)}});
-  function proxima(p){if(rodando||feitas>=cenas.length||p<cenas[feitas].em)return;
-    var c=cenas[feitas];rodando=true;if(lenis)lenis.stop();
-    /* trava a página no ponto do gatilho, mesmo com o embalo do dedo no celular */
-    travaY=Math.round(palco.start+c.em*(palco.end-palco.start))+2;if(scrollY>travaY+4)scrollTo(0,travaY);else travaY=Math.round(scrollY);
-    tl.tweenFromTo(c.de,c.ate,{duration:(c.ate-c.de)*9,ease:'none',onComplete:function(){rodando=false;feitas++;if(lenis){lenis.scrollTo(scrollY,{immediate:true,force:true});lenis.start()}proxima(palco.progress)}})}
+  /* menu: cada oficina toca a sua cena inteira e depois leva ao bloco dela para empresas. A mesa sempre parte crua. */
+  var cenas=[{de:0,ate:.95,cv:canvas,pos:mesa,bloco:'empresa-taca'},{de:.965,ate:1.86,cv:lcv,pos:mesa2,bloco:'empresa-livro'},{de:1.87,ate:2.72,cv:xcv,pos:mesa3,bloco:'empresa-xicara'}];
+  var rodando=false, travaY=0, atual=null, menu=document.querySelector('.placa'), menuIn=document.querySelectorAll('.placa > :not(canvas)'), saiba=document.querySelector('.placa .saiba'), slugs=['taca','livro','xicara'], pen=document.querySelector('.penumbra'), pulaC=document.querySelector('.pular-cena'), sujo=false;
+  var itens=[].slice.call(document.querySelectorAll('[data-cena]'));
+  function desenhaCrus(){revela(0);revela2(0);revela3(0)}
+  /* hover: a sala cai na penumbra e só a peça fica na luz */
+  function acende(k){if(rodando)return;if(feito[k]){menu.classList.add('escolhendo');itens.forEach(function(a,i){a.classList.toggle('ativa',i===k)});return}cenas.forEach(function(c,i){var p=c.pos();gsap.set(c.cv,{x:p.x,y:p.y,scale:p.scale,visibility:i===k?'visible':'hidden'})});
+    gsap.to(pen,{opacity:.62,duration:.5,ease:'power2.out',overwrite:true});menu.classList.add('escolhendo');itens.forEach(function(a,i){a.classList.toggle('ativa',i===k)})}
+  function apaga(){if(rodando)return;gsap.to(pen,{opacity:0,duration:.45,ease:'power2.out',overwrite:true,onComplete:function(){if(!rodando&&!sujo)cenas.forEach(function(c){gsap.set(c.cv,{visibility:'hidden'})})}});
+    menu.classList.remove('escolhendo');itens.forEach(function(a){a.classList.remove('ativa')})}
+  /* volta a mesa ao começo (só quando o palco está fora da tela ou parado) */
+  function zera(){if(atual){atual.kill();atual=null}tl.pause(0);rv.r=0;rv2.r=0;rv3.r=0;nx.w=0;sh.s=1;oc1.o=1;oc2.o=1;desenhaCrus();
+    cenas.forEach(function(c){gsap.set(c.cv,{visibility:'hidden'})});gsap.set(pen,{opacity:0});gsap.set('.later',{opacity:0});gsap.set(menuIn,{opacity:1});saiba.classList.remove('on');itens.forEach(function(a){a.classList.remove('vista')});
+    menu.classList.remove('escolhendo');itens.forEach(function(a){a.classList.remove('ativa')});pulaC.classList.remove('on');sujo=false}
+  function fim(k){rodando=false;atual=null;pulaC.classList.remove('on');feito[k]=true;itens.forEach(function(a,i){a.classList.toggle('vista',i===k)});
+    if(lenis){lenis.scrollTo(scrollY,{immediate:true,force:true});lenis.start()}
+    saiba.href='saiba-mais.html?oficina='+slugs[k];saiba.classList.add('on');gsap.fromTo(menuIn,{opacity:0},{opacity:1,duration:.6,ease:'power2.out'});
+    gsap.fromTo(saiba,{opacity:0,y:12},{opacity:1,y:0,duration:.6,delay:.25,ease:'power2.out'});saiba.focus({preventScroll:true})}
+  /* o que já foi feito fica feito: antes de cada cena, as fotos da mesa mostram as peças já transformadas */
+  var feito=[false,false,false], F=function(q){return document.querySelector('.fotos .'+q)}, xfr=document.querySelector('.xfrente');
+  ['mesa-cd','mesa-ad','mesa-ae','mesa-d','mesa-e','mesa-b','xic-pintada-so'].forEach(function(n){var im=new Image();im.src=n+'.webp'});
+  function prepara(j){var T=feito[0],B=feito[1],X=feito[2];
+    tl.pause();tl.seek(cenas[j].de,true);
+    if(j===0){F('a').src=B?'mesa-ad.webp':'mesa-a.webp';F('c').src=B?'mesa-cd.webp':'mesa-c.webp';F('b').src=B?'mesa-d.webp':'mesa-b.webp'}
+    if(j===1){F('a').src=T?'mesa-b.webp':'mesa-a.webp';F('ae').src=T?'mesa-e.webp':'mesa-ae.webp';F('ad').src=T?'mesa-d.webp':'mesa-ad.webp'}
+    if(j===2){F('a').src=T&&B?'mesa-d.webp':T?'mesa-b.webp':B?'mesa-ad.webp':'mesa-a.webp'}
+    if(j!==2){F('xc').src=X?'xic-pintada-mesa.webp':'xic-crua-mesa.webp';xfr.src=X?'xic-pintada-so.webp':'xic-crua-so.webp';silh=X?silhP:silhC}
+    revela(rv.r);revela2(rv2.r);revela3(rv3.r)}
+  function mostraSaiba(k){saiba.href='saiba-mais.html?oficina='+slugs[k];saiba.classList.add('on');itens.forEach(function(a,i){a.classList.toggle('vista',i===k)});
+    gsap.fromTo(saiba,{opacity:0,y:12},{opacity:1,y:0,duration:.5,ease:'power2.out'})}
+  function toca(k){if(rodando)return;
+    if(feito[k]){mostraSaiba(k);return}
+    prepara(k);
+    var c=cenas[k];rodando=true;
+    if(lenis){lenis.scrollTo(0,{immediate:true,force:true});lenis.stop()}else scrollTo(0,0);travaY=0;
+    cenas.forEach(function(o,i){if(i!==k)gsap.set(o.cv,{visibility:'hidden'})});var p=c.pos();gsap.set(c.cv,{x:p.x,y:p.y,scale:p.scale,visibility:'visible'});
+    gsap.to(pen,{opacity:0,duration:.5,ease:'power1.inOut',overwrite:true});
+    gsap.to(menuIn,{opacity:0,duration:.4,ease:'power2.in'});pulaC.classList.add('on');
+    atual=tl.tweenFromTo(c.de,c.ate,{duration:(c.ate-c.de)*9,ease:'none',onComplete:function(){fim(k)}})}
+  itens.forEach(function(a,i){a.addEventListener('mouseenter',function(){acende(i)});a.addEventListener('focus',function(){acende(i)});
+    a.addEventListener('mouseleave',apaga);a.addEventListener('blur',apaga);
+    a.addEventListener('click',function(e){e.preventDefault();toca(i)})});
+  pulaC.addEventListener('click',function(){if(!atual)return;var k;
+    for(k=0;k<cenas.length;k++){if(tl.time()>=cenas[k].de-0.001&&tl.time()<=cenas[k].ate+0.001)break}
+    atual.kill();atual=null;gsap.to(tl,{time:cenas[k].ate,duration:.35,ease:'power1.out',onComplete:function(){fim(k)}})});
+  /* "ver as outras oficinas": a mesa volta crua enquanto ainda está fora da tela */
+  document.querySelectorAll('[data-menu]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();if(rodando)return;
+    var st=document.querySelector('.stage').getBoundingClientRect();if(st.bottom<=0||st.top>=innerHeight){zera()}else if(sujo){gsap.to('.room',{opacity:0,duration:.35,onComplete:function(){zera();gsap.to('.room',{opacity:1,duration:.5})}})}
+    if(lenis)lenis.scrollTo(0,{duration:1.4});else scrollTo({top:0,behavior:'smooth'})})});
   function segura(e){if(rodando&&e.cancelable)e.preventDefault()}
   addEventListener('touchmove',segura,{passive:false});addEventListener('wheel',segura,{passive:false});
   addEventListener('scroll',function(){if(rodando&&Math.abs(scrollY-travaY)>2)scrollTo(0,travaY)});
+  addEventListener('keydown',function(e){if(e.key==='Escape'&&rodando)pulaC.click()});
 
   /* entradas das seções */
   gsap.utils.toArray('main > section:not(.stage), footer').forEach(function(sec){
-    var parts=sec.querySelectorAll('h2, .lead, .sub, .ritual li, .fatos div, .calc, .ocasioes li, .mascote, details, .row > *, .big');
+    var parts=sec.querySelectorAll('h2, .lead, .ritual li, .fatos div, .ocasioes li, .mascote, details, .inclui li, .peca, .acoes, .datas .btn, .row > *, .big');
     gsap.from(parts,{y:28,opacity:0,duration:.8,ease:'power2.out',stagger:.07,scrollTrigger:{trigger:sec,start:'top 80%',once:true}});
   });
   addEventListener('load',function(){ScrollTrigger.refresh()});
 })();
 
-/* área de empresas dentro do site */
-(function(){
-  var cam=document.querySelector('.camada-emp'), fr=cam.querySelector('iframe');
-  function abre(e){if(e)e.preventDefault();if(!fr.getAttribute('src'))fr.src='empresas.html';cam.classList.add('aberta');
-    document.documentElement.style.overflow='hidden';if(window.__lenis)window.__lenis.stop();cam.querySelector('.volta').focus()}
-  function fecha(dest){cam.classList.remove('aberta');document.documentElement.style.overflow='';if(window.__lenis)window.__lenis.start();
-    if(dest){var el=document.getElementById(dest);if(el)setTimeout(function(){if(window.__lenis)window.__lenis.scrollTo(el,{offset:-70});else el.scrollIntoView()},60)}}
-  window.__fechaEmpresas=fecha;
-  document.querySelectorAll('[data-empresas]').forEach(function(a){a.addEventListener('click',abre)});
-  cam.querySelector('.volta').addEventListener('click',function(){fecha()});
-  addEventListener('keydown',function(e){if(e.key==='Escape'&&cam.classList.contains('aberta'))fecha()});
-})();
 </script>
 
+<style>/* textura preto e ouro (pintura enviada pelo Marco): viva perto da foto, calma atrás do texto */
+.placa{background:linear-gradient(90deg,rgba(21,17,13,.95) 0,rgba(21,17,13,.9) 84%,rgba(21,17,13,.4) 100%),url(textura-fundo.webp) 30% center/cover}
+.end{background:linear-gradient(rgba(21,17,13,.84),rgba(21,17,13,.84)),url(textura-fundo.webp) center 60%/cover}
+@media(max-width:820px){.placa{background:linear-gradient(rgba(21,17,13,.86),rgba(21,17,13,.9)),url(textura-fundo.webp) center 20%/cover}}</style>
+<style>/* menu "luxo": letras de ouro com brilho e purpurina (efeito recriado em código, inspirado no Luxury do Envato) */
+.placa{z-index:1}
+.placa > *{max-width:360px}
+.oficinas{margin-top:26px;gap:14px}
+.oficinas a{position:relative;padding:12px 0 12px 2px}
+.oficinas b{display:inline-block;font:500 clamp(28px,2.3vw,34px)/1.12 var(--display);letter-spacing:-0.01em;
+  color:transparent;background:linear-gradient(100deg,#D4AA5C 0%,#F6E2A6 20%,#FFF9E6 30%,#EBC97E 42%,#C39243 60%,#F3D995 80%,#D4AA5C 100%) 0 0/260% 100%;
+  -webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 0 7px rgba(255,214,130,.45)) drop-shadow(0 0 18px rgba(233,180,80,.18));
+  transition:filter .4s,transform .45s cubic-bezier(.2,.8,.2,1);animation:ouro 7s linear infinite}
+.oficinas a:nth-child(n) b{animation-delay:calc(var(--i,0) * -2.3s)}
+.oficinas li:nth-child(2) b{--i:1}.oficinas li:nth-child(3) b{--i:2}
+.oficinas a:hover b,.oficinas a:focus-visible b,.oficinas a.ativa b{filter:drop-shadow(0 0 8px rgba(255,226,150,.9)) drop-shadow(0 0 24px rgba(240,190,90,.55));color:transparent}
+.oficinas a.vista b{color:transparent;filter:drop-shadow(0 0 9px rgba(255,214,120,.5))}
+@keyframes ouro{to{background-position:-260% 0}}
+.placa canvas.purpurina{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
+@media (max-width:820px){.oficinas{margin-top:14px;gap:6px}.oficinas a{padding:8px 0}.oficinas b{font-size:30px}}
+@media (prefers-reduced-motion:reduce){.oficinas b{animation:none}}
+</style>
+<script>
+/* purpurina dourada: brilho leve sempre, mais forte no item com o mouse/toque */
+(function(){var placa=document.querySelector('.placa');if(!placa||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var cv=document.createElement('canvas');cv.className='purpurina';cv.setAttribute('aria-hidden','true');placa.appendChild(cv);
+  var c=cv.getContext('2d'),dpr=Math.min(devicePixelRatio||1,2),W=0,H=0,ps=[],itens=[].slice.call(placa.querySelectorAll('.oficinas a')),foco=-1,visivel=true,ultimo=0;
+  function tam(){var r=placa.getBoundingClientRect();W=r.width;H=r.height;cv.width=W*dpr;cv.height=H*dpr;c.setTransform(dpr,0,0,dpr,0,0)}
+  tam();addEventListener('resize',tam);
+  itens.forEach(function(a,i){a.addEventListener('mouseenter',function(){foco=i});a.addEventListener('focus',function(){foco=i});
+    a.addEventListener('mouseleave',function(){if(foco===i)foco=-1});a.addEventListener('blur',function(){if(foco===i)foco=-1});
+    a.addEventListener('touchstart',function(){foco=i;rajada(i,26);setTimeout(function(){if(foco===i)foco=-1},900)},{passive:true})});
+  function nasce(i,forte){var b=itens[i].querySelector('b').getBoundingClientRect(),p=placa.getBoundingClientRect();
+    var bokeh=Math.random()<.12;
+    ps.push({x:b.left-p.left+Math.random()*b.width,y:b.top-p.top+b.height*(.25+Math.random()*.6),
+      vx:(Math.random()-.5)*(forte?.5:.18),vy:-(forte?.25+Math.random()*.7:.08+Math.random()*.25),
+      r:bokeh?3+Math.random()*5:.6+Math.random()*(forte?2.2:1.4),bokeh:bokeh,
+      v:0,max:(forte?.9:.6)*(bokeh?.35:1),dur:(forte?1.4:2.4)+Math.random()*1.6,f:Math.random()*6.28,
+      cor:Math.random()<.5?'255,226,150':Math.random()<.5?'232,190,96':'255,246,214'})}
+  function rajada(i,n){for(var k=0;k<n;k++)nasce(i,true)}
+  if('IntersectionObserver' in window)new IntersectionObserver(function(e){visivel=e[0].isIntersecting}).observe(placa);
+  function passo(t){requestAnimationFrame(passo);var dt=Math.min((t-(ultimo||t))/1000,.05);ultimo=t;
+    if(!visivel||document.hidden)return;
+    var op=+getComputedStyle(placa.querySelector('.oficinas')).opacity;if(op<.05){ps.length=0;c.clearRect(0,0,W,H);return}
+    if(Math.random()<dt*12)nasce(Math.floor(Math.random()*itens.length),false);
+    if(foco>=0){var n=dt*95;while(n>0){if(Math.random()<n)nasce(foco,true);n--}}
+    c.clearRect(0,0,W,H);c.globalCompositeOperation='lighter';
+    for(var k=ps.length-1;k>=0;k--){var q=ps[k];q.v+=dt;if(q.v>q.dur){ps.splice(k,1);continue}
+      q.x+=q.vx*60*dt;q.y+=q.vy*60*dt;q.vy-=.002;q.f+=dt*9;
+      var vida=q.v/q.dur,a=q.max*Math.sin(Math.PI*vida)*(q.bokeh?1:.55+.45*Math.sin(q.f));if(a<=0)continue;
+      if(q.bokeh){var g=c.createRadialGradient(q.x,q.y,0,q.x,q.y,q.r);g.addColorStop(0,'rgba('+q.cor+','+a+')');g.addColorStop(1,'rgba('+q.cor+',0)');c.fillStyle=g;c.beginPath();c.arc(q.x,q.y,q.r,0,7);c.fill()}
+      else{c.fillStyle='rgba('+q.cor+','+a+')';c.beginPath();c.arc(q.x,q.y,q.r,0,7);c.fill();
+        if(q.r>1.3&&a>.5){c.fillStyle='rgba(255,240,200,'+(a*.35)+')';c.fillRect(q.x-q.r*3,q.y-.3,q.r*6,.6);c.fillRect(q.x-.3,q.y-q.r*3,.6,q.r*6)}}}
+    c.globalCompositeOperation='source-over'}
+  requestAnimationFrame(passo)})();
+</script>
+<style>/* letreiro do rodapé: ouro com relevo, sombra e brilho, para não parecer texto solto na imagem */
+.end .big{color:transparent;background:linear-gradient(175deg,#FFF3CF 0%,#EBC97E 30%,#C9973F 58%,#8E6224 78%,#D9AE5E 100%);-webkit-background-clip:text;background-clip:text;
+  filter:drop-shadow(0 2px 0 rgba(60,38,10,.9)) drop-shadow(0 10px 22px rgba(0,0,0,.75)) drop-shadow(0 0 26px rgba(240,195,100,.38));padding-bottom:.06em}
+</style>
+<style>/* uma pintura só, contínua, atrás do menu e do rodapé: sem emenda entre as seções */
+body{background:var(--noir) url(textura-fundo.webp) center top/cover no-repeat}
+.stage{background:transparent}
+.placa{background:linear-gradient(90deg,rgba(21,17,13,.95) 0,rgba(21,17,13,.9) 84%,rgba(21,17,13,.4) 100%)}
+.end{background:linear-gradient(rgba(21,17,13,.92),rgba(21,17,13,.84) 180px)}
+@media(max-width:820px){.placa{background:linear-gradient(rgba(21,17,13,.86),rgba(21,17,13,.88))}.end{background:linear-gradient(rgba(21,17,13,.88),rgba(21,17,13,.84) 120px)}}
+</style>
 </body></html>
