@@ -1,0 +1,582 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Arte de Ville</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@400;500&display=swap">
+<style>
+/* Layout: ateliê à luz da tarde. Painel preto-nogueira com o texto, a sala à direita; o scroll entra na sala, pinta a taça e a devolve à mesa. Cada seção é um campo de cor inteiro da própria sala: linho, creme, nogueira, preto. */
+:root{
+  --noir:#15110D;      /* sombra da madeira */
+  --noir-2:#241D16;    /* um tom acima, para controles no escuro */
+  --creme:#F3ECDF;     /* parede da sala */
+  --linho:#E6DCCA;     /* estofado das poltronas */
+  --estudio:#D9D6C8;   /* fundo das fotos da taça */
+  --nogueira:#3B2A1E;  /* tampo da mesa */
+  --ouro:#B68B43;      /* latão do castiçal */
+  --ouro-claro:#DDBB74;/* ouro sobre fundo escuro */
+  --tinta:#15110D;
+  --tinta-2:#55493C;
+  --creme-2:#CFC4B2;   /* texto secundário no escuro */
+  --display:"Cormorant Garamond","Cormorant",Garamond,"Times New Roman",serif;
+  --text:"Jost","Futura","Avenir Next",system-ui,sans-serif;
+  --gut:max(24px,env(safe-area-inset-left,0px));
+  --gut-r:max(24px,env(safe-area-inset-right,0px));
+  --bar:76px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{background:var(--noir)}
+body{background:var(--creme);color:var(--tinta);font:400 18px/1.6 var(--text);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--noir)}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-0.025em;line-height:.94;margin:0;text-wrap:balance}
+p{margin:0}
+.wrap{padding-left:var(--gut);padding-right:var(--gut-r);max-width:1480px;margin:0 auto}
+.btn{display:inline-flex;align-items:center;gap:.7em;background:var(--ouro);color:var(--noir);font:500 17px/1 var(--text);padding:19px 30px;border-radius:999px;text-decoration:none;border:0;cursor:pointer;transition:transform .25s cubic-bezier(.2,.8,.2,1),background .25s}
+.btn:hover{background:var(--ouro-claro);transform:translateY(-2px)}
+.btn:active{transform:scale(.97)}
+.btn .seta{transition:transform .25s}
+.btn:hover .seta{transform:translateX(4px)}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--ouro);outline-offset:4px}
+.mono{font-family:var(--display);font-style:italic;font-weight:500;color:var(--ouro-claro);letter-spacing:-0.08em}
+
+/* entrada: o GIF da abertura (luva, fitas e logo) toca uma vez, segura no logo e a cortina sobe */
+.curtain{position:fixed;inset:0;z-index:50;background:#E4E0D7 linear-gradient(#EBE8E0,#E6E3DA 50%,#DBD7CD);display:none;place-items:center;cursor:pointer;overflow:hidden}
+.js-ready .curtain{display:grid}
+.curtain .abre-zoom{position:absolute;inset:0;overflow:hidden;will-change:transform}
+.curtain .abre{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:filter,opacity}
+@media (max-aspect-ratio:1/1){.curtain .abre{inset:auto;left:50%;top:50%;width:160vw;height:90vw;transform:translate(-50%,-50%);-webkit-mask-image:linear-gradient(transparent,#000 22%,#000 78%,transparent);mask-image:linear-gradient(transparent,#000 22%,#000 78%,transparent)}}
+.curtain small{position:absolute;bottom:max(24px,env(safe-area-inset-bottom,0px));left:0;right:0;text-align:center;font-size:13px;letter-spacing:.08em;color:#6E6353}
+
+/* barra */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--noir);color:var(--creme)}
+.bar .wrap{display:flex;align-items:center;gap:36px;height:var(--bar)}
+.brand{display:flex;align-items:center;gap:14px;text-decoration:none;margin-right:auto}
+.brand .selo{width:46px;height:46px;display:block}
+.brand b{font:500 26px/1 var(--display);letter-spacing:-0.01em}
+.bar nav{display:flex;gap:32px;font-size:16px}
+.bar nav a{text-decoration:none;color:var(--creme-2);transition:color .2s}
+.bar nav a:hover{color:var(--creme)}
+.bar .btn{padding:13px 22px;font-size:15px}
+@media (max-width:820px){.bar nav{display:none}.brand{gap:10px}.brand .selo{width:40px;height:40px}.brand b{font-size:22px;white-space:nowrap}.bar .btn{padding:12px 18px;white-space:nowrap}}
+
+/* palco */
+.stage{background:var(--noir)}
+.pin{height:calc(100svh - var(--bar));min-height:600px;position:relative;overflow:hidden;color:var(--creme)}
+.room{position:absolute;top:0;bottom:0;right:0;left:40%;overflow:hidden;background:var(--nogueira)}
+.room img,.room canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:42% 52%;display:block}
+html:not(.js-ready) .room canvas{display:none}
+.fotos{position:absolute;inset:0;will-change:filter}
+.fotos .b{opacity:0}
+.room canvas.gif{inset:auto;left:0;top:0;width:1280px;height:720px;transform-origin:0 0;opacity:0;pointer-events:none;will-change:transform;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent),linear-gradient(transparent,#000 10%,#000 90%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent),linear-gradient(transparent,#000 10%,#000 90%,transparent);mask-composite:intersect}
+.room canvas.livro{inset:auto;left:0;top:0;width:540px;height:520px;transform-origin:0 0;visibility:hidden;will-change:transform}
+.fotos .d,.fotos .e{opacity:0}
+.fotos .xp,.fotos .xps,.fotos .xcs{opacity:0}
+.room img.xfrente{opacity:0;pointer-events:none}
+.room canvas.xic{inset:auto;left:0;top:0;width:320px;height:260px;transform-origin:0 0;visibility:hidden;will-change:transform}
+.room canvas.vidro{inset:auto;left:0;top:0;width:220px;height:500px;transform-origin:0 0;visibility:hidden;will-change:transform}
+.panel{position:absolute;top:0;bottom:0;left:0;width:40%;display:flex;flex-direction:column;justify-content:flex-end;padding:0 48px 64px var(--gut)}
+.beat{display:grid;gap:26px;max-width:560px}
+.beat h1{font-size:clamp(56px,6.4vw,104px)}
+.beat h2{font-size:clamp(48px,5.4vw,88px)}
+.beat p{font-size:19px;max-width:32ch;color:var(--creme-2)}
+.beat .quando{display:flex;gap:14px;align-items:baseline;color:var(--creme);font-size:17px}
+.beat .quando b{font:500 40px/1 var(--display);color:var(--ouro-claro);font-variant-numeric:lining-nums tabular-nums}
+.later{position:absolute;left:var(--gut);bottom:64px;right:48px;opacity:0;visibility:hidden}
+.js-ready .later{visibility:visible}
+@media (max-width:820px){
+  .pin{min-height:620px}
+  .room{left:0;bottom:46%}
+  .panel{width:100%;top:auto;height:46%;justify-content:flex-start;padding:28px var(--gut-r) 28px var(--gut)}
+  .beat{gap:16px}
+  .beat h1{font-size:clamp(42px,11.6vw,60px)}
+  .beat h2{font-size:clamp(38px,10.4vw,54px)}
+  .beat p{font-size:17px}
+  .beat .quando b{font-size:30px}
+  .later{left:var(--gut);right:var(--gut-r);bottom:auto;top:calc(54% + 28px)}
+}
+
+/* a manhã */
+.manha{background:var(--creme);padding-block:180px}
+.manha .wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:80px;align-items:start}
+.manha .head{position:sticky;top:calc(var(--bar) + 48px)}
+.manha h2{font-size:clamp(52px,6.2vw,104px)}
+.manha .lead{margin-top:32px;font-size:21px;max-width:34ch;color:var(--tinta-2)}
+.ritual{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.ritual li{display:grid;grid-template-columns:150px minmax(0,1fr);gap:32px;align-items:baseline;background:var(--linho);padding:34px 36px;border-radius:2px}
+.ritual time{font:400 56px/1 var(--display);color:var(--ouro);font-variant-numeric:lining-nums tabular-nums;letter-spacing:-0.03em}
+.ritual h3{font-size:34px;line-height:1.05}
+.ritual p{margin-top:8px;color:var(--tinta-2)}
+.fatos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:12px}
+.fatos div{background:var(--noir);color:var(--creme);padding:28px 26px;border-radius:2px;display:grid;gap:6px}
+.fatos b{font:400 40px/1 var(--display);color:var(--ouro-claro)}
+.fatos span{font-size:15px;color:var(--creme-2);line-height:1.45}
+@media (max-width:980px){.manha{padding-block:104px}.manha .wrap{grid-template-columns:1fr;gap:48px}.manha .head{position:static}.ritual li{grid-template-columns:1fr;gap:10px;padding:26px 24px}.ritual time{font-size:44px}.ritual h3{font-size:28px}.fatos{grid-template-columns:1fr 1fr}}
+
+/* para empresas: a luva com o pincel que brilha, mascote da casa */
+.empresas{background:var(--creme);padding-block:170px;border-top:1px solid #E2D7C4}
+.empresas .wrap{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:64px;align-items:center}
+.empresas h2{font-size:clamp(48px,5.6vw,92px)}
+.empresas .lead{margin-top:28px;font-size:20px;max-width:40ch;color:var(--tinta-2)}
+.empresas .ocasioes{margin:28px 0 40px;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:10px 28px;font:italic 400 26px/1.2 var(--display);color:var(--tinta)}
+.empresas .mascote{position:relative;justify-self:center;width:min(100%,460px);background:var(--creme);isolation:isolate}
+.empresas .mascote img{display:block;width:100%;height:auto;mix-blend-mode:multiply}
+.empresas .mascote i{position:absolute;left:21%;top:69%;width:38%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;mix-blend-mode:screen;
+  background:radial-gradient(circle,rgba(255,236,190,.95) 0,rgba(240,196,110,.55) 18%,rgba(221,187,116,.18) 42%,transparent 66%);animation:varinha 2.6s ease-in-out infinite}
+@keyframes varinha{0%,100%{opacity:.55;transform:translate(-50%,-50%) scale(.82)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.12)}}
+@media (prefers-reduced-motion:reduce){.empresas .mascote i{animation:none;opacity:.7}}
+@media (max-width:980px){.empresas{padding-block:104px}.empresas .wrap{grid-template-columns:1fr;gap:36px}.empresas .mascote{order:-1;width:min(86%,380px)}.empresas .ocasioes{font-size:22px}}
+
+/* reserva */
+.reserva{background:var(--nogueira);color:var(--creme);padding-block:170px}
+.reserva .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:80px;align-items:center}
+.reserva h2{font-size:clamp(52px,6vw,100px)}
+.reserva .sub{margin-top:28px;font-size:20px;color:var(--creme-2);max-width:34ch}
+.calc{display:grid;gap:40px;background:var(--noir);padding:44px;border-radius:2px}
+.calc fieldset{border:0;margin:0;padding:0;display:grid;gap:14px}
+.calc legend{font-size:16px;color:var(--creme-2);margin-bottom:14px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opt{position:relative}
+.opt input{position:absolute;opacity:0}
+.opt span{display:grid;gap:6px;padding:22px 24px;background:var(--noir-2);border-radius:2px;cursor:pointer;transition:background .25s,color .25s;color:var(--creme-2)}
+.opt b{font:500 36px/1 var(--display);color:var(--creme)}
+.opt input:checked + span{background:var(--ouro);color:var(--noir)}
+.opt input:checked + span b{color:var(--noir)}
+.opt input:focus-visible + span{outline:3px solid var(--ouro-claro);outline-offset:3px}
+.step{display:flex;align-items:center;gap:22px}
+.step button{width:56px;height:56px;border-radius:50%;border:0;background:var(--noir-2);color:var(--creme);font-size:26px;cursor:pointer;transition:background .2s,transform .15s}
+.step button:hover{background:#3A2F24}
+.step button:active{transform:scale(.92)}
+.step output{font:400 60px/1 var(--display);min-width:1.4em;text-align:center;font-variant-numeric:lining-nums tabular-nums}
+.total{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--creme-2)}
+.total strong{font:400 clamp(60px,6vw,92px)/1 var(--display);color:var(--ouro-claro);font-variant-numeric:lining-nums tabular-nums;letter-spacing:-0.03em}
+.phone{font-size:15px;color:var(--creme-2)}
+.phone b{color:var(--creme);font-weight:500;user-select:all}
+@media (max-width:980px){.reserva{padding-block:104px}.reserva .wrap{grid-template-columns:1fr;gap:48px}.calc{padding:28px 22px}.opt b{font-size:30px}}
+
+/* perguntas */
+.faq{background:var(--creme);padding-block:180px}
+.faq .wrap{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:80px}
+.faq h2{font-size:clamp(52px,6vw,100px)}
+.faq details{background:var(--linho);border-radius:2px;margin-bottom:8px;transition:background .25s}
+.faq details[open]{background:#DDD1BC}
+.faq summary{cursor:pointer;list-style:none;padding:28px 32px;font:500 30px/1.15 var(--display);display:flex;justify-content:space-between;gap:24px}
+.faq summary::after{content:"+";font-family:var(--text);font-weight:400;color:var(--ouro);transition:transform .3s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq summary::-webkit-details-marker{display:none}
+.faq details p{padding:0 32px 30px;max-width:58ch;color:var(--tinta-2)}
+@media (max-width:980px){.faq{padding-block:104px}.faq .wrap{grid-template-columns:1fr;gap:40px}.faq summary{font-size:25px;padding:22px}.faq details p{padding:0 22px 24px}}
+
+/* fim */
+.end{background:var(--noir);color:var(--creme);padding-block:120px 48px;overflow:hidden}
+.end .row{display:flex;flex-wrap:wrap;gap:28px 64px;align-items:end;justify-content:space-between}
+.end .row p{font-size:17px;color:var(--creme-2)}
+.end .row p b{color:var(--creme);font-weight:500}
+.end .big{font:400 clamp(64px,15.4vw,240px)/.8 var(--display);letter-spacing:-0.045em;margin-top:96px;white-space:nowrap;color:var(--ouro-claro)}
+.end .big i{font-style:italic}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* abertura em vídeo */
+.curtain .pula{position:absolute;bottom:max(24px,env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);font:13px/1 Jost,system-ui,sans-serif;letter-spacing:.08em;color:#3B2A1E;background:rgba(243,236,223,.85);border:1px solid rgba(59,42,30,.25);border-radius:999px;padding:10px 18px;cursor:pointer}
+.curtain .abre{background:#DBD7CD}
+/* o vídeo só aparece depois que o primeiro quadro já está na tela: nada do player do navegador (botão de play, caixa vazia) */
+.curtain video.abre{opacity:.01;pointer-events:none}.curtain video.abre.ok{opacity:1}
+.curtain video::-webkit-media-controls,.curtain video::-webkit-media-controls-start-playback-button,.curtain video::-webkit-media-controls-overlay-play-button{display:none!important;-webkit-appearance:none}
+/* área de empresas: abre por cima do site, dentro do mesmo artefato */
+.camada-emp{position:fixed;inset:0;z-index:60;background:#0E0B08;display:none}
+.camada-emp.aberta{display:block}
+.camada-emp iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#0E0B08}
+.camada-emp .volta{position:absolute;z-index:2;left:16px;bottom:max(16px,env(safe-area-inset-bottom,0px));font:500 14px/1 var(--text);color:#15110D;background:var(--ouro-claro);border:0;border-radius:999px;padding:12px 18px;cursor:pointer;box-shadow:0 6px 24px rgba(0,0,0,.35)}
+</style>
+
+<div class="curtain"><div class="abre-zoom"><img class="abre abre-0" src="abertura-0.webp" alt=""><video class="abre" src="abertura.mp4" poster="abertura-0.webp" muted playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback x-webkit-airplay="deny" controlslist="nodownload nofullscreen noremoteplayback" aria-hidden="true"></video></div><button type="button" class="pula">Pular abertura</button></div>
+
+<div class="camada-emp" role="dialog" aria-label="Eventos para empresas"><iframe title="Eventos para empresas"></iframe><button type="button" class="volta">← Voltar ao site</button></div>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="#topo"><img class="selo" src="selo.webp" width="46" height="46" alt=""><b>Arte de Ville</b></a>
+    <nav aria-label="Seções"><a href="#manha">A oficina</a><a href="#empresas" data-empresas>Para empresas</a><a href="#perguntas">Perguntas</a></nav>
+    <a class="btn" href="#reserva">Reservar vaga</a>
+  </div>
+</header>
+
+<main id="topo">
+  <section class="stage" aria-label="Oficina de pintura em taças">
+    <div class="pin">
+      <div class="room" aria-hidden="true"><div class="fotos"><img class="c" src="mesa-c.webp" alt=""><img class="a" src="mesa-a.webp" alt=""><img class="b" src="mesa-b.webp" alt=""><img class="e" src="mesa-e.webp" alt=""><img class="d" src="mesa-d.webp" alt=""><img class="xcs" src="xic-crua-sombra.webp" alt=""><img class="xc" src="xic-crua-mesa.webp" alt=""><img class="xps" src="xic-pintada-sombra.webp" alt=""><img class="xp" src="xic-pintada-mesa.webp" alt=""></div><canvas class="vidro" width="440" height="1000"></canvas><canvas class="gif" width="1280" height="720"></canvas><canvas class="livro" width="1080" height="1040"></canvas><img class="xfrente" src="xic-crua-so.webp" alt=""><canvas class="gif g2" width="1280" height="720"></canvas><canvas class="xic" width="640" height="520"></canvas><canvas class="gif g3" width="1280" height="720"></canvas></div>
+      <div class="panel">
+        <div class="beat first">
+          <h1>Você chega. A taça está vazia.</h1>
+          <p>Oficina de pintura em taças em Alphaville. Duas horas, café incluso, a partir de R$ 290 por pessoa.</p>
+          <p class="quando"><b>31.10</b>Sábado, das 11h às 13h. 10 vagas.</p>
+          <div><a class="btn" href="#reserva">Reservar minha vaga <span class="seta" aria-hidden="true">→</span></a></div>
+        </div>
+      </div>
+      <div class="beat later" data-beat="1"><h2>Ninguém precisa saber desenhar.</h2><p>A gente mostra o traço e você escolhe as cores. O pincel cuida do resto.</p></div>
+      <div class="beat later" data-beat="2"><h2>Depois, a cor ganha corpo.</h2><p>Tinta própria para vidro, que vai ao forno e aguenta o uso do dia a dia.</p></div>
+      <div class="beat later" data-beat="3"><h2>Duas horas depois, ela é sua.</h2><p>Pintada por você. Leve suas taças para casa e brinde com elas no mesmo fim de semana.</p><div><a class="btn" href="#reserva">Quero pintar a minha <span class="seta" aria-hidden="true">→</span></a></div></div>
+      <div class="beat later" data-beat="4"><h2>E o livro? Não fica parado.</h2><p>Na próxima oficina, as páginas de um livro antigo viram outra coisa.</p></div>
+      <div class="beat later" data-beat="5"><h2>Dobra por dobra, ele vira peça.</h2><p>Oficina de dobradura em livro: cada página dobrada à mão até virar uma peça para a sua casa. Turmas em breve.</p><div><a class="btn" href="#reserva">Quero saber primeiro <span class="seta" aria-hidden="true">→</span></a></div></div>
+      <div class="beat later" data-beat="6"><h2>E a xícara do café? Também ganha cor.</h2><p>Na oficina de pintura em xícaras, a porcelana branca vira a sua xícara preferida.</p></div>
+      <div class="beat later" data-beat="7"><h2>Pintada por você, pronta para o café de amanhã.</h2><p>Xícara e pires pintados à mão, com tinta própria para porcelana. Turmas em breve.</p><div><a class="btn" href="#reserva">Quero saber primeiro <span class="seta" aria-hidden="true">→</span></a></div></div>
+    </div>
+  </section>
+
+  <section class="manha" id="manha">
+    <div class="wrap">
+      <div class="head">
+        <h2>Uma manhã entre amigas, com pincel na mão.</h2>
+        <p class="lead">O primeiro ateliê day-use de Alphaville. Você não traz nada e não precisa ter pintado antes. Sai com as taças embrulhadas para presente.</p>
+      </div>
+      <div>
+        <ol class="ritual">
+          <li><time>11h00</time><div><h3>Café e boas-vindas</h3><p>Mesa posta, café passado e tempo para chegar sem pressa.</p></div></li>
+          <li><time>11h15</time><div><h3>Você escolhe o estilo</h3><p>Seis cardápios de cor e desenhos de referência para começar.</p></div></li>
+          <li><time>11h30</time><div><h3>Mãos na taça</h3><p>Duas facilitadoras passam de lugar em lugar, mostrando o traço e corrigindo junto.</p></div></li>
+          <li><time>12h40</time><div><h3>Acabamento e assinatura</h3><p>Detalhes em dourado e suas iniciais na base da taça.</p></div></li>
+          <li><time>13h00</time><div><h3>Brinde</h3><p>Foto da turma e as taças embaladas para levar.</p></div></li>
+        </ol>
+        <div class="fatos">
+          <div><b>10</b><span>vagas por turma</span></div>
+          <div><b>2</b><span>facilitadoras ao seu lado</span></div>
+          <div><b>2 ou 4</b><span>taças por pessoa</span></div>
+          <div><b>0</b><span>experiência necessária</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="empresas" id="empresas" aria-label="Eventos para empresas">
+    <div class="wrap">
+      <div>
+        <h2>Para a sua empresa, a oficina vai até vocês.</h2>
+        <p class="lead">A gente leva as taças, as tintas, o café e duas facilitadoras para a sua equipe pintar junto, no seu espaço. Vocês só escolhem o dia.</p>
+        <ul class="ocasioes"><li>Fim de ano</li><li>Integração de equipe</li><li>Encontro com clientes</li></ul>
+        <a class="btn" href="#empresas" data-empresas>Conhecer eventos para empresas <span class="seta" aria-hidden="true">→</span></a>
+      </div>
+      <div class="mascote" aria-hidden="true"><img src="mascote.webp" width="640" height="470" alt="" loading="lazy"><i></i></div>
+    </div>
+  </section>
+
+  <section class="reserva" id="reserva">
+    <div class="wrap">
+      <div>
+        <h2>Monte sua reserva.</h2>
+        <p class="sub">Escolha o pacote e quantas pessoas vêm com você. A mensagem já sai pronta no WhatsApp, é só enviar.</p>
+      </div>
+      <form class="calc" id="calc">
+        <fieldset>
+          <legend>Pacote por pessoa</legend>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="pac" id="pac2" value="2" checked><span><b>2 taças</b>R$ 290</span></label>
+            <label class="opt"><input type="radio" name="pac" id="pac4" value="4"><span><b>4 taças</b>R$ 390</span></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Quantas pessoas</legend>
+          <div class="step">
+            <button type="button" id="menos" aria-label="Uma pessoa a menos">−</button>
+            <output id="qtd" aria-live="polite">2</output>
+            <button type="button" id="mais" aria-label="Uma pessoa a mais">+</button>
+          </div>
+        </fieldset>
+        <div class="total"><span>Total</span><strong id="total">R$ 580</strong></div>
+        <div><a class="btn" id="zap" href="https://wa.me/5511900000000" target="_blank" rel="noopener">Enviar no WhatsApp <span class="seta" aria-hidden="true">→</span></a></div>
+        <p class="phone">Ou chame direto: <b>(11) 90000-0000</b></p>
+      </form>
+    </div>
+  </section>
+
+  <section class="faq" id="perguntas">
+    <div class="wrap">
+      <h2>Perguntas antes de reservar.</h2>
+      <div>
+        <details open><summary>Preciso saber pintar?</summary><p>Não. A maioria das alunas nunca pintou. As facilitadoras mostram o traço e ajudam do começo ao fim.</p></details>
+        <details><summary>A pintura sai na lavagem?</summary><p>A tinta é própria para vidro. Depois da cura, a taça pode ser lavada à mão. Explicamos o cuidado na oficina.</p></details>
+        <details><summary>Posso levar uma amiga?</summary><p>Pode e deve. Reserve as vagas juntas na calculadora acima.</p></details>
+        <details><summary>Fazem para aniversário ou grupo fechado?</summary><p>Sim. Chame no WhatsApp com a data e o número de pessoas que a gente monta uma turma só para vocês.</p></details>
+        <details><summary>Como pago?</summary><p>Pix na reserva garante a vaga. Os detalhes vão pela conversa no WhatsApp.</p></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="end">
+  <div class="wrap">
+    <div class="row">
+      <p><b>Ateliê day-use em Alphaville</b><br>Na Ana Fernandes Essentials</p>
+      <p>Instagram <a href="https://www.instagram.com/artedeville" target="_blank" rel="noopener">@artedeville</a><br>WhatsApp <b>(11) 90000-0000</b><br><a href="#empresas" data-empresas>Eventos para empresas</a></p>
+      <a class="btn" href="#reserva">Reservar vaga <span class="seta" aria-hidden="true">→</span></a>
+    </div>
+    <p class="big" aria-hidden="true">Arte <i>de</i> Ville</p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(function(){
+  /* calculadora */
+  var n=2, fone="5511900000000";
+  var qtd=document.getElementById('qtd'), total=document.getElementById('total'), zap=document.getElementById('zap');
+  function brl(v){return 'R$ '+v.toLocaleString('pt-BR')}
+  function upd(){
+    var pac=document.querySelector('input[name=pac]:checked').value, preco=pac==='4'?390:290;
+    qtd.textContent=n; total.textContent=brl(n*preco);
+    var msg='Olá! Quero reservar a oficina de pintura em taças: '+n+(n>1?' pessoas':' pessoa')+', pacote de '+pac+' taças ('+brl(n*preco)+' no total).';
+    zap.href='https://wa.me/'+fone+'?text='+encodeURIComponent(msg);
+  }
+  document.getElementById('menos').onclick=function(){if(n>1){n--;upd()}};
+  document.getElementById('mais').onclick=function(){if(n<10){n++;upd()}};
+  document.getElementById('calc').addEventListener('change',upd);
+  document.getElementById('calc').addEventListener('submit',function(e){e.preventDefault()});
+  upd();
+
+
+  /* a taça: recortada da própria foto da mesa (vazia); a pintada é a da Mesa B */
+  var canvas=document.querySelector('.vidro'), ctx=canvas.getContext('2d'), roomEl=document.querySelector('.room');
+  var vazio=new Image();vazio.src='vidro-vazio.webp';
+  var pintada=new Image();pintada.src='pintada.webp';
+  /* centro do bojo, em coordenadas do recorte 220x500: é ali que a luz do pincel acende e o pavão nasce */
+  var TOQUE={x:110,y:130};
+  function revela(r){if(!vazio.complete||!vazio.naturalWidth)return;
+    ctx.clearRect(0,0,440,1000);ctx.drawImage(vazio,0,0,440,1000);
+    if(r<=0||!pintada.complete||!pintada.naturalWidth)return;
+    var cx=TOQUE.x*2,cy=TOQUE.y*2,R=r*1000;
+    ctx.save();ctx.beginPath();ctx.arc(cx,cy,R,0,7);ctx.clip();ctx.drawImage(pintada,0,0,440,1000);ctx.restore();
+    /* aro dourado na frente da troca, só sobre o vidro */
+    if(r<1){ctx.globalCompositeOperation='source-atop';ctx.beginPath();ctx.arc(cx,cy,R,0,7);ctx.lineWidth=18;ctx.strokeStyle='rgba(246,222,160,'+(1-r)+')';ctx.stroke();ctx.globalCompositeOperation='source-over'}}
+  /* a xícara fica na frente do pé da taça e do canto do livro: enquanto estão na mesa, a silhueta dela é apagada deles (oc=1); no alto, não (oc=0) */
+  var silh=new Image(), oc1={o:1}, oc2={o:1};silh.src='xic-crua-silhueta.webp';
+  function oclui(c,ox,oy,o){if(o<=0||!silh.complete||!silh.naturalWidth)return;c.save();c.globalAlpha=o;c.globalCompositeOperation='destination-out';c.drawImage(silh,-ox*2,-oy*2,2752,1536);c.restore()}
+  var revelaBase=revela;revela=function(r){revelaBase(r);oclui(ctx,470,150,oc1.o)};
+  vazio.onload=function(){revela(0)};silh.onload=function(){revela(0)};
+
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce||!window.gsap||!window.ScrollTrigger)return;
+  gsap.registerPlugin(ScrollTrigger);
+  document.documentElement.classList.add('js-ready');
+
+  if(window.Lenis){var lenis=window.__lenis=new Lenis({lerp:.09});lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(function(t){lenis.raf(t*1000)});gsap.ticker.lagSmoothing(0)}
+
+  /* abertura: o vídeo do Gemini (segundos 2,5 a 8,6 do original, 1,22x, 5 s, sem som), toca uma vez e a cortina sobe logo em seguida. O botão ou um toque pulam. */
+  var cortina=document.querySelector('.curtain'), video=cortina.querySelector('video.abre'), zoom=cortina.querySelector('.abre-zoom'), pula=cortina.querySelector('.pula');
+  var deriva=gsap.to(zoom,{scale:1.04,duration:5,ease:'none',paused:true});
+  var saida=gsap.timeline({paused:true,onComplete:function(){cortina.style.visibility='hidden';document.documentElement.style.overflow='';document.documentElement.classList.remove('abrindo');if(lenis)lenis.start();var f=window.__aposAbertura;window.__aposAbertura=null;if(f)f()}})
+    .to(pula,{opacity:0,duration:.3},0)
+    .to(cortina,{yPercent:-100,duration:1.05,ease:'power3.inOut'},0)
+    .to(zoom,{yPercent:55,duration:1.05,ease:'power3.inOut'},0);
+  var foi=true;function sai(){if(foi)return;foi=true;deriva.pause();saida.restart()}
+  function abertura(){foi=false;saida.pause(0);gsap.set(cortina,{yPercent:0,visibility:'visible'});gsap.set(zoom,{yPercent:0,scale:1});gsap.set(pula,{opacity:1});
+    if(lenis)lenis.stop();document.documentElement.style.overflow='hidden';document.documentElement.classList.add('abrindo');
+    video.classList.remove('ok');video.currentTime=0;var pr=video.play();if(pr&&pr.catch)pr.catch(function(){sai()});deriva.restart();
+    /* rede de segurança: se o vídeo não andar, a cortina sobe mesmo assim */
+    clearTimeout(trava);clearTimeout(window.__fim);trava=setTimeout(function(){if(video.currentTime<0.2)sai()},2500);window.__fim=setTimeout(sai,6500)}
+  window.__abertura=abertura;
+  /* aparece no primeiro avanço real do vídeo (vídeo invisível o Chrome pausa sozinho, por isso começa com opacidade mínima e não zero) */
+  function mostra(){if(video.currentTime>0.04)video.classList.add('ok')}
+  video.addEventListener('timeupdate',mostra);video.addEventListener('playing',function(){setTimeout(function(){video.classList.add('ok')},120)});
+  var trava=0;
+  video.addEventListener('ended',sai);
+  video.addEventListener('timeupdate',function(){if(video.currentTime>=5.0)sai()});
+  cortina.addEventListener('click',sai);
+  addEventListener('keydown',function(){sai()});
+  abertura();
+
+  /* posição da taça na foto (1376x768): recorte em x 470, y 150, 220x500 */
+  function mesa(){var W=roomEl.clientWidth,H=roomEl.clientHeight,s=Math.max(W/1376,H/768);
+    return {x:(W-1376*s)*.42+470*s,y:(H-768*s)*.52+150*s,scale:s}}
+  function alto(){var W=roomEl.clientWidth,H=roomEl.clientHeight,k=Math.min(H*.96/500,W*.8/220);
+    return {x:W/2-110*k,y:(H-500*k)/2,scale:k}}
+  function pos(f){return {x:function(){return f().x},y:function(){return f().y},scale:function(){return f().scale}}}
+  /* o GIF inteiro, sem o fundo, toca em volta da taça. A luz do pincel (240,140 no GIF de 640x360) cai no centro do bojo (110,130 da taça) */
+  var gif=document.querySelector('.gif'), gctx=gif.getContext('2d'), quadros=[], gq={f:0}, gAtual=-1, rv={r:0};
+  /* vídeo da luva pintando (Gemini, fundo verde tirado quadro a quadro): um trecho contínuo, de 4,6 a 9,7 s, sem corte, tocado em 4 s. O clarão grande (1 s) transforma a taça; no fim a luva sai e o brilho se apaga sozinho */
+  for(var j=0;j<96;j++){var g=new Image();g.src='quadros/taca3/g'+String(j).padStart(2,'0')+'.webp';quadros.push(g)}
+  function mistura(ctx,q,f){var i=Math.max(0,Math.min(q.length-1,Math.round(f))),a=q[i];
+    if(!a.complete||!a.naturalWidth)return;ctx.imageSmoothingQuality='high';ctx.clearRect(0,0,1280,720);ctx.drawImage(a,0,0,1280,720)}
+  /* um quadro inteiro por vez (misturar dois quadros deixava contorno de um sem o branco do outro) */
+  function desenhaGif(f){var c=Math.round(f);if(c===gAtual)return;gAtual=c;mistura(gctx,quadros,f)}
+  quadros[0].onload=function(){gAtual=-1;desenhaGif(gq.f)};
+  function gifPos(){var a=alto(),k=a.scale,sc=Math.min(1.1*k,roomEl.clientWidth*1.25/640)/2;
+    return {x:a.x+TOQUE.x*k-495*sc,y:a.y+TOQUE.y*k-178*sc,scale:sc}}
+  /* o livro: recorte cru (Mesa B) e a peça dobrada (Mesa D) no mesmo quadro da foto: x 640, y 230, 540x442 */
+  var lcv=document.querySelector('.livro'), lctx=lcv.getContext('2d');
+  var lcru=new Image();lcru.src='livro-cru.webp';var lpeca=new Image();lpeca.src='livro-peca.webp';
+  /* centro do livro no recorte 540x442 (medido no alfa): a luz, o GIF e a peça nascem aqui.
+     A peça na foto está mais acima e à esquerda; enquanto está no alto ela é desenhada deslocada para o centro do livro (sh=1) e volta ao lugar real ao pousar (sh=0) */
+  var TOQUE2={x:302,y:335.5}, DESL={x:100,y:148.5}, sh={s:1};
+  function revela2(r){if(!lcru.complete||!lcru.naturalWidth)return;
+    lctx.clearRect(0,0,1080,1040);
+    var cx=TOQUE2.x*2,cy=TOQUE2.y*2,R=r*1300;
+    /* o livro cru some inteiro (não só dentro do círculo), assim nunca fica por baixo da peça */
+    if(r<1){lctx.globalAlpha=Math.max(0,1-r*4);lctx.drawImage(lcru,0,0,1080,884);lctx.globalAlpha=1}
+    if(r<=0||!lpeca.complete||!lpeca.naturalWidth)return;
+    /* o livro cru se apaga enquanto a peça cresce da luz */
+    if(r<1){lctx.save();lctx.globalCompositeOperation='destination-out';lctx.beginPath();lctx.arc(cx,cy,R,0,7);lctx.fill();lctx.restore()}
+    lctx.save();lctx.beginPath();lctx.arc(cx,cy,R,0,7);lctx.clip();lctx.drawImage(lpeca,DESL.x*2*sh.s,DESL.y*2*sh.s,1080,884);lctx.restore();
+    if(r<1){lctx.globalCompositeOperation='source-atop';lctx.beginPath();lctx.arc(cx,cy,R,0,7);lctx.lineWidth=22;lctx.strokeStyle='rgba(246,222,160,'+(1-r)+')';lctx.stroke();lctx.globalCompositeOperation='source-over'}}
+  var revela2Base=revela2;revela2=function(r){revela2Base(r);oclui(lctx,640,230,oc2.o)};
+  lcru.onload=function(){revela2(0)};
+  function mesa2(){var W=roomEl.clientWidth,H=roomEl.clientHeight,s=Math.max(W/1376,H/768);
+    return {x:(W-1376*s)*.42+640*s,y:(H-768*s)*.52+230*s,scale:s}}
+  function alto2(){var W=roomEl.clientWidth,H=roomEl.clientHeight,k=Math.min(H*.68/360,W*.72/470);
+    return {x:W/2-TOQUE2.x*k,y:H/2-TOQUE2.y*k,scale:k}}
+  /* vídeo da luva dobrando (Gemini, segundos 6 a 10, fundo verde tirado quadro a quadro): o centro do anel e da explosão de luz (640,358 no quadro de 1280x720) fica no centro da peça */
+  var gif2=document.querySelector('.g2'), g2ctx=gif2.getContext('2d'), q2=[], gq2={f:0}, g2Atual=-1, rv2={r:0};
+  for(var j2=0;j2<96;j2++){var g2=new Image();g2.src='quadros/livro2/g'+String(j2).padStart(2,'0')+'.webp';q2.push(g2)}
+  function desenhaGif2(f){var c=Math.round(f);if(c===g2Atual)return;g2Atual=c;mistura(g2ctx,q2,f)}
+  q2[0].onload=function(){g2Atual=-1;desenhaGif2(gq2.f)};
+  /* mais vida na luva, no pincel e na dobradura: cor e contraste mais fortes e um brilho que pulsa */
+  gsap.fromTo([gif,gif2],{filter:'saturate(1.15) contrast(1.05) brightness(1)'},{filter:'saturate(1.3) contrast(1.08) brightness(1.03)',duration:.85,ease:'sine.inOut',repeat:-1,yoyo:true});
+  function gifPos2(){var a=alto2(),k=a.scale,sc=Math.min(.68*k,roomEl.clientWidth*1.2/1280);
+    return {x:a.x+TOQUE2.x*k-640*sc,y:a.y+TOQUE2.y*k-358*sc,scale:sc}}
+  /* a xícara: recortes da mesa (Gemini) no quadro x 550, y 450, 320x260 da foto; a pintada nasce da luz, a branca se apaga */
+  var xcv=document.querySelector('.xic'), xctx=xcv.getContext('2d');
+  var xcru=new Image();xcru.src='xic-crua.webp';var xpin=new Image();xpin.src='xic-pintada.webp';
+  var TOQUE3={x:151,y:141}, rv3={r:0};
+  function revela3(r){if(!xcru.complete||!xcru.naturalWidth)return;
+    xctx.clearRect(0,0,640,520);var cx=TOQUE3.x*2,cy=TOQUE3.y*2,R=r*760;
+    if(r<1){xctx.globalAlpha=Math.max(0,1-r*4);xctx.drawImage(xcru,0,0,640,520);xctx.globalAlpha=1}
+    if(r<=0||!xpin.complete||!xpin.naturalWidth)return;
+    if(r<1){xctx.save();xctx.globalCompositeOperation='destination-out';xctx.beginPath();xctx.arc(cx,cy,R,0,7);xctx.fill();xctx.restore()}
+    xctx.save();xctx.beginPath();xctx.arc(cx,cy,R,0,7);xctx.clip();xctx.drawImage(xpin,0,0,640,520);xctx.restore();
+    if(r<1){xctx.globalCompositeOperation='source-atop';xctx.beginPath();xctx.arc(cx,cy,R,0,7);xctx.lineWidth=16;xctx.strokeStyle='rgba(246,222,160,'+(1-r)+')';xctx.stroke();xctx.globalCompositeOperation='source-over'}}
+  xcru.onload=function(){revela3(0)};
+  function mesa3(){var W=roomEl.clientWidth,H=roomEl.clientHeight,s=Math.max(W/1376,H/768);
+    return {x:(W-1376*s)*.42+550*s,y:(H-768*s)*.52+450*s,scale:s}}
+  function alto3(){var W=roomEl.clientWidth,H=roomEl.clientHeight,k=Math.min(H*.6/260,W*.7/320);
+    return {x:W/2-TOQUE3.x*k,y:H/2-TOQUE3.y*k,scale:k}}
+  /* a mesma luva da taça (quadros/taca3), do mesmo tamanho; a luz do pincel cai no centro da xícara */
+  var gif3=document.querySelector('.g3'), g3ctx=gif3.getContext('2d'), gq3={f:0}, g3Atual=-1;
+  function desenhaGif3(f){var c=Math.round(f);if(c===g3Atual)return;g3Atual=c;mistura(g3ctx,quadros,f)}
+  gsap.fromTo(gif3,{filter:'saturate(1.15) contrast(1.05) brightness(1)'},{filter:'saturate(1.3) contrast(1.08) brightness(1.03)',duration:.85,ease:'sine.inOut',repeat:-1,yoyo:true});
+  function gifPos3(){var a=alto3(),k=a.scale,sc=Math.min(1.1*alto().scale,roomEl.clientWidth*1.25/640)/2;
+    return {x:a.x+TOQUE3.x*k-495*sc,y:a.y+TOQUE3.y*k-178*sc,scale:sc}}
+  /* a cena não anda junto com a rolagem: cada gatilho toca a sua parte inteira, sozinha */
+  var tl=gsap.timeline({paused:true});
+  tl.to('.first',{opacity:0,y:-30,duration:.05},0)
+    .fromTo(canvas,pos(mesa),Object.assign({duration:.001,immediateRender:true},pos(mesa)),0)
+    .set(canvas,{visibility:'visible'},.03)
+    .set('.fotos .a',{opacity:0},.031)
+    .to('.fotos,.xfrente',{filter:'blur(9px) brightness(.72)',duration:.1,ease:'power1.out'},.03)
+    .to(canvas,Object.assign({duration:.12,ease:'power2.inOut'},pos(alto)),.04)
+    .fromTo(oc1,{o:1},{o:0,duration:.001,immediateRender:false,onUpdate:function(){revela(rv.r)}},.03)
+    .set('.xfrente',{opacity:1},.03)
+    .to('.xfrente',{opacity:0,duration:.04,ease:'power1.in'},.05)
+    .fromTo(canvas,{filter:'drop-shadow(0px 0px 0px rgba(255,236,200,0)) drop-shadow(0px 0px 0px rgba(255,212,140,0)) drop-shadow(0px 0px 0px rgba(30,16,6,0))'},{filter:'drop-shadow(0px 0px 1.5px rgba(255,236,200,.85)) drop-shadow(3px -3px 7px rgba(255,212,140,.6)) drop-shadow(0px 40px 40px rgba(30,16,6,.55))',duration:.12},.04)
+    .fromTo('[data-beat="1"]',{opacity:0,y:24},{opacity:1,y:0,duration:.04},.08)
+    /* o GIF entra em volta da taça e toca inteiro: luva, luz, ondas douradas e pretas */
+    .fromTo(gif,Object.assign({opacity:0},pos(gifPos)),Object.assign({opacity:1,duration:.03,immediateRender:false},pos(gifPos)),.14)
+    .fromTo(gq,{f:0},{f:95,duration:4/9,ease:'none',immediateRender:false,onUpdate:function(){desenhaGif(gq.f)}},.15)
+    /* no auge da luz, o pavão nasce do centro do bojo */
+    .fromTo(rv,{r:0},{r:1,duration:.08,ease:'power2.in',immediateRender:false,onUpdate:function(){revela(rv.r)}},.235)
+    .to(gif,{opacity:0,duration:.034,ease:'power1.in'},.56)
+    .to('[data-beat="1"]',{opacity:0,y:-24,duration:.04},.2)
+    .fromTo('[data-beat="2"]',{opacity:0,y:24},{opacity:1,y:0,duration:.04},.25)
+    .to('[data-beat="2"]',{opacity:0,y:-24,duration:.04},.56)
+    .to(canvas,Object.assign({duration:.12,ease:'power2.inOut'},pos(mesa)),.6)
+    .fromTo('.xfrente',{opacity:0},{opacity:1,duration:.025,ease:'power1.out',immediateRender:false},.695)
+    .fromTo(oc1,{o:0},{o:1,duration:.001,immediateRender:false,onUpdate:function(){revela(1)}},.719)
+    .set('.xfrente',{opacity:0},.722)
+    .to(canvas,{filter:'drop-shadow(0px 0px 0px rgba(255,236,200,0)) drop-shadow(0px 0px 0px rgba(255,212,140,0)) drop-shadow(0px 0px 0px rgba(30,16,6,0))',duration:.1},.6)
+    .to('.fotos,.xfrente',{filter:'blur(0px) brightness(1)',duration:.1,ease:'power1.in'},.62)
+    .set('.fotos .b',{opacity:1},.72)
+    .set(canvas,{visibility:'hidden'},.721)
+    .fromTo('[data-beat="3"]',{opacity:0,y:24},{opacity:1,y:0,duration:.04},.68)
+    .to('[data-beat="3"]',{opacity:0,y:-24,duration:.04},.84)
+    .fromTo('[data-beat="4"]',{opacity:0,y:24},{opacity:1,y:0,duration:.04},.88)
+    /* cena do livro: o mesmo caminho da taça */
+    .fromTo(lcv,pos(mesa2),Object.assign({duration:.001,immediateRender:true},pos(mesa2)),.97)
+    .set(lcv,{visibility:'visible'},1.0)
+    .set('.fotos .e',{opacity:1},1.001)
+    .to('.fotos,.xfrente',{filter:'blur(9px) brightness(.72)',duration:.1,ease:'power1.out'},1.0)
+    .to(lcv,Object.assign({duration:.12,ease:'power2.inOut'},pos(alto2)),1.01)
+    .fromTo(oc2,{o:1},{o:0,duration:.001,immediateRender:false,onUpdate:function(){revela2(rv2.r)}},1.0)
+    .set('.xfrente',{opacity:1},1.0)
+    .to('.xfrente',{opacity:0,duration:.04,ease:'power1.in'},1.02)
+    .fromTo(lcv,{filter:'drop-shadow(0px 0px 0px rgba(255,236,200,0)) drop-shadow(0px 0px 0px rgba(255,212,140,0)) drop-shadow(0px 0px 0px rgba(30,16,6,0))'},{filter:'drop-shadow(0px 0px 1.5px rgba(255,236,200,.85)) drop-shadow(3px -3px 7px rgba(255,212,140,.6)) drop-shadow(0px 40px 40px rgba(30,16,6,.55))',duration:.12},1.01)
+    .to('[data-beat="4"]',{opacity:0,y:-24,duration:.04},1.1)
+    .fromTo(gif2,Object.assign({opacity:0},pos(gifPos2)),Object.assign({opacity:1,duration:.03,immediateRender:false},pos(gifPos2)),1.12)
+    .fromTo(gq2,{f:0},{f:95,duration:4/9,ease:'none',immediateRender:false,onUpdate:function(){desenhaGif2(gq2.f)}},1.12)
+    .fromTo('[data-beat="5"]',{opacity:0,y:24},{opacity:1,y:0,duration:.04},1.16)
+    /* no clarão do vídeo (2,5 s) a peça nasce do centro; o vídeo some no fim dos 4 s */
+    .fromTo(rv2,{r:0},{r:1,duration:.1,ease:'power2.in',immediateRender:false,onUpdate:function(){revela2(rv2.r)}},1.40)
+    .to(gif2,{opacity:0,duration:.064,ease:'power1.in'},1.50)
+    .to(lcv,Object.assign({duration:.12,ease:'power2.inOut'},pos(mesa2)),1.58)
+    /* a xícara só volta para a frente depois que a peça pousou (antes disso a peça aparecia cortada) */
+    .fromTo('.xfrente',{opacity:0},{opacity:1,duration:.025,ease:'power1.out',immediateRender:false},1.70)
+    .fromTo(oc2,{o:0},{o:1,duration:.001,immediateRender:false,onUpdate:function(){revela2(1)}},1.726)
+    .set('.xfrente',{opacity:0},1.801)
+    .fromTo(sh,{s:1},{s:0,duration:.12,ease:'power2.inOut',immediateRender:false,onUpdate:function(){revela2(1)}},1.58)
+    .to(lcv,{filter:'drop-shadow(0px 0px 0px rgba(255,236,200,0)) drop-shadow(0px 0px 0px rgba(255,212,140,0)) drop-shadow(0px 0px 0px rgba(30,16,6,0))',duration:.1},1.58)
+    /* a foto com a peça entra por baixo assim que ela pousa; só então a sala desfoca de volta (a mesa sem livro nunca aparece nítida) */
+    .set('.fotos .d',{opacity:1},1.7)
+    .to('.fotos,.xfrente',{filter:'blur(0px) brightness(1)',duration:.1,ease:'power1.in'},1.7)
+    .set(lcv,{visibility:'hidden'},1.8)
+    .to({},{duration:.06},1.8)
+    /* cena da xícara: o mesmo caminho da taça, com a mesma luva */
+    .to('[data-beat="5"]',{opacity:0,y:-24,duration:.04},1.88)
+    .fromTo(xcv,pos(mesa3),Object.assign({duration:.001,immediateRender:true},pos(mesa3)),1.9)
+    .set(xcv,{visibility:'visible'},1.93)
+    /* a foto da xícara sai e fica só a sombra dela, que se apaga enquanto a sala desfoca */
+    .set('.fotos .xc',{opacity:0},1.931)
+    .set('.fotos .xcs',{opacity:1},1.931)
+    .to('.fotos .xcs',{opacity:0,duration:.06},1.932)
+    .to('.fotos',{filter:'blur(9px) brightness(.72)',duration:.1,ease:'power1.out'},1.93)
+    .to(xcv,Object.assign({duration:.12,ease:'power2.inOut'},pos(alto3)),1.94)
+    .fromTo(xcv,{filter:'drop-shadow(0px 0px 0px rgba(255,236,200,0)) drop-shadow(0px 0px 0px rgba(255,212,140,0)) drop-shadow(0px 0px 0px rgba(30,16,6,0))'},{filter:'drop-shadow(0px 0px 1.5px rgba(255,236,200,.85)) drop-shadow(3px -3px 7px rgba(255,212,140,.6)) drop-shadow(0px 40px 40px rgba(30,16,6,.55))',duration:.12},1.94)
+    .fromTo('[data-beat="6"]',{opacity:0,y:24},{opacity:1,y:0,duration:.04},1.98)
+    .fromTo(gif3,Object.assign({opacity:0},pos(gifPos3)),Object.assign({opacity:1,duration:.03,immediateRender:false},pos(gifPos3)),2.04)
+    .fromTo(gq3,{f:0},{f:95,duration:4/9,ease:'none',immediateRender:false,onUpdate:function(){desenhaGif3(gq3.f)}},2.05)
+    .fromTo(rv3,{r:0},{r:1,duration:.08,ease:'power2.in',immediateRender:false,onUpdate:function(){revela3(rv3.r)}},2.135)
+    .to(gif3,{opacity:0,duration:.034,ease:'power1.in'},2.46)
+    .to('[data-beat="6"]',{opacity:0,y:-24,duration:.04},2.1)
+    .fromTo('[data-beat="7"]',{opacity:0,y:24},{opacity:1,y:0,duration:.04},2.15)
+    .to(xcv,Object.assign({duration:.12,ease:'power2.inOut'},pos(mesa3)),2.5)
+    .to(xcv,{filter:'drop-shadow(0px 0px 0px rgba(255,236,200,0)) drop-shadow(0px 0px 0px rgba(255,212,140,0)) drop-shadow(0px 0px 0px rgba(30,16,6,0))',duration:.1},2.5)
+    .to('.fotos',{filter:'blur(0px) brightness(1)',duration:.1,ease:'power1.in'},2.52)
+    .fromTo('.fotos .xps',{opacity:0},{opacity:1,duration:.08,immediateRender:false},2.54)
+    /* pousou: a foto da xícara pintada (com a sombra) entra no lugar exato do recorte */
+    .set('.fotos .xp',{opacity:1},2.62)
+    .set('.fotos .xps',{opacity:0},2.62)
+    .set(xcv,{visibility:'hidden'},2.621)
+    .to({},{duration:.1},2.62);
+  /* gatilhos: ao entrar na cena, a taça toca inteira; rolando mais, o livro e depois a xícara tocam inteiros. A rolagem espera cada uma terminar */
+  var cenas=[{de:0,ate:.95,em:.03},{de:.97,ate:1.86,em:.36},{de:1.88,ate:2.72,em:.7}], feitas=0, rodando=false, travaY=0;
+  var palco=ScrollTrigger.create({trigger:'.pin',start:'top top+='+(document.querySelector('.bar').offsetHeight),end:'+=130%',pin:true,invalidateOnRefresh:true,onUpdate:function(st){proxima(st.progress)}});
+  function proxima(p){if(rodando||feitas>=cenas.length||p<cenas[feitas].em)return;
+    var c=cenas[feitas];rodando=true;if(lenis)lenis.stop();
+    /* trava a página no ponto do gatilho, mesmo com o embalo do dedo no celular */
+    travaY=Math.round(palco.start+c.em*(palco.end-palco.start))+2;if(scrollY>travaY+4)scrollTo(0,travaY);else travaY=Math.round(scrollY);
+    tl.tweenFromTo(c.de,c.ate,{duration:(c.ate-c.de)*9,ease:'none',onComplete:function(){rodando=false;feitas++;if(lenis){lenis.scrollTo(scrollY,{immediate:true,force:true});lenis.start()}proxima(palco.progress)}})}
+  function segura(e){if(rodando&&e.cancelable)e.preventDefault()}
+  addEventListener('touchmove',segura,{passive:false});addEventListener('wheel',segura,{passive:false});
+  addEventListener('scroll',function(){if(rodando&&Math.abs(scrollY-travaY)>2)scrollTo(0,travaY)});
+
+  /* entradas das seções */
+  gsap.utils.toArray('main > section:not(.stage), footer').forEach(function(sec){
+    var parts=sec.querySelectorAll('h2, .lead, .sub, .ritual li, .fatos div, .calc, .ocasioes li, .mascote, details, .row > *, .big');
+    gsap.from(parts,{y:28,opacity:0,duration:.8,ease:'power2.out',stagger:.07,scrollTrigger:{trigger:sec,start:'top 80%',once:true}});
+  });
+  addEventListener('load',function(){ScrollTrigger.refresh()});
+})();
+
+/* área de empresas dentro do site */
+(function(){
+  var cam=document.querySelector('.camada-emp'), fr=cam.querySelector('iframe');
+  function abre(e){if(e)e.preventDefault();if(!fr.getAttribute('src'))fr.src='empresas.html';cam.classList.add('aberta');
+    document.documentElement.style.overflow='hidden';if(window.__lenis)window.__lenis.stop();cam.querySelector('.volta').focus()}
+  function fecha(dest){cam.classList.remove('aberta');document.documentElement.style.overflow='';if(window.__lenis)window.__lenis.start();
+    if(dest){var el=document.getElementById(dest);if(el)setTimeout(function(){if(window.__lenis)window.__lenis.scrollTo(el,{offset:-70});else el.scrollIntoView()},60)}}
+  window.__fechaEmpresas=fecha;
+  document.querySelectorAll('[data-empresas]').forEach(function(a){a.addEventListener('click',abre)});
+  cam.querySelector('.volta').addEventListener('click',function(){fecha()});
+  addEventListener('keydown',function(e){if(e.key==='Escape'&&cam.classList.contains('aberta'))fecha()});
+})();
+</script>
+
+</body></html>
