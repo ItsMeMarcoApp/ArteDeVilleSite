@@ -219,7 +219,7 @@ html:not(.js-ready) .room canvas{display:none}
 
   if(window.Lenis){var lenis=window.__lenis=new Lenis({lerp:.09});lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(function(t){lenis.raf(t*1000)});gsap.ticker.lagSmoothing(0)}
 
-  /* abertura: o vídeo do Gemini (segundos 2,5 a 8,6 do original, 1,22x, 5 s, sem som), toca uma vez e a cortina sobe logo em seguida. O botão ou um toque pulam. */
+  /* abertura: o vídeo do Gemini (segundos 2,5 a 9,0 do original, 1,22x, 5,3 s, sem som; termina depois que a fita some, sem rastro da mão), toca uma vez e a cortina sobe logo em seguida. O botão ou um toque pulam. */
   var cortina=document.querySelector('.curtain'), video=cortina.querySelector('video.abre'), zoom=cortina.querySelector('.abre-zoom'), pula=cortina.querySelector('.pula');
   var deriva=gsap.to(zoom,{scale:1.04,duration:5,ease:'none',paused:true});
   var saida=gsap.timeline({paused:true,onComplete:function(){cortina.style.visibility='hidden';document.documentElement.style.overflow='';document.documentElement.classList.remove('abrindo');if(lenis)lenis.start();var f=window.__aposAbertura;window.__aposAbertura=null;if(f)f()}})
@@ -231,14 +231,14 @@ html:not(.js-ready) .room canvas{display:none}
     if(lenis)lenis.stop();document.documentElement.style.overflow='hidden';document.documentElement.classList.add('abrindo');
     video.classList.remove('ok');video.currentTime=0;var pr=video.play();if(pr&&pr.catch)pr.catch(function(){sai()});deriva.restart();
     /* rede de segurança: se o vídeo não andar, a cortina sobe mesmo assim */
-    clearTimeout(trava);clearTimeout(window.__fim);trava=setTimeout(function(){if(video.currentTime<0.2)sai()},2500);window.__fim=setTimeout(sai,6500)}
+    clearTimeout(trava);clearTimeout(window.__fim);trava=setTimeout(function(){if(video.currentTime<0.2)sai()},2500);window.__fim=setTimeout(sai,6800)}
   window.__abertura=abertura;
   /* aparece no primeiro avanço real do vídeo (vídeo invisível o Chrome pausa sozinho, por isso começa com opacidade mínima e não zero) */
   function mostra(){if(video.currentTime>0.04)video.classList.add('ok')}
   video.addEventListener('timeupdate',mostra);video.addEventListener('playing',function(){setTimeout(function(){video.classList.add('ok')},120)});
   var trava=0;
   video.addEventListener('ended',sai);
-  video.addEventListener('timeupdate',function(){if(video.currentTime>=5.0)sai()});
+  video.addEventListener('timeupdate',function(){if(video.currentTime>=5.28)sai()});
   cortina.addEventListener('click',sai);
   addEventListener('keydown',function(){sai()});
   abertura();
@@ -408,7 +408,9 @@ html:not(.js-ready) .room canvas{display:none}
     .set(xcv,{visibility:'hidden'},2.621)
     .to({},{duration:.1},2.62);
   /* menu: cada oficina toca a sua cena inteira e depois leva ao bloco dela para empresas. A mesa sempre parte crua. */
-  var cenas=[{de:0,ate:.95,cv:canvas,pos:mesa,bloco:'empresa-taca'},{de:.965,ate:1.86,cv:lcv,pos:mesa2,bloco:'empresa-livro'},{de:1.87,ate:2.72,cv:xcv,pos:mesa3,bloco:'empresa-xicara'}];
+  /* fim de cada cena = o pouso da peça (taça .722, xícara .621): nada de espera parada antes de voltar ao menu.
+     Livro: o começo (subida e entrada da luva, até o clarão) toca 1,7x mais rápido, o fim fica igual */
+  var cenas=[{de:0,ate:.73,cv:canvas,pos:mesa,bloco:'empresa-taca'},{de:.965,ate:1.86,cv:lcv,pos:mesa2,bloco:'empresa-livro',rapido:{ate:1.38,x:1.7}},{de:1.87,ate:2.63,cv:xcv,pos:mesa3,bloco:'empresa-xicara'}];
   var rodando=false, travaY=0, atual=null, menu=document.querySelector('.placa'), menuIn=document.querySelectorAll('.placa > :not(canvas)'), saiba=document.querySelector('.placa .saiba'), slugs=['taca','livro','xicara'], pen=document.querySelector('.penumbra'), pulaC=document.querySelector('.pular-cena'), sujo=false;
   var itens=[].slice.call(document.querySelectorAll('[data-cena]'));
   function desenhaCrus(){revela(0);revela2(0);revela3(0)}
@@ -445,7 +447,8 @@ html:not(.js-ready) .room canvas{display:none}
     cenas.forEach(function(o,i){if(i!==k)gsap.set(o.cv,{visibility:'hidden'})});var p=c.pos();gsap.set(c.cv,{x:p.x,y:p.y,scale:p.scale,visibility:'visible'});
     gsap.to(pen,{opacity:0,duration:.5,ease:'power1.inOut',overwrite:true});
     gsap.to(menuIn,{opacity:0,duration:.4,ease:'power2.in'});pulaC.classList.add('on');
-    atual=tl.tweenFromTo(c.de,c.ate,{duration:(c.ate-c.de)*9,ease:'none',onComplete:function(){fim(k)}})}
+    if(c.rapido){atual=gsap.timeline({onComplete:function(){fim(k)}}).add(tl.tweenFromTo(c.de,c.rapido.ate,{duration:(c.rapido.ate-c.de)*9/c.rapido.x,ease:'none'})).add(tl.tweenFromTo(c.rapido.ate,c.ate,{duration:(c.ate-c.rapido.ate)*9,ease:'none'}))}
+    else atual=tl.tweenFromTo(c.de,c.ate,{duration:(c.ate-c.de)*9,ease:'none',onComplete:function(){fim(k)}})}
   itens.forEach(function(a,i){a.addEventListener('mouseenter',function(){acende(i)});a.addEventListener('focus',function(){acende(i)});
     a.addEventListener('mouseleave',apaga);a.addEventListener('blur',apaga);
     a.addEventListener('click',function(e){e.preventDefault();toca(i)})});
