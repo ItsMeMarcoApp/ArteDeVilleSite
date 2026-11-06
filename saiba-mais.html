@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Oficinas para empresas · Arte de Ville</title>
+<meta name="description" content="Oficinas de pintura em taças, dobradura em livros e pintura em xícaras para empresas, em Alphaville, São Paulo e Grande São Paulo.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@11,400..600&family=Jost:wght@400;500&display=swap">
+<style>
+body{margin:0}
+/* Preto e dourado, como o logo: chão preto, tinta clara, ouro na ação e nos números. Uma seção inteira em campo de ouro (empresas). Display em Bodoni Moda, a mesma família didone das letras do logo; texto em Jost. */
+:root{
+  --noir:#15110D;      /* sombra da madeira */
+  --noir-2:#241D16;    /* um tom acima, para controles no escuro */
+  --creme:#F3ECDF;     /* parede da sala */
+  --linho:#E6DCCA;     /* estofado das poltronas */
+  --estudio:#D9D6C8;   /* fundo das fotos da taça */
+  --nogueira:#3B2A1E;  /* tampo da mesa */
+  --ouro:#B68B43;      /* latão do castiçal */
+  --ouro-claro:#DDBB74;/* ouro sobre fundo escuro */
+  --tinta:#15110D;
+  --tinta-2:#55493C;
+  --creme-2:#CFC4B2;   /* texto secundário no escuro */
+  --preto-2:#1D1813;   /* um degrau de tom acima do preto, separa superfícies sem linha */
+  --tinta-ouro:#2A1F12;/* texto sobre o campo de ouro */
+  --display:"Bodoni Moda",Didot,"Bodoni 72","Times New Roman",serif;
+  --text:"Jost","Futura","Avenir Next",system-ui,sans-serif;
+  --gut:max(24px,env(safe-area-inset-left,0px));
+  --gut-r:max(24px,env(safe-area-inset-right,0px));
+  --bar:76px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{background:var(--noir)}
+body{background:var(--noir);color:var(--creme);font:400 18px/1.6 var(--text);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--noir)}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);font-weight:500;letter-spacing:-0.02em;line-height:1.02;margin:0;text-wrap:balance}
+p{margin:0}
+.wrap{padding-left:var(--gut);padding-right:var(--gut-r);max-width:1480px;margin:0 auto}
+.btn{display:inline-flex;align-items:center;gap:.7em;background:var(--ouro);color:var(--noir);font:500 17px/1 var(--text);padding:19px 30px;border-radius:999px;text-decoration:none;border:0;cursor:pointer;transition:transform .25s cubic-bezier(.2,.8,.2,1),background .25s}
+.btn:hover{background:var(--ouro-claro);transform:translateY(-2px)}
+.btn:active{transform:scale(.97)}
+.btn .seta{transition:transform .25s}
+.btn:hover .seta{transform:translateX(4px)}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--ouro);outline-offset:4px}
+.mono{font-family:var(--display);font-style:italic;font-weight:500;color:var(--ouro-claro);letter-spacing:-0.08em}
+
+/* barra */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--noir);color:var(--creme)}
+.bar .wrap{display:flex;align-items:center;gap:36px;height:var(--bar)}
+.brand{display:flex;align-items:center;gap:14px;text-decoration:none;margin-right:auto}
+.brand .selo{width:46px;height:46px;display:block}
+.brand b{font:500 24px/1 var(--display);letter-spacing:-0.01em}
+.bar nav{display:flex;gap:32px;font-size:16px}
+.bar nav a{text-decoration:none;color:var(--creme-2);transition:color .2s}
+.bar nav a:hover{color:var(--creme)}
+.bar .btn{padding:13px 22px;font-size:15px}
+@media (max-width:820px){.bar nav{display:none}.brand{gap:10px}.brand .selo{width:40px;height:40px}.brand b{font-size:20px;white-space:nowrap}.bar .btn{padding:11px 14px;font-size:14px;white-space:nowrap}.bar .wrap{gap:12px}}
+
+/* a manhã */
+.manha{background:var(--noir);padding-block:180px}
+.manha .wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:80px;align-items:start}
+.manha .head{position:sticky;top:calc(var(--bar) + 48px)}
+.manha h2{font-size:clamp(44px,5vw,84px)}
+.manha .lead{margin-top:32px;font-size:21px;max-width:34ch;color:var(--creme-2)}
+.ritual{list-style:none;margin:0;padding:0;display:grid;gap:56px}
+.ritual li{display:grid;grid-template-columns:190px minmax(0,1fr);gap:32px;align-items:baseline}
+.ritual time{font:400 60px/1 var(--display);color:var(--ouro-claro);font-variant-numeric:lining-nums tabular-nums;letter-spacing:-0.03em}
+.ritual h3{font-size:34px;line-height:1.05}
+.ritual p{margin-top:10px;color:var(--creme-2)}
+.fatos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:120px;background:var(--preto-2);padding:44px 40px}
+.fatos div{display:grid;gap:10px;align-content:start}
+.fatos b{font:400 64px/1 var(--display);color:var(--ouro-claro);letter-spacing:-0.02em}
+.fatos span{font-size:16px;color:var(--creme-2);line-height:1.45}
+@media (max-width:980px){.manha{padding-block:104px}.manha .wrap{grid-template-columns:1fr;gap:48px}.manha .head{position:static}.ritual{gap:40px}.ritual li{grid-template-columns:1fr;gap:10px}.ritual time{font-size:44px}.ritual h3{font-size:26px}.fatos{grid-template-columns:1fr 1fr;gap:32px 16px;margin-top:72px;padding:32px 24px}.fatos b{font-size:48px}}
+
+/* as três ofertas para empresas: campos alternados, a peça grande */
+.oferta{padding-block:170px;scroll-margin-top:var(--bar)}
+.oferta .wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:96px;align-items:center}
+.oferta.o-livro .wrap{grid-template-columns:minmax(0,6fr) minmax(0,5fr)}
+.o-taca{background:var(--preto-2)}
+.o-livro{background:var(--noir)}
+.o-xicara{background:var(--preto-2)}
+.oferta h2{font-size:clamp(30px,4.4vw,74px)}
+.oferta .lead{margin-top:28px;font-size:20px;max-width:44ch;color:var(--creme-2)}
+
+.peca{margin:0;display:grid;place-items:center}
+.o-taca .peca img{height:min(78vh,760px);width:auto}
+.o-livro .peca img{width:100%;height:auto}
+.o-xicara .peca img{width:min(100%,560px);height:auto}
+.inclui{list-style:none;margin:44px 0 48px;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:22px 32px;font-size:17px;color:var(--creme-2)}
+.inclui b{display:block;font:400 30px/1.1 var(--display);color:var(--ouro-claro);margin-bottom:4px}
+
+.acoes{display:flex;flex-wrap:wrap;align-items:center;gap:20px 32px}
+.acoes .volta{font-size:17px;color:inherit;text-underline-offset:5px;text-decoration-thickness:1px;transition:color .2s}
+.acoes .volta:hover{color:var(--ouro-claro)}
+
+
+@media (max-width:980px){.oferta{padding-block:96px}.oferta .wrap,.oferta.o-livro .wrap{grid-template-columns:1fr;gap:44px}.o-livro .peca{order:-1}.o-taca .peca img{height:min(62vh,520px)}.inclui{grid-template-columns:1fr;gap:16px}.inclui b{font-size:26px}}
+
+/* perguntas */
+.faq{background:var(--noir);padding-block:180px}
+.faq .wrap{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:80px}
+.faq h2{font-size:clamp(44px,5vw,84px);align-self:start;position:sticky;top:calc(var(--bar) + 48px)}
+.faq details{margin-bottom:4px;transition:background .25s}
+.faq details[open]{background:var(--preto-2)}
+.faq summary:hover{color:var(--ouro-claro)}
+.faq summary{cursor:pointer;list-style:none;padding:28px 32px;font:400 30px/1.15 var(--display);transition:color .2s;display:flex;justify-content:space-between;gap:24px}
+.faq summary::after{content:"+";font-family:var(--text);font-weight:400;color:var(--ouro-claro);transition:transform .3s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq summary::-webkit-details-marker{display:none}
+.faq details p{padding:0 32px 30px;max-width:58ch;color:var(--creme-2)}
+@media (max-width:980px){.faq{padding-block:104px}.faq .wrap{grid-template-columns:1fr;gap:40px}.faq h2{position:static}.faq summary{font-size:25px;padding:22px}.faq details p{padding:0 22px 24px}}
+
+/* fim */
+.end{background:var(--noir);color:var(--creme);padding-block:120px 40px;overflow:hidden}
+.end .row{display:flex;flex-wrap:wrap;gap:28px 64px;align-items:end;justify-content:space-between}
+.end .row p{font-size:17px;color:var(--creme-2)}
+.end .row p b{color:var(--creme);font-weight:500}
+.end .big{font:400 calc((100vw - 48px) * .176)/.86 var(--display);letter-spacing:-0.035em;margin-top:120px;white-space:nowrap;color:var(--ouro-claro)}
+@media (min-width:1480px){.end .big{font-size:258px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* abertura da página: o pedido de orçamento em destaque, ao lado da mesa pronta */
+.topo{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);min-height:calc(100svh - var(--bar));background:var(--noir)}
+.topo .txt{display:flex;flex-direction:column;justify-content:center;gap:28px;padding:64px 56px 64px var(--gut)}
+.topo h1{font-size:clamp(32px,3.4vw,58px)}
+.topo .lead{font-size:20px;color:var(--creme-2);max-width:38ch}
+.topo .acoes .btn{font-size:18px;padding:21px 34px}
+.topo figure{margin:0;position:relative;overflow:hidden}
+.topo figure img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:46% 50%}
+@media (max-width:980px){.topo .acoes .btn{font-size:16px;padding:18px 24px}.topo{grid-template-columns:1fr;min-height:0}.topo figure{order:-1;aspect-ratio:4/3}.topo .txt{padding:40px var(--gut-r) 64px var(--gut)}}
+/* Instagram */
+.insta{background:var(--preto-2);padding-block:150px;scroll-margin-top:var(--bar)}
+.insta .cab{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:24px 48px;margin-bottom:56px}
+.insta h2{font-size:clamp(40px,4.4vw,74px)}
+.insta .cab p{font-size:19px;color:var(--creme-2);max-width:36ch;margin-top:20px}
+.grade{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.grade a{display:block;aspect-ratio:4/5;overflow:hidden;background:var(--noir)}
+.grade img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.2s cubic-bezier(.2,.8,.2,1),opacity .4s}
+.grade a.peca-solta img{object-fit:contain;padding:8%}
+.grade a:hover img{transform:scale(1.04)}
+.grade.posts{grid-template-columns:repeat(3,minmax(0,1fr));align-items:start}
+.grade.posts blockquote{margin:0!important;min-width:0!important;width:100%!important}
+@media (max-width:820px){.insta{padding-block:96px}.grade,.grade.posts{grid-template-columns:1fr 1fr;gap:8px}}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body>
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img class="selo" src="selo.webp" width="46" height="46" alt=""><b>Arte de Ville</b></a>
+    <nav aria-label="Seções"><a href="index.html">A mesa</a><a href="#instagram">Instagram</a><a href="#taca">Oficinas</a><a href="#perguntas">Perguntas</a></nav>
+    <a class="btn" data-orc href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Quero%20um%20or%C3%A7amento%20de%20oficina%20da%20Arte%20de%20Ville%20para%20a%20minha%20empresa." target="_blank" rel="noopener">Peça o orçamento</a>
+  </div>
+</header>
+<main>
+  <section class="topo">
+    <div class="txt">
+      <h1 id="titulo">Peça o orçamento para a sua empresa.</h1>
+      <p class="lead" id="sub">Levamos a oficina até vocês, em Alphaville, São Paulo e Grande São Paulo. De 10 a 30 pessoas, todo o material incluso, e cada um sai com a peça que fez.</p>
+      <div class="acoes"><a class="btn" data-orc href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Quero%20um%20or%C3%A7amento%20de%20oficina%20da%20Arte%20de%20Ville%20para%20a%20minha%20empresa." target="_blank" rel="noopener">Peça o orçamento no WhatsApp <span class="seta" aria-hidden="true">→</span></a><a class="volta" href="#instagram">Ver no Instagram</a></div>
+    </div>
+    <figure><img src="empresas-img/mesa-pronta.webp" width="1376" height="768" alt="Taça pintada com pavão e livro dobrado sobre a mesa de centro"></figure>
+  </section>
+
+  <section class="insta" id="instagram">
+    <div class="wrap">
+      <div class="cab"><div><h2>Do nosso ateliê.</h2><p>As peças, as mesas postas e as turmas aparecem primeiro no Instagram.</p></div><a class="btn" href="https://www.instagram.com/artedeville" target="_blank" rel="noopener">Seguir @artedeville <span class="seta" aria-hidden="true">→</span></a></div>
+      <div class="grade" id="grade"><a class="" href="https://www.instagram.com/artedeville" target="_blank" rel="noopener"><img src="empresas-img/mesa-pronta.webp" alt="Taça pintada e livro dobrado na mesa de centro" loading="lazy"></a><a class="peca-solta" href="https://www.instagram.com/artedeville" target="_blank" rel="noopener"><img src="empresas-img/taca.webp" alt="Taça pintada com pavão" loading="lazy"></a><a class="" href="https://www.instagram.com/artedeville" target="_blank" rel="noopener"><img src="mesa-b.webp" alt="Taça pintada na mesa de centro" loading="lazy"></a><a class="peca-solta" href="https://www.instagram.com/artedeville" target="_blank" rel="noopener"><img src="empresas-img/dobradura-recorte.webp" alt="Livro dobrado em forma de lanterna" loading="lazy"></a><a class="" href="https://www.instagram.com/artedeville" target="_blank" rel="noopener"><img src="mesa-d.webp" alt="Taça e dobradura prontas na sala" loading="lazy"></a><a class="peca-solta" href="https://www.instagram.com/artedeville" target="_blank" rel="noopener"><img src="xic-pintada.webp" alt="Xícara pintada à mão" loading="lazy"></a></div>
+    </div>
+  </section>
+
+  <section class="oferta o-taca" id="taca">
+    <div class="wrap">
+      <figure class="peca"><img src="empresas-img/taca.webp" width="434" height="1158" alt="Taça de cristal pintada à mão com um pavão verde e dourado" loading="lazy"></figure>
+      <div class="texto">
+        <h2>Pintura em taças.</h2>
+        <p class="lead">Cada pessoa pinta duas taças à mão, com tinta própria para vidro, e leva para casa embaladas para presente. Ninguém precisa saber desenhar: levamos os moldes de traço e ficamos ao lado até a última pincelada.</p>
+        <ul class="inclui"><li><b>2 horas</b> no seu espaço</li><li><b>2 taças</b> por pessoa</li><li><b>2 facilitadoras</b> para cada 15 pessoas</li><li><b>Todo o material</b> da tinta à embalagem</li></ul>
+        <div class="acoes"><a class="btn" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Quero%20um%20or%C3%A7amento%20da%20oficina%20de%20pintura%20em%20ta%C3%A7as%20para%20a%20minha%20empresa." target="_blank" rel="noopener">Peça o orçamento <span class="seta" aria-hidden="true">→</span></a></div>
+      </div>
+    </div>
+  </section>
+  <section class="oferta o-livro" id="livro">
+    <div class="wrap">
+      <div class="texto">
+        <h2>Dobradura em livros.</h2>
+        <p class="lead">Um livro antigo vira peça de decoração, dobra por dobra, sem cola e sem tesoura. Os livros e os moldes vão com a gente; cada pessoa sai com a sua peça pronta e uma história para contar.</p>
+        <ul class="inclui"><li><b>2 horas</b> no seu espaço</li><li><b>1 livro</b> por pessoa</li><li><b>Moldes de dobra</b> impressos</li><li><b>Peça pronta</b> ao fim do encontro</li></ul>
+        <div class="acoes"><a class="btn" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Quero%20um%20or%C3%A7amento%20da%20oficina%20de%20dobradura%20em%20livros%20para%20a%20minha%20empresa." target="_blank" rel="noopener">Peça o orçamento <span class="seta" aria-hidden="true">→</span></a></div>
+      </div>
+      <figure class="peca"><img src="empresas-img/dobradura-recorte.webp" width="1000" height="916" alt="Livro antigo dobrado página por página em forma de lanterna" loading="lazy"></figure>
+    </div>
+  </section>
+  <section class="oferta o-xicara" id="xicara">
+    <div class="wrap">
+      <figure class="peca"><img src="xic-pintada.webp" width="640" height="520" alt="Xícara e pires de porcelana pintados à mão" loading="lazy"></figure>
+      <div class="texto">
+        <h2>Pintura em xícaras.</h2>
+        <p class="lead">Xícara e pires de porcelana branca, pintados à mão com tinta própria para porcelana. Um presente que cada pessoa faz para si e usa toda manhã, lembrando de quem estava à mesa.</p>
+        <ul class="inclui"><li><b>2 horas</b> no seu espaço</li><li><b>1 xícara com pires</b> por pessoa</li><li><b>Desenhos de referência</b> para começar</li><li><b>Todo o material</b> da tinta à embalagem</li></ul>
+        <div class="acoes"><a class="btn" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Quero%20um%20or%C3%A7amento%20da%20oficina%20de%20pintura%20em%20x%C3%ADcaras%20para%20a%20minha%20empresa." target="_blank" rel="noopener">Peça o orçamento <span class="seta" aria-hidden="true">→</span></a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="manha" id="como">
+    <div class="wrap">
+      <div class="head">
+        <h2>Como são as duas horas.</h2>
+        <p class="lead">Chegamos uma hora antes e saímos com a sala do jeito que encontramos. Para o time, é só sentar e começar.</p>
+      </div>
+      <div>
+        <ol class="ritual">
+          <li><time>0h00</time><div><h3>Mesa posta</h3><p>Cada lugar já tem as peças, as tintas ou os moldes, e um avental.</p></div></li>
+          <li><time>0h15</time><div><h3>Abertura</h3><p>Mostramos três traços ou três dobras simples. Daí para frente, cada um segue o seu ritmo.</p></div></li>
+          <li><time>0h30</time><div><h3>Mãos na peça</h3><p>O time trabalha e conversa. As facilitadoras passam de lugar em lugar e ajudam quem trava.</p></div></li>
+          <li><time>1h30</time><div><h3>Acabamento e foto</h3><p>Últimos detalhes em dourado e uma foto do grupo com as peças na mesa.</p></div></li>
+          <li><time>1h50</time><div><h3>Para levar</h3><p>Cada peça vai embalada, com um cartão de cuidados.</p></div></li>
+        </ol>
+        <div class="fatos">
+          <div><b>10–30</b><span>pessoas por evento</span></div>
+          <div><b>2</b><span>facilitadoras para cada 15 pessoas</span></div>
+          <div><b>3</b><span>oficinas para escolher</span></div>
+          <div><b>0</b><span>experiência necessária</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq" id="perguntas">
+    <div class="wrap">
+      <h2>Perguntas do RH.</h2>
+      <div>
+        <details open><summary>O time precisa saber pintar?</summary><p>Não. A maioria nunca pintou nem dobrou papel. As facilitadoras mostram o traço ou a dobra e ajudam do começo ao fim.</p></details>
+        <details><summary>Para quantas pessoas?</summary><p>De 10 a 30. Acima de 15, vamos com uma segunda dupla de facilitadoras ou fazemos dois turnos seguidos.</p></details>
+        <details><summary>O que vocês precisam da empresa?</summary><p>Uma sala com mesas para todos sentarem juntos, água e uma tomada por perto e uma hora de acesso antes, para montar tudo sem pressa.</p></details>
+        <details><summary>Onde vocês atendem?</summary><p>Alphaville, São Paulo e Grande São Paulo. No escritório, num restaurante ou num salão de eventos, onde for melhor para vocês.</p></details>
+        <details><summary>Dá para colocar a marca da empresa?</summary><p>Sim. O logo vai no cartão e na embalagem de cada peça.</p></details>
+        <details><summary>Quanto custa?</summary><p>O valor vem no orçamento, de acordo com o número de pessoas, a oficina e o local. Chame no WhatsApp e respondemos no mesmo dia.</p></details>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="end">
+  <div class="wrap">
+    <div class="row">
+      <p><b>Oficinas para empresas</b><br>Alphaville, São Paulo e Grande São Paulo</p>
+      <p>Instagram <a href="https://www.instagram.com/artedeville" target="_blank" rel="noopener">@artedeville</a><br>WhatsApp <a href="https://wa.me/5511900000000" target="_blank" rel="noopener">(11) 90000-0000</a></p>
+      <a class="btn" data-orc href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Quero%20um%20or%C3%A7amento%20de%20oficina%20da%20Arte%20de%20Ville%20para%20a%20minha%20empresa." target="_blank" rel="noopener">Peça o orçamento <span class="seta" aria-hidden="true">→</span></a>
+    </div>
+    <p class="big" aria-hidden="true">Arte de Ville</p>
+  </div>
+</footer>
+<script>
+(function(){
+  /* vindo da mesa (?oficina=taca|livro|xicara): o título e a mensagem do WhatsApp falam daquela oficina */
+  var o=new URLSearchParams(location.search).get('oficina');
+  var N={taca:['Pintura em taças','pintura em taças'],livro:['Dobradura em livros','dobradura em livros'],xicara:['Pintura em xícaras','pintura em xícaras']};
+  if(N[o]){document.getElementById('titulo').textContent=N[o][0]+' para a sua empresa.';
+    var msg='https://wa.me/5511900000000?text='+encodeURIComponent('Olá! Quero um orçamento da oficina de '+N[o][1]+' para a minha empresa.');
+    document.querySelectorAll('[data-orc]').forEach(function(a){a.href=msg});
+    var b=document.getElementById(o),pai=b&&b.parentNode;if(b)pai.insertBefore(b,pai.querySelector('.oferta'));}
+  /* posts reais do Instagram: cole aqui os links (ex.: https://www.instagram.com/p/XXXX/) e a grade vira os posts */
+  var POSTS=[];
+  if(POSTS.length){var g=document.getElementById('grade');g.className='grade posts';g.innerHTML=POSTS.map(function(u){return '<blockquote class="instagram-media" data-instgrm-permalink="'+u+'" data-instgrm-version="14"></blockquote>'}).join('');
+    var s=document.createElement('script');s.async=true;s.src='https://www.instagram.com/embed.js';document.body.appendChild(s)}
+})();
+</script>
+</body></html>

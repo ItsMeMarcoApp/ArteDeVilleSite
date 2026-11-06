@@ -3,7 +3,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400..600&family=Jost:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@11,400..600&family=Jost:wght@400;500&display=swap">
 <style>
 /* Preto e dourado, como o logo: chão preto, tinta clara, ouro na ação e nos números. Uma seção inteira em campo de ouro (empresas). Display em Bodoni Moda, a mesma família didone das letras do logo; texto em Jost. */
 :root{
@@ -32,7 +32,7 @@ html{background:var(--noir)}
 body{background:var(--noir);color:var(--creme);font:400 18px/1.6 var(--text);-webkit-font-smoothing:antialiased}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--noir)}
 a{color:inherit}
-h1,h2,h3{font-family:var(--display);font-optical-sizing:auto;font-weight:400;letter-spacing:-0.02em;line-height:1.02;margin:0;text-wrap:balance}
+h1,h2,h3{font-family:var(--display);font-weight:500;letter-spacing:-0.02em;line-height:1.02;margin:0;text-wrap:balance}
 p{margin:0}
 .wrap{padding-left:var(--gut);padding-right:var(--gut-r);max-width:1480px;margin:0 auto}
 .btn{display:inline-flex;align-items:center;gap:.7em;background:var(--ouro);color:var(--noir);font:500 17px/1 var(--text);padding:19px 30px;border-radius:999px;text-decoration:none;border:0;cursor:pointer;transition:transform .25s cubic-bezier(.2,.8,.2,1),background .25s}
@@ -61,12 +61,12 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 .bar nav a{text-decoration:none;color:var(--creme-2);transition:color .2s}
 .bar nav a:hover{color:var(--creme)}
 .bar .btn{padding:13px 22px;font-size:15px}
-@media (max-width:820px){.bar nav{display:none}.brand{gap:10px}.brand .selo{width:40px;height:40px}.brand b{font-size:22px;white-space:nowrap}.bar .btn{padding:12px 18px;white-space:nowrap}}
+@media (max-width:820px){.bar nav{display:none}.brand{gap:10px}.brand .selo{width:40px;height:40px}.brand b{font-size:20px;white-space:nowrap}.bar .btn{padding:11px 14px;font-size:14px;white-space:nowrap}.bar .wrap{gap:12px}}
 
 /* palco */
 .stage{background:var(--noir)}
 .pin{height:calc(100svh - var(--bar));min-height:600px;position:relative;overflow:hidden;color:var(--creme)}
-.room{position:absolute;top:0;bottom:0;right:0;left:44%;overflow:hidden;background:var(--nogueira)}
+.room{position:absolute;inset:0;overflow:hidden;background:var(--nogueira)}
 .room img,.room canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:42% 52%;display:block}
 html:not(.js-ready) .room canvas{display:none}
 .fotos{position:absolute;inset:0;will-change:filter}
@@ -87,11 +87,10 @@ html:not(.js-ready) .room canvas{display:none}
 .beat p{font-size:19px;max-width:32ch;color:var(--creme-2)}
 .beat .quando{display:flex;gap:14px;align-items:baseline;color:var(--creme);font-size:17px}
 .beat .quando b{font:400 40px/1 var(--display);color:var(--ouro-claro);font-variant-numeric:lining-nums tabular-nums}
-.later{position:absolute;left:var(--gut);bottom:64px;right:48px;opacity:0;visibility:hidden;pointer-events:none}
+.later{display:none}
 .js-ready .later{visibility:visible}
 @media (max-width:820px){
   .pin{min-height:620px}
-  .room{left:0;bottom:46%}
   .panel{width:100%;top:auto;height:46%;justify-content:flex-start;padding:28px var(--gut-r) 28px var(--gut)}
   .beat{gap:16px}
   .beat h1{font-size:clamp(34px,9vw,50px)}
@@ -101,107 +100,28 @@ html:not(.js-ready) .room canvas{display:none}
   .later{left:var(--gut);right:var(--gut-r);bottom:auto;top:calc(54% + 28px)}
 }
 
-/* a manhã */
-.manha{background:var(--noir);padding-block:180px}
-.manha .wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:80px;align-items:start}
-.manha .head{position:sticky;top:calc(var(--bar) + 48px)}
-.manha h2{font-size:clamp(44px,5vw,84px)}
-.manha .lead{margin-top:32px;font-size:21px;max-width:34ch;color:var(--creme-2)}
-.ritual{list-style:none;margin:0;padding:0;display:grid;gap:56px}
-.ritual li{display:grid;grid-template-columns:190px minmax(0,1fr);gap:32px;align-items:baseline}
-.ritual time{font:400 60px/1 var(--display);color:var(--ouro-claro);font-variant-numeric:lining-nums tabular-nums;letter-spacing:-0.03em}
-.ritual h3{font-size:34px;line-height:1.05}
-.ritual p{margin-top:10px;color:var(--creme-2)}
-.fatos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:120px;background:var(--preto-2);padding:44px 40px}
-.fatos div{display:grid;gap:10px;align-content:start}
-.fatos b{font:400 64px/1 var(--display);color:var(--ouro-claro);letter-spacing:-0.02em}
-.fatos span{font-size:16px;color:var(--creme-2);line-height:1.45}
-@media (max-width:980px){.manha{padding-block:104px}.manha .wrap{grid-template-columns:1fr;gap:48px}.manha .head{position:static}.ritual{gap:40px}.ritual li{grid-template-columns:1fr;gap:10px}.ritual time{font-size:44px}.ritual h3{font-size:26px}.fatos{grid-template-columns:1fr 1fr;gap:32px 16px;margin-top:72px;padding:32px 24px}.fatos b{font-size:48px}}
-
-/* para empresas: a luva com o pincel que brilha, mascote da casa */
-.empresas{background:var(--ouro);color:var(--noir);padding-block:170px}
-.empresas .wrap{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:64px;align-items:center}
-.empresas h2{font-size:clamp(40px,4.6vw,76px)}
-.empresas .lead{margin-top:28px;font-size:20px;max-width:40ch;color:var(--tinta-ouro)}
-.empresas .ocasioes{margin:28px 0 40px;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:10px 28px;font:400 26px/1.2 var(--display);color:var(--noir)}
-.empresas .mascote{position:relative;justify-self:center;width:min(100%,520px);background:var(--ouro);isolation:isolate}
-.empresas .btn{background:var(--noir);color:var(--ouro-claro)}
-.empresas .btn:hover{background:var(--preto-2)}
-.empresas a:focus-visible{outline-color:var(--noir)}
-.empresas .mascote img{display:block;width:100%;height:auto;mix-blend-mode:multiply;-webkit-mask-image:radial-gradient(closest-side,#000 72%,transparent);mask-image:radial-gradient(closest-side,#000 72%,transparent)}
-.empresas .mascote i{position:absolute;left:21%;top:69%;width:38%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;mix-blend-mode:screen;
-  background:radial-gradient(circle,rgba(255,236,190,.95) 0,rgba(240,196,110,.55) 18%,rgba(221,187,116,.18) 42%,transparent 66%);animation:varinha 2.6s ease-in-out infinite}
-@keyframes varinha{0%,100%{opacity:.55;transform:translate(-50%,-50%) scale(.82)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.12)}}
-@media (prefers-reduced-motion:reduce){.empresas .mascote i{animation:none;opacity:.7}}
-@media (max-width:980px){.empresas{padding-block:104px}.empresas .wrap{grid-template-columns:1fr;gap:36px}.empresas .mascote{order:-1;width:min(86%,380px)}.empresas h2{font-size:clamp(32px,8.6vw,40px)}.empresas .ocasioes{font-size:22px}}
-
-
-/* menu das três oficinas */
-.menu{display:grid;gap:40px;max-width:600px}
-.menu h1{font-size:clamp(32px,2.9vw,46px);color:var(--creme)}
-.oficinas{list-style:none;margin:0;padding:0;display:grid;gap:22px}
-.oficinas a{display:grid;gap:6px;text-decoration:none;transition:opacity .35s,transform .45s cubic-bezier(.2,.8,.2,1)}
-.oficinas b{font:400 clamp(38px,3.7vw,62px)/1 var(--display);letter-spacing:-0.02em;color:var(--creme);transition:color .35s}
-.oficinas span{font-size:16px;color:var(--creme-2);max-width:40ch}
+/* menu: uma plaquinha preta de galeria, pequena, ao lado da poltrona da esquerda */
+.placa{position:absolute;z-index:2;left:clamp(16px,3.2vw,56px);top:50%;transform:translateY(-50%);width:min(330px,calc(100% - 32px));background:var(--noir);color:var(--creme);padding:26px 28px 28px}
+.placa h1{font:400 16px/1.45 var(--text);color:var(--creme-2);max-width:26ch}
+.oficinas{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:4px}
+.oficinas a{display:block;padding:7px 0;text-decoration:none;transition:opacity .35s,transform .45s cubic-bezier(.2,.8,.2,1)}
+.oficinas b{font:500 27px/1.1 var(--display);letter-spacing:-0.01em;color:var(--creme);transition:color .3s}
 .oficinas a:hover b,.oficinas a.ativa b{color:var(--ouro-claro)}
-.menu.escolhendo .oficinas a{opacity:.32}
-.menu.escolhendo .oficinas a.ativa{opacity:1;transform:translateX(14px)}
-.oficinas a.vista:not(.ativa) b::after{content:" · vista";font:400 16px/1 var(--text);color:var(--ouro-claro);letter-spacing:0;vertical-align:middle}
+.placa.escolhendo .oficinas a{opacity:.38}
+.placa.escolhendo .oficinas a.ativa{opacity:1;transform:translateX(10px)}
+.oficinas a.vista b{color:var(--ouro-claro)}
+.placa .saiba{margin-top:22px;display:none}
+.placa .saiba.on{display:inline-flex}
 .pular-cena{position:absolute;right:24px;bottom:24px;z-index:3;font:500 15px/1 var(--text);color:var(--noir);background:var(--creme);border:0;border-radius:999px;padding:12px 18px;cursor:pointer;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s,background .2s}
 .pular-cena.on{opacity:1;visibility:visible}
 .pular-cena:hover{background:var(--ouro-claro)}
-@media (max-width:820px){.menu{gap:22px}.menu h1{font-size:28px}.oficinas{gap:12px}.oficinas b{font-size:31px}.oficinas span{display:none}.pular-cena{right:16px;bottom:auto;top:16px}}
-
-/* as três ofertas para empresas: campos alternados, a peça grande */
-.oferta{padding-block:170px;scroll-margin-top:var(--bar)}
-.oferta .wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:96px;align-items:center}
-.oferta.o-livro .wrap{grid-template-columns:minmax(0,6fr) minmax(0,5fr)}
-.o-taca{background:var(--preto-2)}
-.o-livro{background:var(--ouro);color:var(--noir)}
-.o-xicara{background:var(--noir)}
-.oferta h2{font-size:clamp(30px,4.4vw,74px)}
-.oferta .lead{margin-top:28px;font-size:20px;max-width:44ch;color:var(--creme-2)}
-.o-livro .lead{color:var(--tinta-ouro)}
-.peca{margin:0;display:grid;place-items:center}
-.o-taca .peca img{height:min(78vh,760px);width:auto}
-.o-livro .peca img{width:100%;height:auto;mix-blend-mode:multiply}
-.o-xicara .peca img{width:min(100%,560px);height:auto}
-.inclui{list-style:none;margin:44px 0 48px;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:22px 32px;font-size:17px;color:var(--creme-2)}
-.inclui b{display:block;font:400 30px/1.1 var(--display);color:var(--ouro-claro);margin-bottom:4px}
-.o-livro .inclui{color:var(--tinta-ouro)}.o-livro .inclui b{color:var(--noir)}
-.acoes{display:flex;flex-wrap:wrap;align-items:center;gap:20px 32px}
-.acoes .volta{font-size:17px;color:inherit;text-underline-offset:5px;text-decoration-thickness:1px;transition:color .2s}
-.acoes .volta:hover{color:var(--ouro-claro)}
-.o-livro .btn{background:var(--noir);color:var(--ouro-claro)}.o-livro .btn:hover{background:var(--preto-2)}
-.o-livro .acoes .volta:hover{color:var(--creme)}.o-livro a:focus-visible{outline-color:var(--noir)}
-@media (max-width:980px){.oferta{padding-block:96px}.oferta .wrap,.oferta.o-livro .wrap{grid-template-columns:1fr;gap:44px}.o-livro .peca{order:-1}.o-taca .peca img{height:min(62vh,520px)}.inclui{grid-template-columns:1fr;gap:16px}.inclui b{font-size:26px}}
-
-/* próximas turmas abertas */
-.datas{background:var(--preto-2);padding-block:150px}
-.datas .wrap{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:24px 80px;align-items:end}
-.datas h2{font-size:clamp(40px,4.4vw,74px)}
-.datas .lead{font-size:20px;color:var(--creme-2);max-width:40ch}
-.datas .btn{grid-column:1;justify-self:start;margin-top:20px}
-@media (max-width:980px){.datas{padding-block:96px}.datas .wrap{grid-template-columns:1fr}}
-
-/* perguntas */
-.faq{background:var(--noir);padding-block:180px}
-.faq .wrap{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:80px}
-.faq h2{font-size:clamp(44px,5vw,84px);align-self:start;position:sticky;top:calc(var(--bar) + 48px)}
-.faq details{margin-bottom:4px;transition:background .25s}
-.faq details[open]{background:var(--preto-2)}
-.faq summary:hover{color:var(--ouro-claro)}
-.faq summary{cursor:pointer;list-style:none;padding:28px 32px;font:400 30px/1.15 var(--display);transition:color .2s;display:flex;justify-content:space-between;gap:24px}
-.faq summary::after{content:"+";font-family:var(--text);font-weight:400;color:var(--ouro-claro);transition:transform .3s}
-.faq details[open] summary::after{transform:rotate(45deg)}
-.faq summary::-webkit-details-marker{display:none}
-.faq details p{padding:0 32px 30px;max-width:58ch;color:var(--creme-2)}
-@media (max-width:980px){.faq{padding-block:104px}.faq .wrap{grid-template-columns:1fr;gap:40px}.faq h2{position:static}.faq summary{font-size:25px;padding:22px}.faq details p{padding:0 22px 24px}}
+@media (max-width:820px){.placa{top:16px;transform:none;left:16px;width:min(300px,calc(100% - 32px));padding:18px 20px 20px}.placa h1{font-size:15px}.oficinas{margin-top:10px;gap:0}.oficinas a{padding:5px 0}.oficinas b{font-size:22px}.placa .saiba{margin-top:14px}.pular-cena{right:16px;bottom:16px}}
 
 /* fim */
-.end{background:var(--noir);color:var(--creme);padding-block:160px 40px;overflow:hidden}
+.end{background:var(--noir);color:var(--creme);padding-block:72px 40px;overflow:hidden}
 .end .row{display:flex;flex-wrap:wrap;gap:28px 64px;align-items:end;justify-content:space-between}
 .end .row p{font-size:17px;color:var(--creme-2)}
+.end .row a{text-underline-offset:4px}
 .end .row p b{color:var(--creme);font-weight:500}
 .end .big{font:400 calc((100vw - 48px) * .176)/.86 var(--display);letter-spacing:-0.035em;margin-top:120px;white-space:nowrap;color:var(--ouro-claro)}
 @media (min-width:1480px){.end .big{font-size:258px}}
@@ -220,8 +140,8 @@ html:not(.js-ready) .room canvas{display:none}
 <header class="bar">
   <div class="wrap">
     <a class="brand" href="#topo"><img class="selo" src="selo.webp" width="46" height="46" alt=""><b>Arte de Ville</b></a>
-    <nav aria-label="Seções"><a href="#topo" data-menu>Oficinas</a><a href="#como">Como funciona</a><a href="#perguntas">Perguntas</a><a href="#datas">Próximas datas</a></nav>
-    <a class="btn" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Quero%20uma%20proposta%20de%20oficina%20da%20Arte%20de%20Ville%20para%20a%20minha%20empresa." target="_blank" rel="noopener">Pedir proposta</a>
+    <nav aria-label="Seções"><a href="saiba-mais.html">Para empresas</a><a href="saiba-mais.html#instagram">Instagram</a><a href="saiba-mais.html#perguntas">Perguntas</a></nav>
+    <a class="btn" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Quero%20uma%20proposta%20de%20oficina%20da%20Arte%20de%20Ville%20para%20a%20minha%20empresa." target="_blank" rel="noopener">Peça o orçamento</a>
   </div>
 </header>
 
@@ -229,16 +149,15 @@ html:not(.js-ready) .room canvas{display:none}
   <section class="stage" aria-label="As três oficinas">
     <div class="pin">
       <div class="room" aria-hidden="true"><div class="fotos"><img class="c" src="mesa-c.webp" alt=""><img class="a" src="mesa-a.webp" alt=""><img class="b" src="mesa-b.webp" alt=""><img class="e" src="mesa-e.webp" alt=""><img class="d" src="mesa-d.webp" alt=""><img class="ae" src="mesa-ae.webp" alt=""><img class="ad" src="mesa-ad.webp" alt=""><img class="xcs" src="xic-crua-sombra.webp" alt=""><img class="xc" src="xic-crua-mesa.webp" alt=""><img class="xps" src="xic-pintada-sombra.webp" alt=""><img class="xp" src="xic-pintada-mesa.webp" alt=""></div><div class="penumbra"></div><canvas class="vidro" width="440" height="1000"></canvas><canvas class="gif" width="1280" height="720"></canvas><canvas class="livro" width="1080" height="1040"></canvas><img class="xfrente" src="xic-crua-so.webp" alt=""><canvas class="gif g2" width="1280" height="720"></canvas><canvas class="xic" width="640" height="520"></canvas><canvas class="gif g3" width="1280" height="720"></canvas></div>
-      <div class="panel">
-        <div class="menu first">
-          <h1>Arte que vai até a sua empresa.</h1>
-          <ul class="oficinas">
-            <li><a href="#empresa-taca" data-cena="0"><b>Pintura em taças</b><span>O brinde do fim de ano, pintado por quem vai brindar.</span></a></li>
-            <li><a href="#empresa-livro" data-cena="1"><b>Dobradura em livros</b><span>Um livro esquecido vira peça, dobra por dobra.</span></a></li>
-            <li><a href="#empresa-xicara" data-cena="2"><b>Pintura em xícaras</b><span>A porcelana branca do café ganha a cor de cada um.</span></a></li>
-          </ul>
-        </div>
-      </div>
+      <nav class="placa" aria-label="Oficinas">
+        <h1>Oficinas de arte para empresas, em Alphaville e na Grande São Paulo.</h1>
+        <ul class="oficinas">
+          <li><a href="saiba-mais.html?oficina=taca" data-cena="0"><b>Pintura em taças</b></a></li>
+          <li><a href="saiba-mais.html?oficina=livro" data-cena="1"><b>Dobradura em livros</b></a></li>
+          <li><a href="saiba-mais.html?oficina=xicara" data-cena="2"><b>Pintura em xícaras</b></a></li>
+        </ul>
+        <a class="btn saiba" href="saiba-mais.html">Saiba mais <span class="seta" aria-hidden="true">→</span></a>
+      </nav>
       <div class="beat later" data-beat="1"><h2>Ninguém precisa saber desenhar.</h2><p>A gente mostra o traço e cada pessoa escolhe as cores. O pincel cuida do resto.</p></div>
       <div class="beat later" data-beat="2"><h2>Depois, a cor ganha corpo.</h2><p>Tinta própria para vidro, que vai ao forno e aguenta o uso do dia a dia.</p></div>
       <div class="beat later" data-beat="3"><h2>Duas horas depois, ela é de quem pintou.</h2><p>Embalada para presente. O brinde do fim de ano já tem taça.</p></div>
@@ -250,107 +169,14 @@ html:not(.js-ready) .room canvas{display:none}
     </div>
   </section>
 
-  <section class="oferta o-taca" id="empresa-taca">
-    <div class="wrap">
-      <figure class="peca"><img src="empresas-img/taca.webp" width="434" height="1158" alt="Taça de cristal pintada à mão com um pavão verde e dourado" loading="lazy"></figure>
-      <div class="texto">
-        <h2>Pintura em taças para a sua empresa.</h2>
-        <p class="lead">Cada pessoa pinta duas taças à mão, com tinta própria para vidro, e leva para casa embaladas para presente. Ninguém precisa saber desenhar: a gente leva os moldes de traço e fica ao lado até a última pincelada.</p>
-        <ul class="inclui"><li><b>2 horas</b> no seu espaço</li><li><b>2 taças</b> por pessoa</li><li><b>2 facilitadoras</b> para cada 15 pessoas</li><li><b>Todo o material</b> da tinta à embalagem</li></ul>
-        <div class="acoes"><a class="btn" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Quero%20uma%20proposta%20da%20oficina%20de%20pintura%20em%20ta%C3%A7as%20para%20a%20minha%20empresa." target="_blank" rel="noopener">Pedir proposta de taças <span class="seta" aria-hidden="true">→</span></a><a class="volta" href="#topo" data-menu>Ver as outras oficinas</a></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="oferta o-livro" id="empresa-livro">
-    <div class="wrap">
-      <div class="texto">
-        <h2>Dobradura em livros para a sua empresa.</h2>
-        <p class="lead">Um livro antigo vira peça de decoração, dobra por dobra, sem cola e sem tesoura. Os livros e os moldes vão com a gente; cada pessoa sai com a sua peça pronta e uma história para contar.</p>
-        <ul class="inclui"><li><b>2 horas</b> no seu espaço</li><li><b>1 livro</b> por pessoa</li><li><b>Moldes de dobra</b> impressos</li><li><b>Peça pronta</b> ao fim do encontro</li></ul>
-        <div class="acoes"><a class="btn" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Quero%20uma%20proposta%20da%20oficina%20de%20dobradura%20em%20livros%20para%20a%20minha%20empresa." target="_blank" rel="noopener">Pedir proposta de dobradura <span class="seta" aria-hidden="true">→</span></a><a class="volta" href="#topo" data-menu>Ver as outras oficinas</a></div>
-      </div>
-      <figure class="peca"><img src="empresas-img/dobradura.webp" width="1000" height="916" alt="Livro antigo dobrado página por página em forma de lanterna" loading="lazy"></figure>
-    </div>
-  </section>
-
-  <section class="oferta o-xicara" id="empresa-xicara">
-    <div class="wrap">
-      <figure class="peca"><img src="xic-pintada.webp" width="640" height="520" alt="Xícara e pires de porcelana pintados à mão" loading="lazy"></figure>
-      <div class="texto">
-        <h2>Pintura em xícaras para a sua empresa.</h2>
-        <p class="lead">Xícara e pires de porcelana branca, pintados à mão com tinta própria para porcelana. Um presente que cada pessoa faz para si e usa toda manhã, lembrando de quem estava à mesa.</p>
-        <ul class="inclui"><li><b>2 horas</b> no seu espaço</li><li><b>1 xícara com pires</b> por pessoa</li><li><b>Desenhos de referência</b> para começar</li><li><b>Todo o material</b> da tinta à embalagem</li></ul>
-        <div class="acoes"><a class="btn" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Quero%20uma%20proposta%20da%20oficina%20de%20pintura%20em%20x%C3%ADcaras%20para%20a%20minha%20empresa." target="_blank" rel="noopener">Pedir proposta de xícaras <span class="seta" aria-hidden="true">→</span></a><a class="volta" href="#topo" data-menu>Ver as outras oficinas</a></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="manha" id="como">
-    <div class="wrap">
-      <div class="head">
-        <h2>Como são as duas horas.</h2>
-        <p class="lead">Chegamos uma hora antes e saímos com a sala do jeito que encontramos. Para o time, é só sentar e começar.</p>
-      </div>
-      <div>
-        <ol class="ritual">
-          <li><time>0h00</time><div><h3>Mesa posta</h3><p>Cada lugar já tem as peças, as tintas ou os moldes, e um avental.</p></div></li>
-          <li><time>0h15</time><div><h3>Abertura</h3><p>Mostramos três traços ou três dobras simples. Daí para frente, cada um segue o seu ritmo.</p></div></li>
-          <li><time>0h30</time><div><h3>Mãos na peça</h3><p>O time trabalha e conversa. As facilitadoras passam de lugar em lugar e ajudam quem trava.</p></div></li>
-          <li><time>1h30</time><div><h3>Acabamento e foto</h3><p>Últimos detalhes em dourado e uma foto do grupo com as peças na mesa.</p></div></li>
-          <li><time>1h50</time><div><h3>Para levar</h3><p>Cada peça vai embalada, com um cartão de cuidados.</p></div></li>
-        </ol>
-        <div class="fatos">
-          <div><b>10 a 30</b><span>pessoas por evento</span></div>
-          <div><b>2</b><span>facilitadoras para cada 15 pessoas</span></div>
-          <div><b>3</b><span>oficinas para escolher</span></div>
-          <div><b>0</b><span>experiência necessária</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="empresas" id="ocasioes" aria-label="Ocasiões">
-    <div class="wrap">
-      <div>
-        <h2>Para quando o time precisa de uma pausa.</h2>
-        <p class="lead">Uma comemoração diferente da festa de sempre. As pessoas conversam, se ajudam e levam para casa algo feito com as próprias mãos.</p>
-        <ul class="ocasioes"><li>Fim de ano</li><li>Integração de equipe</li><li>Dia da Mulher</li><li>Encontro com clientes</li></ul>
-        <a class="btn" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Quero%20uma%20proposta%20de%20oficina%20da%20Arte%20de%20Ville%20para%20a%20minha%20empresa." target="_blank" rel="noopener">Pedir proposta <span class="seta" aria-hidden="true">→</span></a>
-      </div>
-      <div class="mascote" aria-hidden="true"><img src="mascote.webp" width="640" height="470" alt="" loading="lazy"><i></i></div>
-    </div>
-  </section>
-
-  <section class="faq" id="perguntas">
-    <div class="wrap">
-      <h2>Perguntas do RH.</h2>
-      <div>
-        <details open><summary>O time precisa saber pintar?</summary><p>Não. A maioria nunca pintou nem dobrou papel. As facilitadoras mostram o traço ou a dobra e ajudam do começo ao fim.</p></details>
-        <details><summary>Para quantas pessoas?</summary><p>De 10 a 30. Acima de 15, vamos com uma segunda dupla de facilitadoras ou fazemos dois turnos seguidos.</p></details>
-        <details><summary>O que vocês precisam da empresa?</summary><p>Uma sala com mesas para todos sentarem juntos, água e uma tomada por perto e uma hora de acesso antes, para montar tudo sem pressa.</p></details>
-        <details><summary>Onde vocês atendem?</summary><p>Alphaville, Barueri e região. No escritório, num restaurante ou num salão de eventos, onde for melhor para vocês.</p></details>
-        <details><summary>Dá para colocar a marca da empresa?</summary><p>Sim. O logo vai no cartão e na embalagem de cada peça.</p></details>
-        <details><summary>Quanto custa?</summary><p>O valor vem na proposta, de acordo com o número de pessoas, a oficina e o local. Chame no WhatsApp e respondemos no mesmo dia.</p></details>
-      </div>
-    </div>
-  </section>
-
-  <section class="datas" id="datas">
-    <div class="wrap">
-      <h2>Próximas turmas abertas.</h2>
-      <p class="lead">Também abrimos turmas para quem quer vir sozinho ou com amigos, no ateliê em Alphaville. As datas saem primeiro no Instagram.</p>
-      <a class="btn" href="https://www.instagram.com/artedeville" target="_blank" rel="noopener">Ver as datas no Instagram <span class="seta" aria-hidden="true">→</span></a>
-    </div>
-  </section>
 </main>
 
 <footer class="end">
   <div class="wrap">
     <div class="row">
-      <p><b>Oficinas de arte para empresas</b><br>Alphaville, Barueri e região</p>
-      <p>Instagram <a href="https://www.instagram.com/artedeville" target="_blank" rel="noopener">@artedeville</a><br>WhatsApp <b>(11) 90000-0000</b></p>
-      <a class="btn" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Quero%20uma%20proposta%20de%20oficina%20da%20Arte%20de%20Ville%20para%20a%20minha%20empresa." target="_blank" rel="noopener">Pedir proposta <span class="seta" aria-hidden="true">→</span></a>
+      <p><b><a href="saiba-mais.html">Oficinas para empresas</a></b><br>Alphaville, São Paulo e Grande São Paulo</p>
+      <p>Instagram <a href="https://www.instagram.com/artedeville" target="_blank" rel="noopener">@artedeville</a><br>WhatsApp <a href="https://wa.me/5511900000000" target="_blank" rel="noopener">(11) 90000-0000</a></p>
+      <a class="btn" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Quero%20um%20or%C3%A7amento%20de%20oficina%20da%20Arte%20de%20Ville%20para%20a%20minha%20empresa." target="_blank" rel="noopener">Peça o orçamento <span class="seta" aria-hidden="true">→</span></a>
     </div>
     <p class="big" aria-hidden="true">Arte de Ville</p>
   </div>
@@ -463,11 +289,11 @@ html:not(.js-ready) .room canvas{display:none}
     return {x:a.x+TOQUE2.x*k-640*sc,y:a.y+TOQUE2.y*k-358*sc,scale:sc}}
   /* a xícara: recortes da mesa (Gemini) no quadro x 550, y 450, 320x260 da foto; a pintada nasce da luz, a branca se apaga */
   var xcv=document.querySelector('.xic'), xctx=xcv.getContext('2d');
-  var xcru=new Image();xcru.src='xic-crua.webp';var xpin=new Image();xpin.src='xic-pintada.webp';
+  var xcru=new Image();xcru.src='xic-crua.webp';var xneu=new Image();xneu.src='xic-crua-neutra.webp';var nx={w:0};var xpin=new Image();xpin.src='xic-pintada.webp';
   var TOQUE3={x:151,y:141}, rv3={r:0};
   function revela3(r){if(!xcru.complete||!xcru.naturalWidth)return;
     xctx.clearRect(0,0,640,520);var cx=TOQUE3.x*2,cy=TOQUE3.y*2,R=r*760;
-    if(r<1){xctx.globalAlpha=Math.max(0,1-r*4);xctx.drawImage(xcru,0,0,640,520);xctx.globalAlpha=1}
+    if(r<1){var g0=Math.max(0,1-r*4);xctx.globalAlpha=g0;xctx.drawImage(xcru,0,0,640,520);if(nx.w>0&&xneu.complete&&xneu.naturalWidth){xctx.globalAlpha=g0*nx.w;xctx.drawImage(xneu,0,0,640,520)}xctx.globalAlpha=1}
     if(r<=0||!xpin.complete||!xpin.naturalWidth)return;
     if(r<1){xctx.save();xctx.globalCompositeOperation='destination-out';xctx.beginPath();xctx.arc(cx,cy,R,0,7);xctx.fill();xctx.restore()}
     xctx.save();xctx.beginPath();xctx.arc(cx,cy,R,0,7);xctx.clip();xctx.drawImage(xpin,0,0,640,520);xctx.restore();
@@ -559,6 +385,7 @@ html:not(.js-ready) .room canvas{display:none}
     .to('.fotos .xcs',{opacity:0,duration:.06},1.932)
     .to('.fotos',{filter:'blur(9px) brightness(.72)',duration:.1,ease:'power1.out'},1.93)
     .to(xcv,Object.assign({duration:.12,ease:'power2.inOut'},pos(alto3)),1.94)
+    .fromTo(nx,{w:0},{w:1,duration:.12,immediateRender:false,onUpdate:function(){revela3(rv3.r)}},1.94)
     .fromTo(xcv,{filter:'drop-shadow(0px 0px 0px rgba(255,236,200,0)) drop-shadow(0px 0px 0px rgba(255,212,140,0)) drop-shadow(0px 0px 0px rgba(30,16,6,0))'},{filter:'drop-shadow(0px 0px 1.5px rgba(255,236,200,.85)) drop-shadow(3px -3px 7px rgba(255,212,140,.6)) drop-shadow(0px 40px 40px rgba(30,16,6,.55))',duration:.12},1.94)
     .fromTo('[data-beat="6"]',{opacity:0,y:24},{opacity:1,y:0,duration:.04},1.98)
     .fromTo(gif3,Object.assign({opacity:0},pos(gifPos3)),Object.assign({opacity:1,duration:.03,immediateRender:false},pos(gifPos3)),2.04)
@@ -578,27 +405,29 @@ html:not(.js-ready) .room canvas{display:none}
     .to({},{duration:.1},2.62);
   /* menu: cada oficina toca a sua cena inteira e depois leva ao bloco dela para empresas. A mesa sempre parte crua. */
   var cenas=[{de:0,ate:.95,cv:canvas,pos:mesa,bloco:'empresa-taca'},{de:.965,ate:1.86,cv:lcv,pos:mesa2,bloco:'empresa-livro'},{de:1.87,ate:2.72,cv:xcv,pos:mesa3,bloco:'empresa-xicara'}];
-  var rodando=false, travaY=0, atual=null, menu=document.querySelector('.menu'), pen=document.querySelector('.penumbra'), pulaC=document.querySelector('.pular-cena'), sujo=false;
+  var rodando=false, travaY=0, atual=null, menu=document.querySelector('.placa'), saiba=document.querySelector('.placa .saiba'), slugs=['taca','livro','xicara'], pen=document.querySelector('.penumbra'), pulaC=document.querySelector('.pular-cena'), sujo=false;
   var itens=[].slice.call(document.querySelectorAll('[data-cena]'));
   function desenhaCrus(){revela(0);revela2(0);revela3(0)}
   /* hover: a sala cai na penumbra e só a peça fica na luz */
-  function acende(k){if(rodando||sujo)return;cenas.forEach(function(c,i){var p=c.pos();gsap.set(c.cv,{x:p.x,y:p.y,scale:p.scale,visibility:i===k?'visible':'hidden'})});
+  function acende(k){if(rodando)return;if(sujo){menu.classList.add('escolhendo');itens.forEach(function(a,i){a.classList.toggle('ativa',i===k)});return}cenas.forEach(function(c,i){var p=c.pos();gsap.set(c.cv,{x:p.x,y:p.y,scale:p.scale,visibility:i===k?'visible':'hidden'})});
     gsap.to(pen,{opacity:.62,duration:.5,ease:'power2.out',overwrite:true});menu.classList.add('escolhendo');itens.forEach(function(a,i){a.classList.toggle('ativa',i===k)})}
-  function apaga(){if(rodando||sujo)return;gsap.to(pen,{opacity:0,duration:.45,ease:'power2.out',overwrite:true,onComplete:function(){if(!rodando&&!sujo)cenas.forEach(function(c){gsap.set(c.cv,{visibility:'hidden'})})}});
+  function apaga(){if(rodando)return;if(sujo){menu.classList.remove('escolhendo');itens.forEach(function(a){a.classList.remove('ativa')});return}gsap.to(pen,{opacity:0,duration:.45,ease:'power2.out',overwrite:true,onComplete:function(){if(!rodando&&!sujo)cenas.forEach(function(c){gsap.set(c.cv,{visibility:'hidden'})})}});
     menu.classList.remove('escolhendo');itens.forEach(function(a){a.classList.remove('ativa')})}
   /* volta a mesa ao começo (só quando o palco está fora da tela ou parado) */
-  function zera(){if(atual){atual.kill();atual=null}tl.pause(0);rv.r=0;rv2.r=0;rv3.r=0;sh.s=1;oc1.o=1;oc2.o=1;desenhaCrus();
-    cenas.forEach(function(c){gsap.set(c.cv,{visibility:'hidden'})});gsap.set(pen,{opacity:0});gsap.set('.later',{opacity:0});gsap.set(menu,{opacity:1,y:0});
+  function zera(){if(atual){atual.kill();atual=null}tl.pause(0);rv.r=0;rv2.r=0;rv3.r=0;nx.w=0;sh.s=1;oc1.o=1;oc2.o=1;desenhaCrus();
+    cenas.forEach(function(c){gsap.set(c.cv,{visibility:'hidden'})});gsap.set(pen,{opacity:0});gsap.set('.later',{opacity:0});gsap.set(menu,{opacity:1});saiba.classList.remove('on');itens.forEach(function(a){a.classList.remove('vista')});
     menu.classList.remove('escolhendo');itens.forEach(function(a){a.classList.remove('ativa')});pulaC.classList.remove('on');sujo=false}
   function fim(k){rodando=false;atual=null;pulaC.classList.remove('on');sujo=true;itens[k].classList.add('vista');
     if(lenis){lenis.scrollTo(scrollY,{immediate:true,force:true});lenis.start()}
-    var el=document.getElementById(cenas[k].bloco),bar=document.querySelector('.bar').offsetHeight;
-    setTimeout(function(){if(lenis)lenis.scrollTo(el,{offset:-bar,duration:1.6});else el.scrollIntoView({behavior:'smooth'})},250)}
-  function toca(k){if(rodando)return;if(sujo)zera();var c=cenas[k];rodando=true;
+    saiba.href='saiba-mais.html?oficina='+slugs[k];saiba.classList.add('on');gsap.fromTo(menu,{opacity:0},{opacity:1,duration:.6,ease:'power2.out'});
+    gsap.fromTo(saiba,{opacity:0,y:12},{opacity:1,y:0,duration:.6,delay:.25,ease:'power2.out'});saiba.focus({preventScroll:true})}
+  function toca(k){if(rodando)return;
+    if(sujo){rodando=true;gsap.to(menu,{opacity:0,duration:.3});gsap.to('.room',{opacity:0,duration:.35,ease:'power1.in',onComplete:function(){zera();rodando=false;gsap.set(menu,{opacity:0});gsap.to('.room',{opacity:1,duration:.45,ease:'power1.out'});toca(k)}});return}
+    var c=cenas[k];rodando=true;
     if(lenis){lenis.scrollTo(0,{immediate:true,force:true});lenis.stop()}else scrollTo(0,0);travaY=0;
     var p=c.pos();gsap.set(c.cv,{x:p.x,y:p.y,scale:p.scale,visibility:'visible'});
     gsap.to(pen,{opacity:0,duration:.5,ease:'power1.inOut',overwrite:true});
-    gsap.to(menu,{opacity:0,y:-30,duration:.45,ease:'power2.in'});pulaC.classList.add('on');
+    gsap.to(menu,{opacity:0,duration:.4,ease:'power2.in'});pulaC.classList.add('on');
     atual=tl.tweenFromTo(c.de,c.ate,{duration:(c.ate-c.de)*9,ease:'none',onComplete:function(){fim(k)}})}
   itens.forEach(function(a,i){a.addEventListener('mouseenter',function(){acende(i)});a.addEventListener('focus',function(){acende(i)});
     a.addEventListener('mouseleave',apaga);a.addEventListener('blur',apaga);
