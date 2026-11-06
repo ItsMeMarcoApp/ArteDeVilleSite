@@ -531,4 +531,11 @@ html:not(.js-ready) .room canvas{display:none}
 .end .big{color:transparent;background:linear-gradient(175deg,#FFF3CF 0%,#EBC97E 30%,#C9973F 58%,#8E6224 78%,#D9AE5E 100%);-webkit-background-clip:text;background-clip:text;
   filter:drop-shadow(0 2px 0 rgba(60,38,10,.9)) drop-shadow(0 10px 22px rgba(0,0,0,.75)) drop-shadow(0 0 26px rgba(240,195,100,.38));padding-bottom:.06em}
 </style>
+<style>/* uma pintura só, contínua, atrás do menu e do rodapé: sem emenda entre as seções */
+body{background:var(--noir) url(textura-fundo.webp) center top/cover no-repeat}
+.stage{background:transparent}
+.placa{background:linear-gradient(90deg,rgba(21,17,13,.95) 0,rgba(21,17,13,.9) 84%,rgba(21,17,13,.4) 100%)}
+.end{background:linear-gradient(rgba(21,17,13,.92),rgba(21,17,13,.84) 180px)}
+@media(max-width:820px){.placa{background:linear-gradient(rgba(21,17,13,.86),rgba(21,17,13,.88))}.end{background:linear-gradient(rgba(21,17,13,.88),rgba(21,17,13,.84) 120px)}}
+</style>
 </body></html>
