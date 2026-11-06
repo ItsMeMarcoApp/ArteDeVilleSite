@@ -207,10 +207,10 @@ html:not(.js-ready) .room canvas{display:none}
     /* aro dourado na frente da troca, só sobre o vidro */
     if(r<1){ctx.globalCompositeOperation='source-atop';ctx.beginPath();ctx.arc(cx,cy,R,0,7);ctx.lineWidth=18;ctx.strokeStyle='rgba(246,222,160,'+(1-r)+')';ctx.stroke();ctx.globalCompositeOperation='source-over'}}
   /* a xícara fica na frente do pé da taça e do canto do livro: enquanto estão na mesa, a silhueta dela é apagada deles (oc=1); no alto, não (oc=0) */
-  var silh=new Image(), oc1={o:1}, oc2={o:1};silh.src='xic-crua-silhueta.webp';
+  var silhC=new Image(), silhP=new Image(), silh=silhC, oc1={o:1}, oc2={o:1};silhC.src='xic-crua-silhueta.webp';silhP.src='xic-pintada-silhueta.webp';
   function oclui(c,ox,oy,o){if(o<=0||!silh.complete||!silh.naturalWidth)return;c.save();c.globalAlpha=o;c.globalCompositeOperation='destination-out';c.drawImage(silh,-ox*2,-oy*2,2752,1536);c.restore()}
   var revelaBase=revela;revela=function(r){revelaBase(r);oclui(ctx,470,150,oc1.o)};
-  vazio.onload=function(){revela(0)};silh.onload=function(){revela(0)};
+  vazio.onload=function(){revela(0)};silhC.onload=function(){revela(0)};
 
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(reduce||!window.gsap||!window.ScrollTrigger)return;
@@ -413,23 +413,36 @@ html:not(.js-ready) .room canvas{display:none}
   var itens=[].slice.call(document.querySelectorAll('[data-cena]'));
   function desenhaCrus(){revela(0);revela2(0);revela3(0)}
   /* hover: a sala cai na penumbra e só a peça fica na luz */
-  function acende(k){if(rodando)return;if(sujo){menu.classList.add('escolhendo');itens.forEach(function(a,i){a.classList.toggle('ativa',i===k)});return}cenas.forEach(function(c,i){var p=c.pos();gsap.set(c.cv,{x:p.x,y:p.y,scale:p.scale,visibility:i===k?'visible':'hidden'})});
+  function acende(k){if(rodando)return;if(feito[k]){menu.classList.add('escolhendo');itens.forEach(function(a,i){a.classList.toggle('ativa',i===k)});return}cenas.forEach(function(c,i){var p=c.pos();gsap.set(c.cv,{x:p.x,y:p.y,scale:p.scale,visibility:i===k?'visible':'hidden'})});
     gsap.to(pen,{opacity:.62,duration:.5,ease:'power2.out',overwrite:true});menu.classList.add('escolhendo');itens.forEach(function(a,i){a.classList.toggle('ativa',i===k)})}
-  function apaga(){if(rodando)return;if(sujo){menu.classList.remove('escolhendo');itens.forEach(function(a){a.classList.remove('ativa')});return}gsap.to(pen,{opacity:0,duration:.45,ease:'power2.out',overwrite:true,onComplete:function(){if(!rodando&&!sujo)cenas.forEach(function(c){gsap.set(c.cv,{visibility:'hidden'})})}});
+  function apaga(){if(rodando)return;gsap.to(pen,{opacity:0,duration:.45,ease:'power2.out',overwrite:true,onComplete:function(){if(!rodando&&!sujo)cenas.forEach(function(c){gsap.set(c.cv,{visibility:'hidden'})})}});
     menu.classList.remove('escolhendo');itens.forEach(function(a){a.classList.remove('ativa')})}
   /* volta a mesa ao começo (só quando o palco está fora da tela ou parado) */
   function zera(){if(atual){atual.kill();atual=null}tl.pause(0);rv.r=0;rv2.r=0;rv3.r=0;nx.w=0;sh.s=1;oc1.o=1;oc2.o=1;desenhaCrus();
     cenas.forEach(function(c){gsap.set(c.cv,{visibility:'hidden'})});gsap.set(pen,{opacity:0});gsap.set('.later',{opacity:0});gsap.set(menu,{opacity:1});saiba.classList.remove('on');itens.forEach(function(a){a.classList.remove('vista')});
     menu.classList.remove('escolhendo');itens.forEach(function(a){a.classList.remove('ativa')});pulaC.classList.remove('on');sujo=false}
-  function fim(k){rodando=false;atual=null;pulaC.classList.remove('on');sujo=true;itens[k].classList.add('vista');
+  function fim(k){rodando=false;atual=null;pulaC.classList.remove('on');feito[k]=true;itens.forEach(function(a,i){a.classList.toggle('vista',i===k)});
     if(lenis){lenis.scrollTo(scrollY,{immediate:true,force:true});lenis.start()}
     saiba.href='saiba-mais.html?oficina='+slugs[k];saiba.classList.add('on');gsap.fromTo(menu,{opacity:0},{opacity:1,duration:.6,ease:'power2.out'});
     gsap.fromTo(saiba,{opacity:0,y:12},{opacity:1,y:0,duration:.6,delay:.25,ease:'power2.out'});saiba.focus({preventScroll:true})}
+  /* o que já foi feito fica feito: antes de cada cena, as fotos da mesa mostram as peças já transformadas */
+  var feito=[false,false,false], F=function(q){return document.querySelector('.fotos .'+q)}, xfr=document.querySelector('.xfrente');
+  ['mesa-cd','mesa-ad','mesa-ae','mesa-d','mesa-e','mesa-b','xic-pintada-so'].forEach(function(n){var im=new Image();im.src=n+'.webp'});
+  function prepara(j){var T=feito[0],B=feito[1],X=feito[2];
+    tl.pause();tl.seek(cenas[j].de,true);
+    if(j===0){F('a').src=B?'mesa-ad.webp':'mesa-a.webp';F('c').src=B?'mesa-cd.webp':'mesa-c.webp';F('b').src=B?'mesa-d.webp':'mesa-b.webp'}
+    if(j===1){F('a').src=T?'mesa-b.webp':'mesa-a.webp';F('ae').src=T?'mesa-e.webp':'mesa-ae.webp';F('ad').src=T?'mesa-d.webp':'mesa-ad.webp'}
+    if(j===2){F('a').src=T&&B?'mesa-d.webp':T?'mesa-b.webp':B?'mesa-ad.webp':'mesa-a.webp'}
+    if(j!==2){F('xc').src=X?'xic-pintada-mesa.webp':'xic-crua-mesa.webp';xfr.src=X?'xic-pintada-so.webp':'xic-crua-so.webp';silh=X?silhP:silhC}
+    revela(rv.r);revela2(rv2.r);revela3(rv3.r)}
+  function mostraSaiba(k){saiba.href='saiba-mais.html?oficina='+slugs[k];saiba.classList.add('on');itens.forEach(function(a,i){a.classList.toggle('vista',i===k)});
+    gsap.fromTo(saiba,{opacity:0,y:12},{opacity:1,y:0,duration:.5,ease:'power2.out'})}
   function toca(k){if(rodando)return;
-    if(sujo){rodando=true;gsap.to(menu,{opacity:0,duration:.3});gsap.to('.room',{opacity:0,duration:.35,ease:'power1.in',onComplete:function(){zera();rodando=false;gsap.set(menu,{opacity:0});gsap.to('.room',{opacity:1,duration:.45,ease:'power1.out'});toca(k)}});return}
+    if(feito[k]){mostraSaiba(k);return}
+    prepara(k);
     var c=cenas[k];rodando=true;
     if(lenis){lenis.scrollTo(0,{immediate:true,force:true});lenis.stop()}else scrollTo(0,0);travaY=0;
-    var p=c.pos();gsap.set(c.cv,{x:p.x,y:p.y,scale:p.scale,visibility:'visible'});
+    cenas.forEach(function(o,i){if(i!==k)gsap.set(o.cv,{visibility:'hidden'})});var p=c.pos();gsap.set(c.cv,{x:p.x,y:p.y,scale:p.scale,visibility:'visible'});
     gsap.to(pen,{opacity:0,duration:.5,ease:'power1.inOut',overwrite:true});
     gsap.to(menu,{opacity:0,duration:.4,ease:'power2.in'});pulaC.classList.add('on');
     atual=tl.tweenFromTo(c.de,c.ate,{duration:(c.ate-c.de)*9,ease:'none',onComplete:function(){fim(k)}})}
