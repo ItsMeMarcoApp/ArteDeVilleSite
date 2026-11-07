@@ -229,13 +229,13 @@ html:not(.js-ready) .room canvas{display:none}
   var foi=true;function sai(){if(foi)return;foi=true;deriva.pause();saida.restart()}
   function abertura(){foi=false;saida.pause(0);gsap.set(cortina,{yPercent:0,visibility:'visible'});gsap.set(zoom,{yPercent:0,scale:1});gsap.set(pula,{opacity:1});
     if(lenis)lenis.stop();document.documentElement.style.overflow='hidden';document.documentElement.classList.add('abrindo');
-    video.classList.remove('ok');video.currentTime=0;var pr=video.play();if(pr&&pr.catch)pr.catch(function(){sai()});deriva.restart();
+    video.classList.remove('ok');zoom.classList.remove('tocando');video.currentTime=0;var pr=video.play();if(pr&&pr.catch)pr.catch(function(){sai()});deriva.restart();
     /* rede de segurança: se o vídeo não andar, a cortina sobe mesmo assim */
     clearTimeout(trava);clearTimeout(window.__fim);trava=setTimeout(function(){if(video.currentTime<0.2)sai()},2500);window.__fim=setTimeout(sai,6800)}
   window.__abertura=abertura;
   /* aparece no primeiro avanço real do vídeo (vídeo invisível o Chrome pausa sozinho, por isso começa com opacidade mínima e não zero) */
-  function mostra(){if(video.currentTime>0.04)video.classList.add('ok')}
-  video.addEventListener('timeupdate',mostra);video.addEventListener('playing',function(){setTimeout(function(){video.classList.add('ok')},120)});
+  function mostra(){if(video.currentTime>0.04){video.classList.add('ok');zoom.classList.add('tocando')}}
+  video.addEventListener('timeupdate',mostra);video.addEventListener('playing',function(){setTimeout(function(){video.classList.add('ok');zoom.classList.add('tocando')},120)});
   var trava=0;
   video.addEventListener('ended',sai);
   video.addEventListener('timeupdate',function(){if(video.currentTime>=5.28)sai()});
@@ -541,4 +541,16 @@ body{background:var(--noir) url(textura-fundo.webp) center top/cover no-repeat}
 .end{background:linear-gradient(rgba(21,17,13,.92),rgba(21,17,13,.84) 180px)}
 @media(max-width:820px){.placa{background:linear-gradient(rgba(21,17,13,.86),rgba(21,17,13,.88))}.end{background:linear-gradient(rgba(21,17,13,.88),rgba(21,17,13,.84) 120px)}}
 </style>
+<style>/* abertura: quando o vídeo já está na tela, a imagem do primeiro quadro some. No celular o vídeo tem as bordas esfumadas e a mão desse quadro aparecia por trás (a "mancha") */
+.abre-zoom.tocando .abre-0,.abre-zoom:has(video.ok) .abre-0{visibility:hidden}
+</style>
+<style>/* letreiro do rodapé: folga para o brilho e para as pontas das letras não serem cortadas */
+.end .big{display:block;max-width:100%;padding:.06em .05em .1em;margin-left:-.05em}
+</style>
+<script>
+/* o letreiro sempre cabe na largura, mesmo se o celular usar outra fonte enquanto a Bodoni carrega */
+(function(){var els=document.querySelectorAll('.end .big');function ajusta(){els.forEach(function(e){e.style.fontSize='';var fs=parseFloat(getComputedStyle(e).fontSize),n=0;
+  while(e.scrollWidth>e.clientWidth+1&&fs>18&&n<80){fs-=1;n++;e.style.fontSize=fs+'px'}})}
+  ajusta();addEventListener('load',ajusta);addEventListener('resize',ajusta);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(ajusta)})();
+</script>
 </body></html>
