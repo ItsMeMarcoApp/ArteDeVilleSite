@@ -553,10 +553,12 @@ body{background:var(--noir) url(textura-fundo.webp) center top/cover no-repeat}
   while(e.scrollWidth>e.clientWidth+1&&fs>18&&n<80){fs-=1;n++;e.style.fontSize=fs+'px'}})}
   ajusta();addEventListener('load',ajusta);addEventListener('resize',ajusta);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(ajusta)})();
 </script>
-<style>/* luz atrás das três oficinas: degradê dourado em "screen" que clareia a pintura do fundo, mais forte no centro das palavras */
-.oficinas{position:relative}
-.oficinas::before{content:'';position:absolute;z-index:-1;pointer-events:none;inset:-56px -90px -56px -56px;mix-blend-mode:screen;
-background:radial-gradient(ellipse 60% 56% at 36% 50%,rgba(150,112,58,.55) 0,rgba(120,88,44,.34) 38%,rgba(90,64,30,.14) 66%,rgba(90,64,30,0) 100%)}
-@media(max-width:820px){.oficinas::before{inset:-30px -16px}}
+<style>/* realce do menu: o véu escuro fica mais fino atrás das três oficinas (degradê), devolvendo o brilho da pintura do fundo; mais escuro nas bordas */
+.placa{background:radial-gradient(ellipse 58% 44% at 40% 54%,rgba(21,17,13,.2) 0,rgba(21,17,13,.32) 40%,rgba(21,17,13,.75) 100%),linear-gradient(90deg,rgba(21,17,13,.72) 0,rgba(21,17,13,.64) 84%,rgba(21,17,13,.15) 100%)}
+@media(max-width:820px){.placa{background:radial-gradient(ellipse 80% 46% at 45% 56%,rgba(21,17,13,.25) 0,rgba(21,17,13,.35) 45%,rgba(21,17,13,.7) 100%),linear-gradient(rgba(21,17,13,.66),rgba(21,17,13,.68))}}
+/* contorno escuro discreto: as letras douradas não somem sobre a pintura dourada que agora aparece mais */
+.oficinas b{filter:drop-shadow(0 1px 1px rgba(10,7,4,.95)) drop-shadow(0 0 6px rgba(10,7,4,.7)) drop-shadow(0 0 10px rgba(255,214,130,.3))}
+.oficinas a:hover b,.oficinas a:focus-visible b,.oficinas a.ativa b{filter:drop-shadow(0 1px 1px rgba(10,7,4,.95)) drop-shadow(0 0 8px rgba(255,226,150,.9)) drop-shadow(0 0 24px rgba(240,190,90,.55))}
+.oficinas a.vista b{filter:drop-shadow(0 1px 1px rgba(10,7,4,.95)) drop-shadow(0 0 6px rgba(10,7,4,.7)) drop-shadow(0 0 9px rgba(255,214,120,.5))}
 </style>
 </body></html>
