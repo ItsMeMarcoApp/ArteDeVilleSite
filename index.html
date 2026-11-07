@@ -553,4 +553,10 @@ body{background:var(--noir) url(textura-fundo.webp) center top/cover no-repeat}
   while(e.scrollWidth>e.clientWidth+1&&fs>18&&n<80){fs-=1;n++;e.style.fontSize=fs+'px'}})}
   ajusta();addEventListener('load',ajusta);addEventListener('resize',ajusta);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(ajusta)})();
 </script>
+<style>/* luz atrás das três oficinas: degradê dourado em "screen" que clareia a pintura do fundo, mais forte no centro das palavras */
+.oficinas{position:relative}
+.oficinas::before{content:'';position:absolute;z-index:-1;pointer-events:none;inset:-56px -90px -56px -56px;mix-blend-mode:screen;
+background:radial-gradient(ellipse 60% 56% at 36% 50%,rgba(150,112,58,.55) 0,rgba(120,88,44,.34) 38%,rgba(90,64,30,.14) 66%,rgba(90,64,30,0) 100%)}
+@media(max-width:820px){.oficinas::before{inset:-30px -16px}}
+</style>
 </body></html>
