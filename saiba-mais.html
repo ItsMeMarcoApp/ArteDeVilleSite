@@ -269,4 +269,13 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 .end .big{color:transparent;background:linear-gradient(175deg,#FFF3CF 0%,#EBC97E 30%,#C9973F 58%,#8E6224 78%,#D9AE5E 100%);-webkit-background-clip:text;background-clip:text;
   filter:drop-shadow(0 2px 0 rgba(60,38,10,.9)) drop-shadow(0 10px 22px rgba(0,0,0,.75)) drop-shadow(0 0 26px rgba(240,195,100,.38));padding-bottom:.06em}
 </style>
+<style>/* letreiro do rodapé: folga para o brilho e para as pontas das letras não serem cortadas */
+.end .big{display:block;max-width:100%;padding:.06em .05em .1em;margin-left:-.05em}
+</style>
+<script>
+/* o letreiro sempre cabe na largura, mesmo se o celular usar outra fonte enquanto a Bodoni carrega */
+(function(){var els=document.querySelectorAll('.end .big');function ajusta(){els.forEach(function(e){e.style.fontSize='';var fs=parseFloat(getComputedStyle(e).fontSize),n=0;
+  while(e.scrollWidth>e.clientWidth+1&&fs>18&&n<80){fs-=1;n++;e.style.fontSize=fs+'px'}})}
+  ajusta();addEventListener('load',ajusta);addEventListener('resize',ajusta);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(ajusta)})();
+</script>
 </body></html>
