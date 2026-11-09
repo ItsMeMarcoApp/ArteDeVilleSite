@@ -145,7 +145,7 @@ html:not(.js-ready) .room canvas{display:none}
   <div class="wrap">
     <a class="brand" href="#topo"><img class="selo" src="selo.webp" width="46" height="46" alt=""><b>Arte de Ville</b></a>
     <nav aria-label="Seções"><a href="saiba-mais.html">Para empresas</a><a href="saiba-mais.html#instagram">Instagram</a><a href="saiba-mais.html#perguntas">Perguntas</a></nav>
-    <a class="btn" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Quero%20uma%20proposta%20de%20oficina%20da%20Arte%20de%20Ville%20para%20a%20minha%20empresa." target="_blank" rel="noopener">Peça o orçamento</a>
+    <a class="btn" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Quero%20uma%20proposta%20de%20oficina%20da%20Arte%20de%20Ville%20para%20a%20minha%20empresa." target="_blank" rel="noopener">Peça um orçamento</a>
   </div>
 </header>
 
@@ -180,7 +180,7 @@ html:not(.js-ready) .room canvas{display:none}
     <div class="row">
       <p><b><a href="saiba-mais.html">Oficinas para empresas</a></b><br>Alphaville, São Paulo e Grande São Paulo</p>
       <p>Instagram <a href="https://www.instagram.com/artedeville" target="_blank" rel="noopener">@artedeville</a><br>WhatsApp <a href="https://wa.me/5511900000000" target="_blank" rel="noopener">(11) 90000-0000</a></p>
-      <a class="btn" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Quero%20um%20or%C3%A7amento%20de%20oficina%20da%20Arte%20de%20Ville%20para%20a%20minha%20empresa." target="_blank" rel="noopener">Peça o orçamento <span class="seta" aria-hidden="true">→</span></a>
+      <a class="btn" href="https://wa.me/5511900000000?text=Ol%C3%A1%21%20Quero%20um%20or%C3%A7amento%20de%20oficina%20da%20Arte%20de%20Ville%20para%20a%20minha%20empresa." target="_blank" rel="noopener">Peça um orçamento <span class="seta" aria-hidden="true">→</span></a>
     </div>
     <p class="big" aria-hidden="true">Arte de Ville</p>
   </div>
@@ -609,5 +609,13 @@ text-shadow:0 1px 0 rgba(255,255,255,.7)}
 .btn[href*="wa.me"]:hover,.btn[href*="wa.me"]:focus-visible{background:radial-gradient(ellipse 55% 160% at 100% 0%,rgba(255,255,255,.9) 0,rgba(255,255,255,0) 60%),linear-gradient(200deg,rgba(255,255,255,.3) 0,rgba(0,0,0,0) 40%,rgba(120,90,40,.1) 100%),url(menu-img/papel-branco.webp) 0 0/512px repeat,#F7F2E8;color:#6A4710;transform:translateY(-1px);
 box-shadow:inset -1px 1px 0 #fff,inset 1px -1px 0 rgba(150,112,48,.4),inset 0 0 0 1px rgba(196,154,80,.5),-10px 13px 22px rgba(0,0,0,.5),-2px 3px 4px rgba(0,0,0,.35)}
 .btn[href*="wa.me"] .seta{color:#B68B43}
+</style>
+<style>/* "Peça um orçamento": placa de papel branco em relevo com respingos de tinta dourada e preta; luz em cima (mais forte nos cantos superiores), sombra embaixo à esquerda; ícone do WhatsApp no canto inferior direito */
+.btn[href*="wa.me"]{position:relative;overflow:hidden;padding-right:54px;
+background:radial-gradient(ellipse 45% 120% at 100% 0%,rgba(255,255,255,.85) 0,rgba(255,255,255,0) 60%),radial-gradient(ellipse 45% 120% at 0% 0%,rgba(255,255,255,.6) 0,rgba(255,255,255,0) 55%),radial-gradient(ellipse 60% 130% at 0% 100%,rgba(70,50,20,.32) 0,rgba(70,50,20,0) 65%),linear-gradient(180deg,rgba(255,255,255,.2) 0,rgba(0,0,0,0) 45%,rgba(90,65,25,.14) 100%),url(menu-img/respingos.webp) center/100% 100% no-repeat,url(menu-img/papel-branco.webp) 0 0/512px repeat,#F4EEE2;
+box-shadow:inset -1px 1px 0 #fff,inset 1px 1px 0 rgba(255,255,255,.8),inset 1px -1px 0 rgba(110,80,30,.4),inset 0 0 0 1px rgba(196,154,80,.4),-8px 10px 18px rgba(0,0,0,.5),-2px 3px 4px rgba(0,0,0,.4)}
+.btn[href*="wa.me"]:hover,.btn[href*="wa.me"]:focus-visible{background:radial-gradient(ellipse 45% 120% at 100% 0%,rgba(255,255,255,.95) 0,rgba(255,255,255,0) 60%),radial-gradient(ellipse 45% 120% at 0% 0%,rgba(255,255,255,.7) 0,rgba(255,255,255,0) 55%),radial-gradient(ellipse 60% 130% at 0% 100%,rgba(70,50,20,.28) 0,rgba(70,50,20,0) 65%),linear-gradient(180deg,rgba(255,255,255,.25) 0,rgba(0,0,0,0) 45%,rgba(90,65,25,.12) 100%),url(menu-img/respingos.webp) center/100% 100% no-repeat,url(menu-img/papel-branco.webp) 0 0/512px repeat,#F7F2E8}
+.btn[href*="wa.me"]::after{content:'';position:absolute;right:9px;bottom:7px;width:20px;height:20px;background:url(menu-img/whatsapp.svg) center/contain no-repeat;filter:drop-shadow(0 1px 1px rgba(0,0,0,.25))}
+.bar .btn[href*="wa.me"]{padding-right:36px}.bar .btn[href*="wa.me"]::after{width:16px;height:16px;right:8px;bottom:5px}
 </style>
 </body></html>
