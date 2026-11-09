@@ -601,4 +601,13 @@ box-shadow:inset -1px 1px 0 rgba(255,236,205,.16),inset 1px -1px 0 rgba(0,0,0,.5
 .oficinas a.vista b{filter:drop-shadow(0 1px 1px rgba(10,7,4,.9)) drop-shadow(0 0 5px rgba(255,214,130,.18))}
 .oficinas a:hover .ico img,.oficinas a:focus-visible .ico img,.oficinas a.ativa .ico img{filter:drop-shadow(0 4px 6px rgba(0,0,0,.6))}
 </style>
+<style>/* botões de orçamento (WhatsApp) no mesmo relevo de parede do menu, em papel branco e dourado: luz no canto superior direito, sombra para baixo e à esquerda, sem glow */
+.btn[href*="wa.me"]{color:#7A5518;font-weight:600;border-radius:16px;animation:none;
+background:radial-gradient(ellipse 55% 160% at 100% 0%,rgba(255,255,255,.75) 0,rgba(255,255,255,0) 60%),linear-gradient(200deg,rgba(255,255,255,.25) 0,rgba(0,0,0,0) 40%,rgba(120,90,40,.12) 100%),url(menu-img/papel-branco.webp) 0 0/512px repeat,#F4EEE2;
+box-shadow:inset -1px 1px 0 rgba(255,255,255,.95),inset 1px -1px 0 rgba(150,112,48,.35),inset 0 0 0 1px rgba(196,154,80,.35),-7px 9px 16px rgba(0,0,0,.45),-2px 3px 4px rgba(0,0,0,.35);
+text-shadow:0 1px 0 rgba(255,255,255,.7)}
+.btn[href*="wa.me"]:hover,.btn[href*="wa.me"]:focus-visible{background:radial-gradient(ellipse 55% 160% at 100% 0%,rgba(255,255,255,.9) 0,rgba(255,255,255,0) 60%),linear-gradient(200deg,rgba(255,255,255,.3) 0,rgba(0,0,0,0) 40%,rgba(120,90,40,.1) 100%),url(menu-img/papel-branco.webp) 0 0/512px repeat,#F7F2E8;color:#6A4710;transform:translateY(-1px);
+box-shadow:inset -1px 1px 0 #fff,inset 1px -1px 0 rgba(150,112,48,.4),inset 0 0 0 1px rgba(196,154,80,.5),-10px 13px 22px rgba(0,0,0,.5),-2px 3px 4px rgba(0,0,0,.35)}
+.btn[href*="wa.me"] .seta{color:#B68B43}
+</style>
 </body></html>
