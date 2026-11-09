@@ -139,7 +139,7 @@ html:not(.js-ready) .room canvas{display:none}
 .curtain video::-webkit-media-controls,.curtain video::-webkit-media-controls-start-playback-button,.curtain video::-webkit-media-controls-overlay-play-button{display:none!important;-webkit-appearance:none}
 </style>
 
-<div class="curtain"><div class="abre-zoom"><img class="abre abre-0" src="abertura-0.webp?v=2" alt=""><video class="abre" src="abertura.mp4?v=2" poster="abertura-0.webp?v=2" muted playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback x-webkit-airplay="deny" controlslist="nodownload nofullscreen noremoteplayback" aria-hidden="true"></video></div><button type="button" class="pula">Pular abertura</button></div>
+<div class="curtain"><div class="abre-zoom"><img class="abre abre-0" src="abertura-0.webp?v=3" alt=""><video class="abre" src="abertura.mp4?v=3" poster="abertura-0.webp?v=3" muted playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback x-webkit-airplay="deny" controlslist="nodownload nofullscreen noremoteplayback" aria-hidden="true"></video></div><button type="button" class="pula">Pular abertura</button></div>
 
 <header class="bar">
   <div class="wrap">
@@ -231,14 +231,14 @@ html:not(.js-ready) .room canvas{display:none}
     if(lenis)lenis.stop();document.documentElement.style.overflow='hidden';document.documentElement.classList.add('abrindo');
     video.classList.remove('ok');zoom.classList.remove('tocando');video.currentTime=0;var pr=video.play();if(pr&&pr.catch)pr.catch(function(){sai()});deriva.restart();
     /* rede de segurança: se o vídeo não andar, a cortina sobe mesmo assim */
-    clearTimeout(trava);clearTimeout(window.__fim);trava=setTimeout(function(){if(video.currentTime<0.2)sai()},2500);window.__fim=setTimeout(sai,6800)}
+    clearTimeout(trava);clearTimeout(window.__fim);trava=setTimeout(function(){if(video.currentTime<0.2)sai()},2500);window.__fim=setTimeout(sai,9300)}
   window.__abertura=abertura;
   /* aparece no primeiro avanço real do vídeo (vídeo invisível o Chrome pausa sozinho, por isso começa com opacidade mínima e não zero) */
   function mostra(){if(video.currentTime>0.04){video.classList.add('ok');zoom.classList.add('tocando')}}
   video.addEventListener('timeupdate',mostra);video.addEventListener('playing',function(){setTimeout(function(){video.classList.add('ok');zoom.classList.add('tocando')},120)});
   var trava=0;
   video.addEventListener('ended',sai);
-  video.addEventListener('timeupdate',function(){if(video.currentTime>=5.28)sai()});
+  video.addEventListener('timeupdate',function(){if(video.currentTime>=7.78)sai()});
   cortina.addEventListener('click',sai);
   addEventListener('keydown',function(){sai()});
   abertura();
